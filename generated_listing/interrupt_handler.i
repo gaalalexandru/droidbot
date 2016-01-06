@@ -1675,7 +1675,7 @@ void GPIOPortF_Handler(void)
 }
 void Comp0_Handler(void)			
 {
-	unsigned long delay = 10;
+	
 	comp0_interrupt_flag = 1;
 	if(ComparatorIntStatus(0x4003C000,0,0))
 	{
@@ -1699,3 +1699,4 @@ void WideTimer0A_Handler(void)
 		
 	}
 }
+

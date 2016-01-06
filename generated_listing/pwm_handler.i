@@ -1780,8 +1780,8 @@ void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle)
 {
 	if(PWM_duty_cycle == 0)
 	{
-		PWMOutputState(0x40029000, 0x00000040 , (0));					
-		PWMGenDisable(0x40029000, 0x00000100);															
+		PWMOutputState(0x40029000, 0x00000040 , (0));	
+		PWMGenDisable(0x40029000, 0x00000100);	
 	}
 	else
 	{
@@ -1789,9 +1789,9 @@ void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle)
 		{
 			PWM_duty_cycle = 99;	
 		}
-		PWMPulseWidthSet(0x40029000, 0x00000106, (PWM_duty_cycle*(PWMGenPeriodGet(0x40029000,0x00000100))/100));		
-		PWMGenEnable(0x40029000, 0x00000100);																
-		PWMOutputState(0x40029000, 0x00000040 , (1));					
+		PWMPulseWidthSet(0x40029000, 0x00000106, (PWM_duty_cycle*(PWMGenPeriodGet(0x40029000,0x00000100))/100));	
+		PWMGenEnable(0x40029000, 0x00000100); 
+		PWMOutputState(0x40029000, 0x00000040 , (1)); 
 	}		
 }
 
@@ -1799,8 +1799,8 @@ void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle)
 {
 	if(PWM_duty_cycle == 0)
 	{
-		PWMOutputState(0x40029000, 0x00000080 , (0));					
-		PWMGenDisable(0x40029000, 0x00000100);															
+		PWMOutputState(0x40029000, 0x00000080 , (0));	
+		PWMGenDisable(0x40029000, 0x00000100);	
 	}
 	else
 	{
@@ -1809,8 +1809,8 @@ void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle)
 			PWM_duty_cycle = 99;	
 		}
 		PWMPulseWidthSet(0x40029000, 0x00000107, (PWM_duty_cycle*(PWMGenPeriodGet(0x40029000,0x00000100))/100));		
-		PWMGenEnable(0x40029000, 0x00000100);																
-		PWMOutputState(0x40029000, 0x00000080 , (1));					
+		PWMGenEnable(0x40029000, 0x00000100);	
+		PWMOutputState(0x40029000, 0x00000080 , (1));	
 	}
 }
 
@@ -1819,37 +1819,37 @@ void PWM_motor_init(unsigned long PWM_Period)
 	
 	
 	
-	SysCtlPWMClockSet(0x00000000);																											
-	SysCtlPeripheralEnable(0xf0004001);																							
-	SysCtlPeripheralEnable(0xf0000805);																						
+	SysCtlPWMClockSet(0x00000000);								
+	SysCtlPeripheralEnable(0xf0004001);				
+	SysCtlPeripheralEnable(0xf0000805);			
 	
-	GPIOPinConfigure(0x00050805);																											
-	GPIOPinConfigure(0x00050C05);																											
-	GPIOPinTypePWM(0x40025000, 0x00000004);																						
-	GPIOPinTypePWM(0x40025000, 0x00000008);																						
+	GPIOPinConfigure(0x00050805);								
+	GPIOPinConfigure(0x00050C05);								
+	GPIOPinTypePWM(0x40025000, 0x00000004);			
+	GPIOPinTypePWM(0x40025000, 0x00000008);			
 	
-	PWMGenConfigure(0x40029000, 0x00000100, 0x00000000 | 0x00000000);				
-	PWMGenPeriodSet(0x40029000, 0x00000100, PWM_Period);																			
+	PWMGenConfigure(0x40029000, 0x00000100, 0x00000000 | 0x00000000);	
+	PWMGenPeriodSet(0x40029000, 0x00000100, PWM_Period);
 
-	PWMPulseWidthSet(0x40029000, 0x00000106, 1);																							
-	PWMPulseWidthSet(0x40029000, 0x00000107, 1);																							
-	PWMGenEnable(0x40029000, 0x00000100);																											
+	PWMPulseWidthSet(0x40029000, 0x00000106, 1);				
+	PWMPulseWidthSet(0x40029000, 0x00000107, 1);				
+	PWMGenEnable(0x40029000, 0x00000100);								
 }
 void PWM_Red_led_init(unsigned long PWM_Period)
 {
 	
-	SysCtlPWMClockSet(0x00000000);																											
-	SysCtlPeripheralEnable(0xf0004001);																							
-	SysCtlPeripheralEnable(0xf0000805);																						
+	SysCtlPWMClockSet(0x00000000);								
+	SysCtlPeripheralEnable(0xf0004001);				
+	SysCtlPeripheralEnable(0xf0000805);			
 	
-	GPIOPinConfigure(0x00050405);																											
-	GPIOPinTypePWM(0x40025000, 0x00000002);																						
+	GPIOPinConfigure(0x00050405);								
+	GPIOPinTypePWM(0x40025000, 0x00000002);			
 	
-	PWMGenConfigure(0x40029000, 0x000000C0, 0x00000000 | 0x00000000);				
-	PWMGenPeriodSet(0x40029000, 0x000000C0, PWM_Period);																			
+	PWMGenConfigure(0x40029000, 0x000000C0, 0x00000000 | 0x00000000);	
+	PWMGenPeriodSet(0x40029000, 0x000000C0, PWM_Period);
 	
 	PWMPulseWidthSet(0x40029000, 0x000000C5, (10*(PWMGenPeriodGet(0x40029000,0x000000C0))/100));
-	PWMGenEnable(0x40029000, 0x000000C0);																											
+	PWMGenEnable(0x40029000, 0x000000C0);								
 }
 
 void PWM_Red_led_toggle(void)
@@ -1867,7 +1867,7 @@ void PWM_Red_led_toggle(void)
 		PWMOutputState(0x40029000, 0x00000020 , (0));		
 		PWMGenDisable(0x40029000, 0x000000C0);											
 	}
-	status ^= 0x01;																							
+	status ^= 0x01;		
 }
 
 void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle)
@@ -1885,30 +1885,30 @@ void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, uns
 
 void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle)
 {
-	SysCtlPWMClockSet(0x00000000);																											
-	SysCtlPeripheralEnable(0xf0004001);																							
-	SysCtlPeripheralEnable(0xf0000803);																						
+	SysCtlPWMClockSet(0x00000000);							
+	SysCtlPeripheralEnable(0xf0004001);			
+	SysCtlPeripheralEnable(0xf0000803);		
 	
-	GPIOPinConfigure(0x00030005);																											
-	GPIOPinConfigure(0x00030405);																											
-	GPIOPinTypePWM(0x40007000, 0x00000001);																						
-	GPIOPinTypePWM(0x40007000, 0x00000002);																						
+	GPIOPinConfigure(0x00030005);							
+	GPIOPinConfigure(0x00030405);							
+	GPIOPinTypePWM(0x40007000, 0x00000001);		
+	GPIOPinTypePWM(0x40007000, 0x00000002);		
 	
-	PWMGenConfigure(0x40029000, 0x00000040, 0x00000000 | 0x00000000);				
-	PWMGenPeriodSet(0x40029000, 0x00000040, PWM_Period);																			
+	PWMGenConfigure(0x40029000, 0x00000040, 0x00000000 | 0x00000000);	
+	PWMGenPeriodSet(0x40029000, 0x00000040, PWM_Period);	
 	PWMPulseWidthSet(0x40029000, 0x00000040,(100*(PWMGenPeriodGet(0x40029000,0x00000040))/PWM_duty_cycle));	
 	PWMPulseWidthSet(0x40029000, 0x00000041,(100*(PWMGenPeriodGet(0x40029000,0x00000040))/PWM_duty_cycle));	
 	
-	PWMGenEnable(0x40029000, 0x00000040);																											
-	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (1));										
+	PWMGenEnable(0x40029000, 0x00000040);							
+	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (1));	
 	
 }
 
 void PWM_motor_reverse_stop(void)
 {
-	SysCtlPeripheralDisable(0xf0000803);																						
-	PWMGenDisable(0x40029000, 0x00000040);																										
-	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (0));									
+	SysCtlPeripheralDisable(0xf0000803);		
+	PWMGenDisable(0x40029000, 0x00000040);						
+	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (0));	
 }
 
 

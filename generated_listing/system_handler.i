@@ -869,8 +869,8 @@ void SYS_startup(void)
 	TIMER_cyclic_1s_init();		
 	clock = SysCtlClockGet();		
 	
-	COMP_mic_input_init();	
-	clock = SysCtlClockGet();
+	COMP_mic_input_init();		
+	clock = SysCtlClockGet();		
 	
 	Int_Master_Enable();			
 }
