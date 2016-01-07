@@ -67,7 +67,7 @@ void Comp0_Handler(void)			//Analog comparator 0 ISR
 		
 	}
 }
-void WideTimer0A_Handler(void)		//Timer 0 A ISR
+void WideTimer0A_Handler(void)		//Wide Timer 0 A ISR
 {
 	unsigned long timer_value=0;
 	if(TimerIntStatus(WTIMER0_BASE,false))
@@ -75,6 +75,18 @@ void WideTimer0A_Handler(void)		//Timer 0 A ISR
 		TimerIntClear(WTIMER0_BASE, TIMER_A);
 		timer_value = TimerValueGet(WTIMER0_BASE, TIMER_A);
 		CYCL_1_second();
+		//Toggle PF2
+	}
+}
+
+void Timer0A_Handler(void)		//Timer 0 A ISR
+{
+	unsigned long timer_value=0;
+	if(TimerIntStatus(TIMER0_BASE,false))
+	{
+		TimerIntClear(TIMER0_BASE, TIMER_A);
+		timer_value = TimerValueGet(TIMER0_BASE, TIMER_A);
+		CYCL_50_milisecond();
 		//Toggle PF2
 	}
 }
