@@ -36,20 +36,31 @@ void TIMER_cyclic_1s_init(void)	//1 second cyclic timer configuration
 	TimerDisable(WTIMER0_BASE, TIMER_A);
 	TimerClockSourceSet(WTIMER0_BASE, TIMER_CLOCK_SYSTEM);
 	TimerConfigure(WTIMER0_BASE, TIMER_CFG_A_PERIODIC);
-	/*If clock frequency is 16Mhz, set 15999999*/
-	/*If clock frequency is 80Mhz, set 79999999*/
-	TimerLoadSet(WTIMER0_BASE, TIMER_A, TIMER_reload_calculator(1000));		
-	//TimerMatchSet
+
+	TimerLoadSet(WTIMER0_BASE, TIMER_A, TIMER_reload_calculator(1000));	//Set cycle nr for 1000 ms	
 	TimerEnable(WTIMER0_BASE, TIMER_A);
 	
 	TimerIntEnable(WTIMER0_BASE,TIMER_TIMA_TIMEOUT);
 	IntPrioritySet(INT_WTIMER0A,(Int_Prio_1_WTimer0A_1s)<<5); 			//Priority 1 = "001"0.0000
-	IntEnable(INT_WTIMER0A);								//Wide Timer 0A enable of interrupts
+	IntEnable(INT_WTIMER0A);	//Wide Timer 0A enable of interrupts
 }
 
 void TIMER_cyclic_50ms_init(void)	//50 mili second cyclic timer configuration
 {
-	TimerLoadSet(WTIMER0_BASE, TIMER_A, TIMER_reload_calculator(50));		
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER0);	//Timer 0 enable
+	IntDisable(INT_TIMER0A);	//Timer 0A disable of interrupts
+	TimerIntDisable(TIMER0_BASE,TIMER_TIMA_TIMEOUT);
+	
+	TimerDisable(TIMER0_BASE, TIMER_A);	
+	TimerClockSourceSet(TIMER0_BASE, TIMER_CLOCK_SYSTEM);
+	TimerConfigure(TIMER0_BASE, TIMER_CFG_A_PERIODIC);
+	
+	TimerLoadSet(TIMER0_BASE, TIMER_A, TIMER_reload_calculator(50));	//Set cycle nr for 50 ms	
+	TimerEnable(TIMER0_BASE, TIMER_A);
+	
+	TimerIntEnable(TIMER0_BASE,TIMER_TIMA_TIMEOUT);
+	IntPrioritySet(INT_TIMER0A,(Int_Prio_1_Timer0A_50ms)<<5);	//Priority 0 = "000"0.0000
+	IntEnable(INT_TIMER0A);	//Timer 0A enable of interrupts	
 }
 
 unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested)
@@ -57,9 +68,8 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested)
 	unsigned long clock_cycle_required = 0;
 	unsigned long clock_speed = 0;
 	
-	clock_speed = SYS_clock_get;			//Get clock speed in Hz
-	clock_cycle_required = ((clock_speed / 1000) * milli_seconds_requested) - 1;	//Returns the clock cycles required for the requested time in mili seonds
-	
+	clock_speed = SYS_clock_get;	//Get clock speed in Hz
+	clock_cycle_required = ((clock_speed / 1000) * milli_seconds_requested) - 1;	//Returns the clock cycles required for the requested time in mili seconds
 	return clock_cycle_required;
 }
 
@@ -75,11 +85,11 @@ void TIMER_delay(unsigned long delay_time_ms)
 void TIMER_delay_No_Int(unsigned long delay_time_ms)
 {
 	unsigned long clock_cycle_required = 0;
-	Int_Master_Disable();			//Global interrupt disable
+	Int_Master_Disable();	//Global interrupt disable
 	clock_cycle_required = TIMER_reload_calculator(delay_time_ms);
 	while(clock_cycle_required)
 	{
 		clock_cycle_required --;
 	}
-	Int_Master_Enable();			//Global interrupt enable
+	Int_Master_Enable();	//Global interrupt enable
 }

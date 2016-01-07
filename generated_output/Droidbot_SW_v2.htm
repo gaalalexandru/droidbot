@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\generated_output\Droidbot_SW_v2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\generated_output\Droidbot_SW_v2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Jan 06 16:11:50 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu Jan 07 15:49:23 2016
 <BR><P>
 <H3>Maximum Stack Usage =         88 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1061,9 +1061,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYS_startup
 </UL>
 
-<P><STRONG><a name="[e1]"></a>TIMER_cyclic_50ms_init</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, timer_handler.o(.text), UNUSED)
+<P><STRONG><a name="[e1]"></a>TIMER_cyclic_50ms_init</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, timer_handler.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerLoadSet
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntEnable
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerIntDisable
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerEnable
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDisable
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerConfigure
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerClockSourceSet
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_reload_calculator
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntPrioritySet
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntDisable
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
 </UL>
 
 <P><STRONG><a name="[e2]"></a>TIMER_delay</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, timer_handler.o(.text), UNUSED)
@@ -1406,13 +1416,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c1]"></a>IntDisable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntDisable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Light_sensor_init
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COMP_mic_input_init
 </UL>
 
 <P><STRONG><a name="[c8]"></a>IntEnable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Light_sensor_init
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COMP_mic_input_init
 </UL>
@@ -1434,7 +1446,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c7]"></a>IntPrioritySet</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, interrupt.o(i.IntPrioritySet))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Light_sensor_init
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COMP_mic_input_init
 </UL>
@@ -1549,6 +1562,7 @@ Global Symbols
 
 <P><STRONG><a name="[a3]"></a>SysCtlPeripheralEnable</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, sysctl.o(i.SysCtlPeripheralEnable))
 <BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSI_lcd_init
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_lcd_init
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Red_led_init
@@ -1560,21 +1574,25 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[dc]"></a>TimerClockSourceSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TimerClockSourceSet))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[dd]"></a>TimerConfigure</STRONG> (Thumb, 88 bytes, Stack size 4 bytes, timer.o(i.TimerConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TimerConfigure
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[db]"></a>TimerDisable</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, timer.o(i.TimerDisable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[df]"></a>TimerEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, timer.o(i.TimerEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[bd]"></a>TimerIntClear</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, timer.o(i.TimerIntClear))
@@ -1582,11 +1600,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[da]"></a>TimerIntDisable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, timer.o(i.TimerIntDisable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[e0]"></a>TimerIntEnable</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, timer.o(i.TimerIntEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_50ms_init
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER_cyclic_1s_init
 </UL>
 
 <P><STRONG><a name="[bc]"></a>TimerIntStatus</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, timer.o(i.TimerIntStatus))

@@ -37,6 +37,7 @@
 
 
 
+
 #line 5 "modules\\timer_handler\\timer_handler.c"
 
  
@@ -1153,20 +1154,31 @@ void TIMER_cyclic_1s_init(void)
 	TimerDisable(0x40036000, 0x000000ff);
 	TimerClockSourceSet(0x40036000, 0x00000000);
 	TimerConfigure(0x40036000, 0x00000022);
-	 
-	 
-	TimerLoadSet(0x40036000, 0x000000ff, TIMER_reload_calculator(1000));		
-	
+
+	TimerLoadSet(0x40036000, 0x000000ff, TIMER_reload_calculator(1000));	
 	TimerEnable(0x40036000, 0x000000ff);
 	
 	TimerIntEnable(0x40036000,0x00000001);
 	IntPrioritySet(110,((0x01))<<5); 			
-	IntEnable(110);								
+	IntEnable(110);	
 }
 
 void TIMER_cyclic_50ms_init(void)	
 {
-	TimerLoadSet(0x40036000, 0x000000ff, TIMER_reload_calculator(50));		
+	SysCtlPeripheralEnable(0xf0000400);	
+	IntDisable(35);	
+	TimerIntDisable(0x40030000,0x00000001);
+	
+	TimerDisable(0x40030000, 0x000000ff);	
+	TimerClockSourceSet(0x40030000, 0x00000000);
+	TimerConfigure(0x40030000, 0x00000022);
+	
+	TimerLoadSet(0x40030000, 0x000000ff, TIMER_reload_calculator(50));	
+	TimerEnable(0x40030000, 0x000000ff);
+	
+	TimerIntEnable(0x40030000,0x00000001);
+	IntPrioritySet(35,((0x00))<<5);	
+	IntEnable(35);	
 }
 
 unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested)
@@ -1174,9 +1186,8 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested)
 	unsigned long clock_cycle_required = 0;
 	unsigned long clock_speed = 0;
 	
-	clock_speed = SysCtlClockGet();			
+	clock_speed = SysCtlClockGet();	
 	clock_cycle_required = ((clock_speed / 1000) * milli_seconds_requested) - 1;	
-	
 	return clock_cycle_required;
 }
 
@@ -1192,11 +1203,11 @@ void TIMER_delay(unsigned long delay_time_ms)
 void TIMER_delay_No_Int(unsigned long delay_time_ms)
 {
 	unsigned long clock_cycle_required = 0;
-	Int_Master_Disable();			
+	Int_Master_Disable();	
 	clock_cycle_required = TIMER_reload_calculator(delay_time_ms);
 	while(clock_cycle_required)
 	{
 		clock_cycle_required --;
 	}
-	Int_Master_Enable();			
+	Int_Master_Enable();	
 }
