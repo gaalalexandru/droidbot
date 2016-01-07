@@ -72,9 +72,9 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 	{
 		//Code that runs only every 500 ms
 	}
-	if(counter == 254)	//Max value reached (Not 255, to keep 2s, 5s and 10s interval
+	if(counter == 254)	//Max value reached (Not 255, to keep 50ms, 100ms, 250ms, 500ms interval)
 	{
-		counter = 5;			//Reset counter to 5, to keep 2s, 5s and 10s interval
+		counter = 5;			//Reset counter to 5, to keep 50ms, 100ms, 250ms, 500ms interval
 	}
 	else
 	{
