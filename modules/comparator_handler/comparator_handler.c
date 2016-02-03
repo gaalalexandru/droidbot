@@ -22,9 +22,24 @@
 #include "comparator_handler.h"
 
 /*-------------------Function Definitions-------------*/
+void COMP_photocell_input_init(void)
+{
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_COMP0);		//Comp module 0 enable 
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);	 	//Port C enable
+
+	IntDisable(INT_COMP0);													//Comparator 0 disable of interrupts
+	IntDisable(INT_COMP1);													//Comparator 1 disable of interrupts
+	
+	ComparatorIntDisable(COMP_BASE,0);
+	ComparatorIntDisable(COMP_BASE,1);	
+	
+	GPIOPinTypeComparator(GPIO_PORTC_BASE, GPIO_PIN_5|GPIO_PIN_6);	// Configure PC5 and PC6 as analog comparator input
+	
+}
+
 void COMP_mic_input_init(void)
 {
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_COMP0);		//Comp 0 enable 
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_COMP0);		//Comp module 0 enable 
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);	 	//Port C enable
 	
 	IntDisable(INT_COMP0);													//Comparator 0 disable of interrupts
