@@ -527,13 +527,6 @@ W = angled&lt;p&gt;
 <sheets>
 <sheet>
 <plain>
-<polygon width="0.1524" layer="97">
-<vertex x="-5.08" y="101.6"/>
-<vertex x="66.04" y="101.6"/>
-<vertex x="66.04" y="33.02"/>
-<vertex x="-5.08" y="33.02"/>
-<vertex x="-5.08" y="35.56"/>
-</polygon>
 <text x="-2.54" y="104.14" size="1.778" layer="93">Tiva C Series
 TM4C123G</text>
 <wire x1="40.64" y1="68.58" x2="40.64" y2="76.2" width="0.1524" layer="100"/>

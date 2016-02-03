@@ -543,7 +543,6 @@ TM4C123G</text>
 <wire x1="33.02" y1="55.88" x2="33.02" y2="35.56" width="0.1524" layer="100"/>
 <wire x1="33.02" y1="35.56" x2="104.14" y2="35.56" width="0.1524" layer="100"/>
 <wire x1="104.14" y1="35.56" x2="104.14" y2="83.82" width="0.1524" layer="100"/>
-<wire x1="104.14" y1="83.82" x2="88.9" y2="83.82" width="0.1524" layer="100"/>
 <wire x1="20.32" y1="12.7" x2="-12.7" y2="12.7" width="0.1524" layer="100"/>
 <wire x1="-12.7" y1="12.7" x2="-12.7" y2="45.72" width="0.1524" layer="100"/>
 <wire x1="-12.7" y1="45.72" x2="2.54" y2="45.72" width="0.1524" layer="100"/>
@@ -573,6 +572,8 @@ TM4C123G</text>
 <wire x1="63.5" y1="68.58" x2="55.88" y2="68.58" width="0.1524" layer="100"/>
 <wire x1="35.56" y1="12.7" x2="35.56" y2="-17.78" width="0.1524" layer="100"/>
 <wire x1="35.56" y1="-17.78" x2="81.28" y2="-17.78" width="0.1524" layer="100"/>
+<wire x1="88.9" y1="88.9" x2="55.88" y2="88.9" width="0.1524" layer="100"/>
+<wire x1="55.88" y1="88.9" x2="55.88" y2="68.58" width="0.1524" layer="100"/>
 </plain>
 <instances>
 <instance part="SV1" gate="G$1" x="10.16" y="55.88"/>
@@ -630,6 +631,36 @@ TM4C123G</text>
 <segment>
 <pinref part="LCD_INTERFACE" gate="1" pin="1"/>
 <junction x="38.1" y="12.7"/>
+</segment>
+</net>
+<net name="N$9" class="0">
+<segment>
+<pinref part="SV2" gate="G$1" pin="19"/>
+<junction x="55.88" y="68.58"/>
+</segment>
+</net>
+<net name="N$10" class="0">
+<segment>
+<pinref part="SV2" gate="G$1" pin="17"/>
+<junction x="55.88" y="66.04"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<wire x1="73.66" y1="60.96" x2="73.66" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="55.88" x2="81.28" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="55.88" x2="81.28" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="60.96" x2="88.9" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="60.96" x2="88.9" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="55.88" x2="93.98" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="MOTOR_DRIVER_LEFT_PORT" gate="1" pin="1"/>
+<pinref part="SV2" gate="G$1" pin="13"/>
+<wire x1="88.9" y1="73.66" x2="88.9" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="60.96" x2="55.88" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

@@ -510,13 +510,13 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="SV1" library="con-lstb" package="MA10-2" value="" x="25.4" y="33.02" rot="R90">
+<element name="UC_LH_PORT" library="con-lstb" package="MA10-2" value="" x="25.4" y="33.02" rot="R90">
 <attribute name="MF" value="" x="25.4" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="25.4" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="25.4" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_FARNELL" value="unknown" x="25.4" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
-<element name="SV2" library="con-lstb" package="MA10-2" value="" x="41.91" y="33.02" rot="R90">
+<element name="UC_RH_PORT" library="con-lstb" package="MA10-2" value="" x="41.91" y="33.02" rot="R90">
 <attribute name="MF" value="" x="41.91" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="41.91" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="41.91" y="33.02" size="1.778" layer="27" rot="R90" display="off"/>
@@ -544,27 +544,27 @@ design rules under a new name.</description>
 <signals>
 <signal name="N$1">
 <contactref element="LCD_INTERFACE" pad="8"/>
-<contactref element="SV1" pad="2"/>
+<contactref element="UC_LH_PORT" pad="2"/>
 <wire x1="20.32" y1="-3.81" x2="24.13" y2="21.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="LCD_INTERFACE" pad="7"/>
-<contactref element="SV2" pad="3"/>
+<contactref element="UC_RH_PORT" pad="3"/>
 <wire x1="17.78" y1="-3.81" x2="43.18" y2="24.13" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="LCD_INTERFACE" pad="6"/>
-<contactref element="SV1" pad="4"/>
+<contactref element="UC_LH_PORT" pad="4"/>
 <wire x1="15.24" y1="-3.81" x2="24.13" y2="24.13" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$4">
 <contactref element="LCD_INTERFACE" pad="5"/>
-<contactref element="SV1" pad="6"/>
+<contactref element="UC_LH_PORT" pad="6"/>
 <wire x1="12.7" y1="-3.81" x2="24.13" y2="26.67" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$5">
 <contactref element="LCD_INTERFACE" pad="4"/>
-<contactref element="SV2" pad="1"/>
+<contactref element="UC_RH_PORT" pad="1"/>
 <wire x1="10.16" y1="-3.81" x2="43.18" y2="21.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$7">
@@ -572,35 +572,43 @@ design rules under a new name.</description>
 </signal>
 <signal name="N$9">
 <contactref element="MOTOR_DRIVER_LEFT_PORT" pad="7"/>
-<contactref element="SV2" pad="19"/>
+<contactref element="UC_RH_PORT" pad="19"/>
 <contactref element="LCD_INTERFACE" pad="1"/>
+<contactref element="SV3" pad="7"/>
+<wire x1="68.58" y1="36.83" x2="80.01" y2="36.83" width="0" layer="19" extent="1-1"/>
 <wire x1="43.18" y1="44.45" x2="68.58" y2="36.83" width="0" layer="19" extent="1-1"/>
 <wire x1="2.54" y1="-3.81" x2="43.18" y2="44.45" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$10">
 <contactref element="MOTOR_DRIVER_LEFT_PORT" pad="4"/>
-<contactref element="SV2" pad="18"/>
+<contactref element="UC_RH_PORT" pad="18"/>
 <wire x1="40.64" y1="41.91" x2="68.58" y2="29.21" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <contactref element="MOTOR_DRIVER_LEFT_PORT" pad="2"/>
-<contactref element="SV2" pad="20"/>
+<contactref element="UC_RH_PORT" pad="20"/>
 <wire x1="40.64" y1="44.45" x2="68.58" y2="24.13" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$8">
+<contactref element="UC_LH_PORT" pad="20"/>
+<contactref element="MOTOR_DRIVER_LEFT_PORT" pad="6"/>
+<wire x1="24.13" y1="44.45" x2="68.58" y2="34.29" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$6">
+<contactref element="MOTOR_DRIVER_LEFT_PORT" pad="5"/>
+<contactref element="UC_RH_PORT" pad="9"/>
+<wire x1="43.18" y1="31.75" x2="68.58" y2="31.75" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="MOTOR_DRIVER_LEFT_PORT" pad="3"/>
-<contactref element="SV2" pad="8"/>
-<wire x1="40.64" y1="29.21" x2="68.58" y2="26.67" width="0" layer="19" extent="1-1"/>
+<contactref element="UC_RH_PORT" pad="11"/>
+<wire x1="43.18" y1="34.29" x2="68.58" y2="26.67" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
-<contactref element="MOTOR_DRIVER_LEFT_PORT" pad="5"/>
-<contactref element="SV2" pad="10"/>
-<wire x1="40.64" y1="31.75" x2="68.58" y2="31.75" width="0" layer="19" extent="1-1"/>
+<contactref element="SV3" pad="6"/>
 </signal>
-<signal name="N$8">
-<contactref element="SV1" pad="20"/>
-<contactref element="MOTOR_DRIVER_LEFT_PORT" pad="6"/>
-<wire x1="24.13" y1="44.45" x2="68.58" y2="34.29" width="0" layer="19" extent="1-1"/>
+<signal name="N$14">
+<contactref element="SV3" pad="1"/>
 </signal>
 </signals>
 </board>
