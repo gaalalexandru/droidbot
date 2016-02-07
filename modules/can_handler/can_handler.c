@@ -26,6 +26,10 @@ void CAN_init(void)
 	GPIOPinTypeCAN(GPIO_PORTE_BASE, GPIO_PIN_5);	//Set PWM for PF3, Left motor
 	
 	CANInit(CAN0_BASE);	//Initializes the CAN controller after reset.
+	
+	CANSetBitTiming(CAN0_BASE, &CANBitClk); //Configure the controller for 1 Mbit operation.
+	
+	
 	CANEnable(CAN0_BASE);
 	
 }
