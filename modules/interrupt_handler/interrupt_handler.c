@@ -39,7 +39,8 @@ void GPIOPortF_Handler(void) 	//GPIO port F ISR
 	if((Light_sensor_status&(GPIO_INT_PIN_0 | GPIO_INT_PIN_4)) == (GPIO_INT_PIN_0 | GPIO_INT_PIN_4))
 	{
 		//Go Straight ahead
-		Motion_Cruise();
+		//Motion_Cruise();
+		Motion_Go_Back();
 	}
 	else if(Light_sensor_status & GPIO_INT_PIN_4)
 	{

@@ -5,7 +5,7 @@
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
 #include "stdint.h"
-
+#include "custom_types.h"
 /*-------------------HW define Includes--------------*/
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
@@ -88,4 +88,22 @@ void GPIO_lcd_DC(unsigned char DC)
 void GPIO_lcd_RST(unsigned char RST)
 {
 	GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, RST);
+}
+
+void GPIO_motor_mode_select(Motor_Mode_en mode)
+{
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);		//Enable clock on port D
+	GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_7);		//Set PD7 as GPIO Output
+	GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_7, GPIO_DIR_MODE_OUT);		//Set direction Output for PD7
+	GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_7, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PD7
+	
+	
+	if(mode) //Phase / Enable mode
+	{
+		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PIN_7);
+	}
+	else	//In / In mode
+	{
+		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
+	}
 }

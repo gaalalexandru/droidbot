@@ -2,6 +2,7 @@
 .\generated_output\gpio_handler.o: .\modules\compile_switches\compile_switches.c
 .\generated_output\gpio_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\generated_output\gpio_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\generated_output\gpio_handler.o: .\modules\custom_types\custom_types.h
 .\generated_output\gpio_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_memmap.h
 .\generated_output\gpio_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_ints.h
 .\generated_output\gpio_handler.o: ..\TivaWare_C_Series-2.1.1.71\driverlib/gpio.h

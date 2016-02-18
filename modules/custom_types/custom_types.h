@@ -30,5 +30,12 @@ typedef enum LCD_typeOfWrite
 // The write data operation waits until there is room in the
 // transmit FIFO, configures the Data/Command pin for data,
 // and then adds the data to the transmit FIFO.
+
+typedef enum Motor_Mode
+{
+  IN_IN,
+  PHASE_ENABLE
+} Motor_Mode_en;
+
 #endif
 //EOF

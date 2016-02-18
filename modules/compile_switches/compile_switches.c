@@ -14,10 +14,10 @@
 #define White_LED (0x0E)
 
 /*-------------Motor PWM duty cycle config------------*/
-#define Outer_Wheel_DS (95)			//PWM duty cycle for outer wheel at cornering
+#define Outer_Wheel_DS (70)			//PWM duty cycle for outer wheel at cornering
 #define Inner_Wheel_DS (0)			//PWM duty cycle for inner wheel at cornering
 #define Stop_Wheel_DS (0)				//PWM duty cycle for stoped wheel
-#define Cruise_Wheel_DS (9)			//PWM duty cycle for cruising speed
+#define Cruise_Wheel_DS (60)		//PWM duty cycle for cruising speed
 #define Max_Speed_Wheel_DS (95)	//PWM duty cycle for cruising speed
 #define Revers_Wheel_DS (50)		//PWM duty cycle for reverse
 
@@ -36,7 +36,7 @@
 0xBA optimal value so far - Gaal Alexandru */
 
 /*-------------------Interrupt priorities-------------*/
-#define Int_Prio_1_Timer0A_50ms			(0x00) 	//Priority 1 = "001"0.0000
+#define Int_Prio_1_Timer0A_50ms		(0x00) 	//Priority 1 = "001"0.0000
 #define Int_Prio_1_WTimer0A_1s		(0x01) 	//Priority 1 = "001"0.0000
 #define Int_Prio_2_GPIO_PF_LightS	(0x02)	//Priority 2 = "010"0.0000
 #define Int_Prio_3_Comp_Mic				(0x03)	//Priority 3 = "011"0.0000

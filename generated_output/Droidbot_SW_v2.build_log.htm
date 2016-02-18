@@ -4,9 +4,53 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\alexandru.gaal\Documents\Droidbot Project\droidbot\Droidbot_SW_v3.uvproj
-Project File Date:  01/07/2016
+Project File Date:  02/08/2016
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling pwm_handler.c...
+compiling motion_handler.c...
+compiling gpio_handler.c...
+modules\gpio_handler\gpio_handler.c(109): warning:  #1-D: last line of file ends without a newline
+  }
+modules\gpio_handler\gpio_handler.c: 1 warning, 0 errors
+compiling cyclic_activity_handler.c...
+compiling lcd_handler.c...
+compiling printing_handler.c...
+compiling system_handler.c...
+modules\system_handler\system_handler.c(95): warning:  #188-D: enumerated type mixed with another type
+        GPIO_motor_mode_select(1);
+modules\system_handler\system_handler.c(83): warning:  #550-D: variable "clock" was set but never used
+        unsigned long clock;
+modules\system_handler\system_handler.c: 2 warnings, 0 errors
+linking...
+Program Size: Code=5904 RO-data=3892 RW-data=12 ZI-data=612  
+".\generated_output\Droidbot_SW_v2.axf" - 0 Error(s), 3 Warning(s).
 </pre>
 </body>
 </html>
+_handler\gpio_handler.c(109): warning:  #1-D: last line of file ends without a newline
+  }
+modules\gpio_handler\gpio_handler.c: 1 warning, 1 error
+compiling cyclic_activity_handler.c...
+.\modules\custom_types\custom_types.h(36): error:  #40: expected an identifier
+    ,
+modules\cyclic_activity_handler\cyclic_activity_handler.c: 0 warnings, 1 error
+compiling lcd_handler.c...
+.\modules\custom_types\custom_types.h(36): error:  #40: expected an identifier
+    ,
+modules\lcd_handler\lcd_handler.c: 0 warnings, 1 error
+compiling printing_handler.c...
+.\modules\custom_types\custom_types.h(36): error:  #40: expected an identifier
+    ,
+modules\printing_handler\printing_handler.c: 0 warnings, 1 error
+compiling system_handler.c...
+.\modules\custom_types\custom_types.h(36): error:  #40: expected an identifier
+    ,
+modules\system_handler\system_handler.c(95): warning:  #188-D: enumerated type mixed with another type
+        GPIO_motor_mode_select(1);
+modules\system_handler\system_handler.c(83): warning:  #550-D: variable "clock" was set but never used
+        unsigned long clock;
+modules\system_handler\system_handler.c: 2 warnings, 1 error
+".\generated_output\Droidbot_SW_v2.axf" - 7 Error(s), 5 Warning(s).
+Target not created

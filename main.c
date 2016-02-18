@@ -20,5 +20,6 @@ int main(void)
 	{
 		count_me++;
 		Motion_Stop();
+		
 	}
 }

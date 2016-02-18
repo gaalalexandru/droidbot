@@ -227,10 +227,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -251,10 +251,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>90</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>129</TopLine>
+      <CurrentLine>148</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\pwm_handler\pwm_handler.c</PathWithFileName>
       <FilenameWithoutPath>pwm_handler.c</FilenameWithoutPath>
@@ -267,10 +267,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>31</ColumnNumber>
+      <ColumnNumber>27</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>7</TopLine>
-      <CurrentLine>39</CurrentLine>
+      <CurrentLine>20</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\compile_switches\compile_switches.c</PathWithFileName>
       <FilenameWithoutPath>compile_switches.c</FilenameWithoutPath>
@@ -283,10 +283,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>51</TopLine>
+      <CurrentLine>66</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\motion_handler\motion_handler.c</PathWithFileName>
       <FilenameWithoutPath>motion_handler.c</FilenameWithoutPath>
@@ -299,10 +299,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>47</ColumnNumber>
+      <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>31</TopLine>
-      <CurrentLine>49</CurrentLine>
+      <TopLine>26</TopLine>
+      <CurrentLine>42</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\interrupt_handler\interrupt_handler.c</PathWithFileName>
       <FilenameWithoutPath>interrupt_handler.c</FilenameWithoutPath>
@@ -331,10 +331,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>36</ColumnNumber>
+      <ColumnNumber>34</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>17</TopLine>
-      <CurrentLine>39</CurrentLine>
+      <TopLine>80</TopLine>
+      <CurrentLine>93</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\gpio_handler\gpio_handler.c</PathWithFileName>
       <FilenameWithoutPath>gpio_handler.c</FilenameWithoutPath>
@@ -347,10 +347,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>29</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>57</TopLine>
-      <CurrentLine>90</CurrentLine>
+      <TopLine>37</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\timer_handler\timer_handler.c</PathWithFileName>
       <FilenameWithoutPath>timer_handler.c</FilenameWithoutPath>
@@ -363,10 +363,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>46</TopLine>
-      <CurrentLine>72</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\cyclic_activity_handler\cyclic_activity_handler.c</PathWithFileName>
       <FilenameWithoutPath>cyclic_activity_handler.c</FilenameWithoutPath>
@@ -443,10 +443,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>28</ColumnNumber>
+      <ColumnNumber>2</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>73</TopLine>
+      <CurrentLine>96</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\system_handler\system_handler.c</PathWithFileName>
       <FilenameWithoutPath>system_handler.c</FilenameWithoutPath>
