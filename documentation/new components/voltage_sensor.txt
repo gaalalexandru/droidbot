@@ -1,0 +1,49 @@
+http://www.ebay.com/itm/181846605770
+
+
+
+1pcs Standard Voltage Sensor Module For Robot Arduino Good New
+
+Size: 25mm×13mm/0.98"×0.51"(approx)
+   
+TThis module is based on principle of resistive voltage divider design, can make the red terminal connector input voltage to 5 times smaller.Arduino analog input voltages up to 5 v, the voltage detection module input voltage not greater than 5Vx5=25V (if using 3.3V systems, input voltage not greater than 3.3Vx5=16.5V). Arduino AVR chips have 10-bit AD, so this module simulates a resolution of 0.00489V (5V/1023), so the minimum voltage of input voltage detection module is 0.00489Vx5=0.02445V.
+   
+Voltage input range : DC0-25 V
+   
+Voltage detection range : DC0.02445 V-25 V
+   
+Voltage analog resolution : 0.00489 V
+   
+Output Interface : "+ " connected 5/3.3V, "-" connected GND, "s" connected Arduino AD pins
+   
+DC input interface : red terminal positive with VCC, negative with GND
+   
+By 3P connector, connect this module with the expansion of board Arduino, not only makes it easier for you to detect voltage battery, can also use the IICLCD1602 LCD to display voltage.
+   
+   
+     
+Reference Code:
+
+        #include <Wire.h>
+        
+        int val11; 
+        int val2; 
+        
+        void setup() 
+        { 
+        	pinMode(LED1,OUTPUT); 
+       		Serial.begin(9600); 
+        	Serial.println("Emartee.Com"); 
+        	Serial.println("Voltage: "); 
+        	Serial.print("V"); 
+        } 
+        void loop() 
+        { 
+        	float temp; 
+        	val11=analogRead(1); 
+        	temp=val11/4.092; 
+        	val11=(int)temp;// 
+        	val2=((val11%100)/10); 
+        	Serial.println(val2); 
+        	delay(1000); 
+        }

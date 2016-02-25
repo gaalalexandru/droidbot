@@ -1,0 +1,38 @@
+http://www.ebay.com/itm/5pcs-5V-Mini-USB-1A-Lithium-Battery-Charging-Board-Charger-Module-/191674213543?hash=item2ca0ac64a7:g:cbUAAMXQlgtSqtSE
+
+
+5pc 5V Mini USB 1A Lithium Battery Charging Board Charger Module
+Product information
+
+Description:
+
+ 
+Module Name: rechargeable lithium battery plate 
+    method: linear charge 1%
+    Charging current: 1A Adjustable 
+    Charge Accuracy: 1.5%
+    Input voltage: 4.5V-5.5V 
+    full charge voltage: 4.2V
+    Charging indicator: red green full charge 
+    Charging input interface: mini USB
+    Working temperature: -10 Degree to +85 Degree 
+    Reverse: NO
+    Weight: 10g external 
+    Dimensions: 25 * 19 * 10mm
+    Current Regulation:
+
+ 
+                                                                                                                                                                     
+RPROG (k)	IBAT  	(mA)
+
+30		50
+20		70
+10		130
+5		250
+4		300
+3		400
+2		580
+1.66		690
+1.5		780
+1.33		900	
+1.2		1000

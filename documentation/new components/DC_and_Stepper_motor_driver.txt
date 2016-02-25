@@ -1,0 +1,68 @@
+http://www.ebay.com/itm/191674305541
+
+
+New L298N DC Stepper Motor Driver Module Dual H Bridge Control Board for Arduino
+
+Product information
+
+
+
+ 
+Description:
+
+ 
+1.Using L298N made by ST company as the control chip,the module has such characteristics as strong driving
+
+ 
+ability,low calorific value and strong anti-interference ability.
+
+ 
+2.This module can use built-in 78M05 for electric work via a driving power supply part.But to avoid the damage
+
+ 
+of the voltage stabilizing chip,please use an external 5V logic supply when using more than 12V driving voltage.
+
+ 
+3.Using large capacity filter capacitor,this module can follow current to protect diodes,and improve the reliability
+
+ 
+ 
+Specification:
+ 
+
+ 
+1.Double H bridge drive
+
+ 
+2.Chip L298N (ST NEW)
+
+ 
+3.Logical voltage 5V
+
+ 
+4.Drive voltage 5V-35V
+
+ 
+5.Logical current 0mA-36mA
+
+ 
+6.Drive current 2A(MAX single bridge)
+
+ 
+7.Storage temperature -20 to +135
+
+ 
+8.Max power 25W
+
+ 
+9.Weight 30g
+
+ 
+10.Size:43*43*27mm
+ 
+
+ 
+Package included:
+
+ 
+1x New L298N DC Stepper Motor Driver Module Dual H Bridge Control Board for Arduino(not include the screws)

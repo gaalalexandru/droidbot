@@ -1,0 +1,23 @@
+http://www.ebay.com/itm/MINI-USB-Nano-V3-0-ATmega328P-CH340G-5V-16M-Micro-controller-board-Arduino-T1-/181846906547?hash=item2a56eb96b3:g:Ir8AAOSwBahVL6BH
+
+http://www.ebay.com/itm/181846906547
+
+MINI USB Nano V3.0 ATmega328P CH340G 5V 16M Micro-controller board Arduino T1
+
+Product Description
+
+CH340G Replace FT232RL 
+Operating Voltage(logic level):5V
+
+8 analog inputs ports:A0 ~ A7 
+14 Digital input / output ports:TX,RX,D2 ~ D13 
+6 PWM ports:D3, D5, D6, D9, D10, D11 
+1 pairs of TTL level serial transceiver ports RX / TX 
+Using Atmel Atmega328P-AU MCU 
+There is bootloader installed in it 
+Support USB download and Power 
+Support for external 5V ~ 12V DC power supply 
+Support power supply by 9V battery 
+Support ISP download 
+CH340G Driver Download link : http://www.wch-ic.com/download/list.asp?id=126 OR http://www.5v.ru/ch340g.htm 
+IDE of arduino Download link : http://arduino.cc/en/Main/Software

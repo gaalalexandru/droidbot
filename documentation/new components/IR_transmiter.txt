@@ -1,0 +1,45 @@
+http://www.ebay.com/itm/181846990833
+
+1pcs IR Transmitter Sensor Kit For Arduino Compatible NEW 
+   
+       
+Description:    
+       
+IR is widely used in remote control. With this IR transmitter, the Arduino project is able to transmit command to any IR remote Receiver if you have the right decoder.  
+
+       
+Well, it will be also easy to make your own IR controller using IR Receiver.  
+
+       
+38KHz IR Transmitter Sensor pin definitions : (1) Output (2) Vcc (3) GND
+
+       
+Features:
+
+       
+       
+1?Basedon the 38KHz IR Transmitter Sensor
+
+       
+2?Can be used for remote control
+
+       
+3?Power Supply: 5V
+
+       
+4?Interface: Digital
+
+       
+5?Modulate Frequency : 38Khz
+
+       
+6?Pin Definitions: (1) Output (2) Vcc (3) GND
+
+       
+7?Can be compatible with Wrobot Digital 38KHz IR Receiver Sensor
+
+       
+8?Apply to a variety of platforms including Arduino/51/AVR/ARM
+
+       
+9?Qty 1pcs
