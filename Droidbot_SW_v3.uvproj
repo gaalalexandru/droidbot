@@ -48,13 +48,13 @@
           <OutputName>Droidbot_SW_v2</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
-          <CreateHexFile>0</CreateHexFile>
-          <DebugInformation>0</DebugInformation>
-          <BrowseInformation>0</BrowseInformation>
+          <CreateHexFile>1</CreateHexFile>
+          <DebugInformation>1</DebugInformation>
+          <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\generated_listing\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
-          <CreateBatchFile>0</CreateBatchFile>
+          <CreateBatchFile>1</CreateBatchFile>
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
@@ -193,11 +193,11 @@
             <ldmm>1</ldmm>
             <ldXref>1</ldXref>
             <BigEnd>0</BigEnd>
-            <AdsALst>0</AdsALst>
+            <AdsALst>1</AdsALst>
             <AdsACrf>1</AdsACrf>
             <AdsANop>0</AdsANop>
             <AdsANot>0</AdsANot>
-            <AdsLLst>0</AdsLLst>
+            <AdsLLst>1</AdsLLst>
             <AdsLmap>1</AdsLmap>
             <AdsLcgr>1</AdsLcgr>
             <AdsLsym>1</AdsLsym>
@@ -207,7 +207,7 @@
             <AdsLven>1</AdsLven>
             <AdsLsxf>1</AdsLsxf>
             <RvctClst>0</RvctClst>
-            <GenPPlst>0</GenPPlst>
+            <GenPPlst>1</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
             <mOS>0</mOS>
@@ -426,24 +426,9 @@
           <GroupName>modules</GroupName>
           <Files>
             <File>
-              <FileName>pwm_handler.c</FileName>
+              <FileName>adc_handler.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\modules\pwm_handler\pwm_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>compile_switches.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\compile_switches\compile_switches.c</FilePath>
-            </File>
-            <File>
-              <FileName>motion_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\motion_handler\motion_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>interrupt_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\interrupt_handler\interrupt_handler.c</FilePath>
+              <FilePath>.\modules\adc_handler\adc_handler.c</FilePath>
             </File>
             <File>
               <FileName>comparator_handler.c</FileName>
@@ -451,24 +436,9 @@
               <FilePath>.\modules\comparator_handler\comparator_handler.c</FilePath>
             </File>
             <File>
-              <FileName>gpio_handler.c</FileName>
+              <FileName>compile_switches.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\modules\gpio_handler\gpio_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\timer_handler\timer_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>cyclic_activity_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\cyclic_activity_handler\cyclic_activity_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>lcd_handler.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\lcd_handler\lcd_handler.c</FilePath>
+              <FilePath>.\modules\compile_switches\compile_switches.c</FilePath>
             </File>
             <File>
               <FileName>custom_types.h</FileName>
@@ -476,9 +446,39 @@
               <FilePath>.\modules\custom_types\custom_types.h</FilePath>
             </File>
             <File>
+              <FileName>cyclic_activity_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\cyclic_activity_handler\cyclic_activity_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>gpio_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\gpio_handler\gpio_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>interrupt_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\interrupt_handler\interrupt_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\lcd_handler\lcd_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>motion_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\motion_handler\motion_handler.c</FilePath>
+            </File>
+            <File>
               <FileName>printing_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\modules\printing_handler\printing_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>pwm_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\pwm_handler\pwm_handler.c</FilePath>
             </File>
             <File>
               <FileName>ssi_handler.c</FileName>
@@ -489,6 +489,11 @@
               <FileName>system_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\modules\system_handler\system_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\timer_handler\timer_handler.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -107,3 +107,20 @@ void GPIO_motor_mode_select(Motor_Mode_en mode)
 		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
 	}
 }
+
+void GPIO_LS_Feedback_Init(void)
+{
+	//LS = Light Sensor
+}
+void GPIO_LS_Feedback_Toogle(Led_State_en State)
+{
+	//abcd
+	/*
+  Right_Feedback_Off, = 0
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On	=	5
+	*/
+}

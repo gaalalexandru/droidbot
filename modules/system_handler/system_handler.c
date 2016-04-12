@@ -84,18 +84,18 @@ void SYS_startup(void)
 	Int_Master_Disable();			//Global interrupt disable
 	
 	SYS_clock_init();	
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	clock = SYS_clock_get;		//just to check if clock speed is changed in other modules
 	
-	LCD_init();								//Initialize LCD
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules	
+	//LCD_init();								//Initialize LCD
+	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules	
 
 	GPIO_Light_sensor_init();	//Initialize GPIO input from light sensors
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	GPIO_motor_mode_select(1);
 	
-	PWM_motor_init(1000);			//Initialize PWM for motors forward
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	//PWM_motor_init(1000);			//Initialize PWM for motors forward
+	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
@@ -103,8 +103,8 @@ void SYS_startup(void)
 	TIMER_cyclic_1s_init();		//Initialize 1 second timer
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
-	COMP_mic_input_init();		//Disabled temporarly
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	//COMP_mic_input_init();		//Disabled temporarly
+	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	Int_Master_Enable();			//Global interrupt enable
 }
