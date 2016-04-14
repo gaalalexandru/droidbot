@@ -13,6 +13,7 @@
 #include "system_handler.h"
 
 /*-------------------Service Includes----------------*/
+#include "adc_handler.h"
 #include "comparator_handler.h"
 #include "cyclic_activity_handler.h"
 #include "gpio_handler.h"
@@ -86,25 +87,26 @@ void SYS_startup(void)
 	SYS_clock_init();	
 	clock = SYS_clock_get;		//just to check if clock speed is changed in other modules
 	
-	//LCD_init();								//Initialize LCD
+	LCD_init();								//Initialize LCD
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules	
 
 	GPIO_Light_sensor_init();	//Initialize GPIO input from light sensors
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
-	GPIO_motor_mode_select(1);
+	//GPIO_motor_mode_select(1);
 	
-	//PWM_motor_init(1000);			//Initialize PWM for motors forward
+	PWM_motor_init(1000);			//Initialize PWM for motors forward
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
-	PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
+	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	TIMER_cyclic_1s_init();		//Initialize 1 second timer
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	//COMP_mic_input_init();		//Disabled temporarly
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	//ADC_Temperature_sensor_init();
 	
 	Int_Master_Enable();			//Global interrupt enable
 }

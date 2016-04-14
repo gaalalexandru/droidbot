@@ -13,6 +13,7 @@
 
 /*-------------Global Variable Definitions------------*/
 extern motor_parameters_st motor_parameters;	//Global structure variable for motor parameters
+extern unsigned long internal_temperature;
 char print_flag = 0;
 /*-------------------Function Definitions-------------*/
 void Print_Welcome_Image(void)
@@ -69,6 +70,11 @@ void Print_Motor_Parameters(void)
 			LCD_out_string("St");
 			break;
 	}
+	LCD_set_cursor(3,3);
+	LCD_out_number(internal_temperature);
+	LCD_set_cursor(0,3);
+	LCD_out_string("Temp: ");															//print direction label
+
 }
 //EOF
 

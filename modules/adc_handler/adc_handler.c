@@ -12,23 +12,26 @@
 #include "inc/hw_memmap.h"
 
 
-void ADC_Microphone_init(void) //Initialize microphone input
+void ADC_Temperature_sensor_init(void) //Initialize microphone input
 {
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);		//The ADC0 peripheral must be enabled for use.
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);	//Enable GPIO port E
-  
-	GPIOPinTypeADC(GPIO_PORTE_BASE, GPIO_PIN_2);	//Select the analog ADC function for desired pin //AIN1
-  
-	ADCSequenceDisable(ADC0_BASE,3);							//Disable sequencer 3
-	
-	ADCSequenceConfigure(ADC0_BASE,3, ADC_TRIGGER_ALWAYS/*ADC_TRIGGER_PROCESSOR*/, 0); //Sequence 3 will do a single sample when the processor (SW) sends a signal to start the conversion
-	
-	ADCSequenceStepConfigure(ADC0_BASE,3,0, ADC_CTL_CH1 | ADC_CTL_IE | ADC_CTL_END);  //Configure step 0 on sequencer 3 to channel 1, interrupt enable and end conversion when after 1 conversion
-	ADCSequenceEnable(ADC0_BASE,3); 							//Enable sequencer 3
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);			//The ADC0 peripheral must be enabled for use.
+	//SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);	//Enable GPIO port E
+  //GPIOPinTypeADC(GPIO_PORTE_BASE, GPIO_PIN_2);	//Select the analog ADC function for desired pin //AIN1
 	ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag	
 	
-	ADCIntEnableEx(ADC0_BASE,ADC_INT_DCON_SS3);
-	ADCComparatorRegionSet(ADC0_BASE,1,1000,3000);
+	ADCIntDisable(ADC0_BASE, 3);
+	ADCSequenceDisable(ADC0_BASE,3);							//Disable sequencer 3
+	
+	ADCSequenceConfigure(ADC0_BASE,3, /*ADC_TRIGGER_ALWAYS*/ADC_TRIGGER_PROCESSOR, 0); //Sequence 3 will do a single sample when the processor (SW) sends a signal to start the conversion
+	ADCSequenceStepConfigure(ADC0_BASE,3,0, ADC_CTL_CH1 |ADC_CTL_TS| ADC_CTL_IE | ADC_CTL_END);  //Configure step 0 on sequencer 3 to channel 1, interrupt enable and end conversion when after 1 conversion
+	
+	ADCSequenceEnable(ADC0_BASE,3); 							//Enable sequencer 3
+	ADCIntEnable(ADC0_BASE, 3); 
+	
+	ADCProcessorTrigger(ADC0_BASE, 3);
+	
+	/*ADCIntEnableEx(ADC0_BASE,ADC_INT_DCON_SS3);
+	ADCComparatorRegionSet(ADC0_BASE,1,1000,3000);*/
 	
 }
 
@@ -54,15 +57,5 @@ ADCIntEnable(), ADCIntStatus(), and ADCIntClear().
 */
 
 
-//for the interrupt handler ISR
-void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
-{
-	uint32_t Mic_Level;
-	ADCSequenceDataGet(ADC0_BASE, 3, &Mic_Level);
-	if(Mic_Level>1000)
-	{
-		//We will see
-		Motion_Cruise();
-		//Motion_Go_Back() //Next step!!!
-	}
-}
+
+

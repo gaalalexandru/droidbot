@@ -42,6 +42,16 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Led_State
+{
+  Right_Feedback_Off,
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On
+} Led_State_en;
+
 
 
 #line 5 "modules\\printing_handler\\printing_handler.c"
@@ -337,6 +347,7 @@ const unsigned char res_welcome_img[] = {
 
  
 extern motor_parameters_st motor_parameters;	
+extern unsigned long internal_temperature;
 char print_flag = 0;
  
 void Print_Welcome_Image(void)
@@ -393,6 +404,11 @@ void Print_Motor_Parameters(void)
 			LCD_out_string("St");
 			break;
 	}
+	LCD_set_cursor(3,3);
+	LCD_out_number(internal_temperature);
+	LCD_set_cursor(0,3);
+	LCD_out_string("Temp: ");															
+
 }
 
 

@@ -555,6 +555,16 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Led_State
+{
+  Right_Feedback_Off,
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On
+} Led_State_en;
+
 
 
 #line 8 ".\\modules\\printing_handler\\printing_handler.h"
@@ -573,7 +583,7 @@ extern char print_flag;
 void CYCL_1_second(void)	
 {
 	static unsigned char counter = 0;
-	if (counter <=30)
+	if (counter <=2)
 	{
 		print_flag = 0;
 		Print_Welcome_Image();

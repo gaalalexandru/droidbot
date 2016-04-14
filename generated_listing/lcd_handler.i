@@ -81,6 +81,16 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Led_State
+{
+  Right_Feedback_Off,
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On
+} Led_State_en;
+
 
 
 #line 8 "modules\\lcd_handler\\lcd_handler.c"
@@ -102,6 +112,9 @@ void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
 void GPIO_motor_mode_select(Motor_Mode_en mode);
+
+void GPIO_LS_Feedback_Init(void);	
+void GPIO_LS_Feedback_Toogle(Led_State_en State);
 #line 13 "modules\\lcd_handler\\lcd_handler.c"
 #line 1 ".\\modules\\ssi_handler\\ssi_handler.h"
 

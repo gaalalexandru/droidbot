@@ -8,6 +8,7 @@
 #include "inc/hw_memmap.h"
 
 /*-------------------Driver Includes-----------------*/
+#include "driverlib/adc.h"
 #include "driverlib/gpio.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/interrupt.h"
@@ -21,7 +22,7 @@
 
 /*-------------Global Variable Definitions------------*/
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
-
+unsigned long internal_temperature = 0;
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {
@@ -39,8 +40,8 @@ void GPIOPortF_Handler(void) 	//GPIO port F ISR
 	if((Light_sensor_status&(GPIO_INT_PIN_0 | GPIO_INT_PIN_4)) == (GPIO_INT_PIN_0 | GPIO_INT_PIN_4))
 	{
 		//Go Straight ahead
-		//Motion_Cruise();
-		Motion_Go_Back();
+		Motion_Cruise();
+		//Motion_Go_Back();
 	}
 	else if(Light_sensor_status & GPIO_INT_PIN_4)
 	{
@@ -89,6 +90,18 @@ void Timer0A_Handler(void)		//Timer 0 A ISR
 		timer_value = TimerValueGet(TIMER0_BASE, TIMER_A);
 		CYCL_50_milisecond();
 		//Toggle PF2
+	}
+}
+
+//for the interrupt handler ISR
+void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
+{
+	uint32_t Temperature;
+	if(ADCIntStatus(ADC0_BASE, 3, false))
+	{
+		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC0_BASE, 3, &Temperature);		
+		internal_temperature = Temperature;
 	}
 }
 //EOF

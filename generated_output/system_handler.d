@@ -3,6 +3,7 @@
 .\generated_output\system_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\generated_output\system_handler.o: ..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h
 .\generated_output\system_handler.o: modules\system_handler\system_handler.h
+.\generated_output\system_handler.o: .\modules\adc_handler\adc_handler.h
 .\generated_output\system_handler.o: .\modules\comparator_handler\comparator_handler.h
 .\generated_output\system_handler.o: .\modules\cyclic_activity_handler\cyclic_activity_handler.h
 .\generated_output\system_handler.o: .\modules\gpio_handler\gpio_handler.h

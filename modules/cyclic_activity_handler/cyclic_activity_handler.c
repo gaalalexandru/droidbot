@@ -23,7 +23,7 @@ extern char print_flag;
 void CYCL_1_second(void)	//Fucntion container, with everything that executes at 1 second interval
 {
 	static unsigned char counter = 0;
-	if (counter <=30)
+	if (counter <=2)
 	{
 		print_flag = 0;
 		Print_Welcome_Image();

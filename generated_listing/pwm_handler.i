@@ -288,6 +288,16 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Led_State
+{
+  Right_Feedback_Off,
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On
+} Led_State_en;
+
 
 
 #line 8 "modules\\pwm_handler\\pwm_handler.c"

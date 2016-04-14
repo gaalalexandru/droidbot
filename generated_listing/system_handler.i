@@ -567,6 +567,13 @@ void SYS_startup(void);
 #line 14 "modules\\system_handler\\system_handler.c"
 
  
+#line 1 ".\\modules\\adc_handler\\adc_handler.h"
+
+
+
+void ADC_Temperature_sensor_init(void);
+
+#line 17 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\comparator_handler\\comparator_handler.h"
 
 
@@ -577,7 +584,7 @@ void COMP_mic_input_init(void);
 
 
 
-#line 17 "modules\\system_handler\\system_handler.c"
+#line 18 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
 
 
@@ -587,7 +594,7 @@ void COMP_mic_input_init(void);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 18 "modules\\system_handler\\system_handler.c"
+#line 19 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\gpio_handler\\gpio_handler.h"
 
 
@@ -633,6 +640,16 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Led_State
+{
+  Right_Feedback_Off,
+	Right_Feedback_On,
+	Left_Feedback_Off,
+	Left_Feedback_On,
+	Center_Feedback_Off,
+	Center_Feedback_On
+} Led_State_en;
+
 
 
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
@@ -644,7 +661,10 @@ void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
 void GPIO_motor_mode_select(Motor_Mode_en mode);
-#line 19 "modules\\system_handler\\system_handler.c"
+
+void GPIO_LS_Feedback_Init(void);	
+void GPIO_LS_Feedback_Toogle(Led_State_en State);
+#line 20 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\interrupt_handler\\interrupt_handler.h"
 
 
@@ -661,7 +681,7 @@ void Int_Peripherials_Enable(void);
 
 
 
-#line 20 "modules\\system_handler\\system_handler.c"
+#line 21 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\lcd_handler\\lcd_handler.h"
 
 
@@ -787,7 +807,7 @@ void LCD_out_number(unsigned short number);
 void LCD_out_image(const unsigned char *image);
 
 
-#line 21 "modules\\system_handler\\system_handler.c"
+#line 22 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -801,7 +821,7 @@ void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 
-#line 22 "modules\\system_handler\\system_handler.c"
+#line 23 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -817,7 +837,7 @@ void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
 
-#line 23 "modules\\system_handler\\system_handler.c"
+#line 24 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
 
 
@@ -831,7 +851,7 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
 void TIMER_delay(unsigned long delay_time_ms);
 void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
-#line 24 "modules\\system_handler\\system_handler.c"
+#line 25 "modules\\system_handler\\system_handler.c"
 
  
 
@@ -898,24 +918,25 @@ void SYS_startup(void)
 	clock = SysCtlClockGet();		
 	
 	LCD_init();								
-	clock = SysCtlClockGet();		
+	
 
 	GPIO_Light_sensor_init();	
 	clock = SysCtlClockGet();		
 	
-	GPIO_motor_mode_select(1);
+	
 	
 	PWM_motor_init(1000);			
-	clock = SysCtlClockGet();		
 	
-	PWM_Red_led_init(1000);		
-	clock = SysCtlClockGet();		
+	
+	
+	
 	
 	TIMER_cyclic_1s_init();		
 	clock = SysCtlClockGet();		
 	
-	COMP_mic_input_init();		
-	clock = SysCtlClockGet();		
+	
+	
+	
 	
 	Int_Master_Enable();			
 }

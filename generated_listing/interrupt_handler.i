@@ -313,6 +313,218 @@ typedef unsigned       __int64 uintmax_t;
 #line 9 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 74 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+#line 124 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+#line 148 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+#line 155 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+                                            
+#line 165 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 201 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 229 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+#line 243 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                           void (*pfnHandler)(void));
+extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCIntDisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCIntEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern uint32_t ADCIntStatus(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                             _Bool bMasked);
+extern void ADCIntClear(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceDisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceConfigure(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                                 uint32_t ui32Trigger, uint32_t ui32Priority);
+extern void ADCSequenceStepConfigure(uint32_t ui32Base,
+                                     uint32_t ui32SequenceNum,
+                                     uint32_t ui32Step, uint32_t ui32Config);
+extern int32_t ADCSequenceOverflow(uint32_t ui32Base,
+                                   uint32_t ui32SequenceNum);
+extern void ADCSequenceOverflowClear(uint32_t ui32Base,
+                                     uint32_t ui32SequenceNum);
+extern int32_t ADCSequenceUnderflow(uint32_t ui32Base,
+                                    uint32_t ui32SequenceNum);
+extern void ADCSequenceUnderflowClear(uint32_t ui32Base,
+                                      uint32_t ui32SequenceNum);
+extern int32_t ADCSequenceDataGet(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                                  uint32_t *pui32Buffer);
+extern void ADCProcessorTrigger(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSoftwareOversampleConfigure(uint32_t ui32Base,
+                                           uint32_t ui32SequenceNum,
+                                           uint32_t ui32Factor);
+extern void ADCSoftwareOversampleStepConfigure(uint32_t ui32Base,
+                                               uint32_t ui32SequenceNum,
+                                               uint32_t ui32Step,
+                                               uint32_t ui32Config);
+extern void ADCSoftwareOversampleDataGet(uint32_t ui32Base,
+                                         uint32_t ui32SequenceNum,
+                                         uint32_t *pui32Buffer,
+                                         uint32_t ui32Count);
+extern void ADCHardwareOversampleConfigure(uint32_t ui32Base,
+                                           uint32_t ui32Factor);
+extern void ADCClockConfigSet(uint32_t ui32Base, uint32_t ui32Config,
+                              uint32_t ui32ClockDiv);
+extern uint32_t ADCClockConfigGet(uint32_t ui32Base, uint32_t *pui32ClockDiv);
+
+extern void ADCComparatorConfigure(uint32_t ui32Base, uint32_t ui32Comp,
+                                   uint32_t ui32Config);
+extern void ADCComparatorRegionSet(uint32_t ui32Base, uint32_t ui32Comp,
+                                   uint32_t ui32LowRef, uint32_t ui32HighRef);
+extern void ADCComparatorReset(uint32_t ui32Base, uint32_t ui32Comp,
+                               _Bool bTrigger, _Bool bInterrupt);
+extern void ADCComparatorIntDisable(uint32_t ui32Base,
+                                    uint32_t ui32SequenceNum);
+extern void ADCComparatorIntEnable(uint32_t ui32Base,
+                                   uint32_t ui32SequenceNum);
+extern uint32_t ADCComparatorIntStatus(uint32_t ui32Base);
+extern void ADCComparatorIntClear(uint32_t ui32Base, uint32_t ui32Status);
+extern void ADCIntDisableEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern void ADCIntEnableEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern uint32_t ADCIntStatusEx(uint32_t ui32Base, _Bool bMasked);
+extern void ADCIntClearEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern void ADCSequenceDMAEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceDMADisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern _Bool ADCBusy(uint32_t ui32Base);
+extern void ADCReferenceSet(uint32_t ui32Base, uint32_t ui32Ref);
+extern uint32_t ADCReferenceGet(uint32_t ui32Base);
+extern void ADCPhaseDelaySet(uint32_t ui32Base, uint32_t ui32Phase);
+extern uint32_t ADCPhaseDelayGet(uint32_t ui32Base);
+extern void ADCSampleRateSet(uint32_t ui32Base, uint32_t ui32ADCClock,
+                             uint32_t ui32Rate);
+extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
+
+
+
+
+
+
+
+
+
+
+#line 12 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
 
 
@@ -478,7 +690,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 
 
-#line 12 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 13 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/pin_map.h"
 
 
@@ -1168,7 +1380,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 #line 20952 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/pin_map.h"
 
-#line 13 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 14 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/interrupt.h"
 
 
@@ -1263,7 +1475,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 14 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 15 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/comp.h"
 
 
@@ -1362,7 +1574,7 @@ extern void ComparatorIntClear(uint32_t ui32Base, uint32_t ui32Comp);
 
 
 
-#line 15 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 16 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/timer.h"
 
 
@@ -1595,7 +1807,7 @@ extern void TimerUpdateMode(uint32_t ui32Base, uint32_t ui32Timer,
 
 
 
-#line 16 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 17 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "modules\\interrupt_handler\\interrupt_handler.h"
@@ -1614,7 +1826,7 @@ void Int_Peripherials_Enable(void);
 
 
 
-#line 19 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 20 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -1628,7 +1840,7 @@ void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 
-#line 20 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 21 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
 
 
@@ -1638,11 +1850,11 @@ void Motion_Go_Back(void);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 21 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 22 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 unsigned long comp0_interrupt_flag = 0;	
-
+unsigned long internal_temperature = 0;
  
 void Int_Master_Enable(void)
 {
@@ -1660,8 +1872,8 @@ void GPIOPortF_Handler(void)
 	if((Light_sensor_status&(0x00000001 | 0x00000010)) == (0x00000001 | 0x00000010))
 	{
 		
+		Motion_Cruise();
 		
-		Motion_Go_Back();
 	}
 	else if(Light_sensor_status & 0x00000010)
 	{
@@ -1710,6 +1922,18 @@ void Timer0A_Handler(void)
 		timer_value = TimerValueGet(0x40030000, 0x000000ff);
 		CYCL_50_milisecond();
 		
+	}
+}
+
+
+void ADC0Seq3_Handler(void)		
+{
+	uint32_t Temperature;
+	if(ADCIntStatus(0x40038000, 3, 0))
+	{
+		ADCIntClear(0x40038000, 3); 										
+		ADCSequenceDataGet(0x40038000, 3, &Temperature);		
+		internal_temperature = Temperature;
 	}
 }
 
