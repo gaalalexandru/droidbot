@@ -313,6 +313,221 @@ typedef unsigned       __int64 uintmax_t;
 #line 9 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 74 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+#line 124 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+#line 148 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+#line 155 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+                                            
+#line 165 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+                                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 201 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 229 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+#line 243 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
+
+
+
+
+
+
+
+ 
+
+extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                           void (*pfnHandler)(void));
+extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCIntDisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCIntEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern uint32_t ADCIntStatus(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                             _Bool bMasked);
+extern void ADCIntClear(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceDisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceConfigure(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                                 uint32_t ui32Trigger, uint32_t ui32Priority);
+extern void ADCSequenceStepConfigure(uint32_t ui32Base,
+                                     uint32_t ui32SequenceNum,
+                                     uint32_t ui32Step, uint32_t ui32Config);
+extern int32_t ADCSequenceOverflow(uint32_t ui32Base,
+                                   uint32_t ui32SequenceNum);
+extern void ADCSequenceOverflowClear(uint32_t ui32Base,
+                                     uint32_t ui32SequenceNum);
+extern int32_t ADCSequenceUnderflow(uint32_t ui32Base,
+                                    uint32_t ui32SequenceNum);
+extern void ADCSequenceUnderflowClear(uint32_t ui32Base,
+                                      uint32_t ui32SequenceNum);
+extern int32_t ADCSequenceDataGet(uint32_t ui32Base, uint32_t ui32SequenceNum,
+                                  uint32_t *pui32Buffer);
+extern void ADCProcessorTrigger(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSoftwareOversampleConfigure(uint32_t ui32Base,
+                                           uint32_t ui32SequenceNum,
+                                           uint32_t ui32Factor);
+extern void ADCSoftwareOversampleStepConfigure(uint32_t ui32Base,
+                                               uint32_t ui32SequenceNum,
+                                               uint32_t ui32Step,
+                                               uint32_t ui32Config);
+extern void ADCSoftwareOversampleDataGet(uint32_t ui32Base,
+                                         uint32_t ui32SequenceNum,
+                                         uint32_t *pui32Buffer,
+                                         uint32_t ui32Count);
+extern void ADCHardwareOversampleConfigure(uint32_t ui32Base,
+                                           uint32_t ui32Factor);
+extern void ADCClockConfigSet(uint32_t ui32Base, uint32_t ui32Config,
+                              uint32_t ui32ClockDiv);
+extern uint32_t ADCClockConfigGet(uint32_t ui32Base, uint32_t *pui32ClockDiv);
+
+extern void ADCComparatorConfigure(uint32_t ui32Base, uint32_t ui32Comp,
+                                   uint32_t ui32Config);
+extern void ADCComparatorRegionSet(uint32_t ui32Base, uint32_t ui32Comp,
+                                   uint32_t ui32LowRef, uint32_t ui32HighRef);
+extern void ADCComparatorReset(uint32_t ui32Base, uint32_t ui32Comp,
+                               _Bool bTrigger, _Bool bInterrupt);
+extern void ADCComparatorIntDisable(uint32_t ui32Base,
+                                    uint32_t ui32SequenceNum);
+extern void ADCComparatorIntEnable(uint32_t ui32Base,
+                                   uint32_t ui32SequenceNum);
+extern uint32_t ADCComparatorIntStatus(uint32_t ui32Base);
+extern void ADCComparatorIntClear(uint32_t ui32Base, uint32_t ui32Status);
+extern void ADCIntDisableEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern void ADCIntEnableEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern uint32_t ADCIntStatusEx(uint32_t ui32Base, _Bool bMasked);
+extern void ADCIntClearEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern void ADCSequenceDMAEnable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern void ADCSequenceDMADisable(uint32_t ui32Base, uint32_t ui32SequenceNum);
+extern _Bool ADCBusy(uint32_t ui32Base);
+extern void ADCReferenceSet(uint32_t ui32Base, uint32_t ui32Ref);
+extern uint32_t ADCReferenceGet(uint32_t ui32Base);
+extern void ADCPhaseDelaySet(uint32_t ui32Base, uint32_t ui32Phase);
+extern uint32_t ADCPhaseDelayGet(uint32_t ui32Base);
+extern void ADCSampleRateSet(uint32_t ui32Base, uint32_t ui32ADCClock,
+                             uint32_t ui32Rate);
+extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
+
+
+
+
+
+
+
+
+
+
+#line 12 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
 
 
@@ -478,7 +693,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 
 
-#line 12 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 13 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
 
  
@@ -491,7 +706,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 16 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 17 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -507,7 +722,7 @@ void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
 
-#line 17 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 18 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\printing_handler\\printing_handler.h"
 
 
@@ -574,7 +789,7 @@ void Print_Motor_Parameters(void);
 void Print_5s_img(void);
 
 
-#line 18 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 19 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 extern char print_flag;
@@ -590,7 +805,7 @@ void CYCL_1_second(void)
 	}
 	else
 	{
-		Print_Motor_Parameters();
+		
 	}
 	PWM_Red_led_toggle();
 	if((counter%2)==0)
@@ -623,6 +838,8 @@ void CYCL_50_milisecond(void)
 	if((counter%2)==0)
 	{
 		
+		Print_Motor_Parameters();
+		ADCProcessorTrigger(0x40039000, 3);
 	}
 	if((counter%5)==0)
 	{
@@ -631,6 +848,7 @@ void CYCL_50_milisecond(void)
 	if((counter%10)==0)
 	{
 		
+		ADCProcessorTrigger(0x40038000, 3);
 	}
 	if(counter == 254)	
 	{

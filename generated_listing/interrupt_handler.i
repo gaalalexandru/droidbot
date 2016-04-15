@@ -445,6 +445,9 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
+
+ 
+
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -1855,6 +1858,7 @@ void CYCL_50_milisecond(void);
  
 unsigned long comp0_interrupt_flag = 0;	
 unsigned long internal_temperature = 0;
+unsigned long central_light_sensor = 0;	
  
 void Int_Master_Enable(void)
 {
@@ -1934,6 +1938,16 @@ void ADC0Seq3_Handler(void)
 		ADCIntClear(0x40038000, 3); 										
 		ADCSequenceDataGet(0x40038000, 3, &Temperature);		
 		internal_temperature = Temperature;
+	}
+}
+void ADC1Seq3_Handler(void)		
+{
+	uint32_t Light;
+	if(ADCIntStatus(0x40039000, 3, 0))
+	{
+		ADCIntClear(0x40039000, 3); 										
+		ADCSequenceDataGet(0x40039000, 3, &Light);		
+		central_light_sensor = Light;
 	}
 }
 

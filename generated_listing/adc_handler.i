@@ -1,14 +1,43 @@
 #line 1 "modules\\adc_handler\\adc_handler.c"
 
 
-#line 1 "modules\\adc_handler\\adc_handler.h"
+ 
+#line 1 ".\\modules\\compile_switches\\compile_switches.c"
 
 
 
-void ADC_Temperature_sensor_init(void);
 
-#line 4 "modules\\adc_handler\\adc_handler.c"
 
+
+
+ 
+#line 15 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+#line 23 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 45 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+#line 5 "modules\\adc_handler\\adc_handler.c"
+
+ 
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
  
 
@@ -27,7 +56,7 @@ void ADC_Temperature_sensor_init(void);
 
 
 
-#line 6 "modules\\adc_handler\\adc_handler.c"
+#line 8 "modules\\adc_handler\\adc_handler.c"
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
  
  
@@ -253,8 +282,19 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 7 "modules\\adc_handler\\adc_handler.c"
+#line 9 "modules\\adc_handler\\adc_handler.c"
 
+ 
+#line 1 "modules\\adc_handler\\adc_handler.h"
+
+
+
+void ADC_Temperature_sensor_init(void);
+void ADC_Light_sensor_init(void);
+
+#line 12 "modules\\adc_handler\\adc_handler.c"
+
+ 
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
 
 
@@ -387,6 +427,9 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
+
+ 
+
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -466,7 +509,268 @@ extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
 
 
 
-#line 9 "modules\\adc_handler\\adc_handler.c"
+#line 15 "modules\\adc_handler\\adc_handler.c"
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 68 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 91 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+
+#line 105 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+
+#line 119 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+
+#line 135 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+
+
+
+
+
+
+extern void GPIODirModeSet(uint32_t ui32Port, uint8_t ui8Pins,
+                           uint32_t ui32PinIO);
+extern uint32_t GPIODirModeGet(uint32_t ui32Port, uint8_t ui8Pin);
+extern void GPIOIntTypeSet(uint32_t ui32Port, uint8_t ui8Pins,
+                           uint32_t ui32IntType);
+extern uint32_t GPIOIntTypeGet(uint32_t ui32Port, uint8_t ui8Pin);
+extern void GPIOPadConfigSet(uint32_t ui32Port, uint8_t ui8Pins,
+                             uint32_t ui32Strength, uint32_t ui32PadType);
+extern void GPIOPadConfigGet(uint32_t ui32Port, uint8_t ui8Pin,
+                             uint32_t *pui32Strength, uint32_t *pui32PadType);
+extern void GPIOIntEnable(uint32_t ui32Port, uint32_t ui32IntFlags);
+extern void GPIOIntDisable(uint32_t ui32Port, uint32_t ui32IntFlags);
+extern uint32_t GPIOIntStatus(uint32_t ui32Port, _Bool bMasked);
+extern void GPIOIntClear(uint32_t ui32Port, uint32_t ui32IntFlags);
+extern void GPIOIntRegister(uint32_t ui32Port, void (*pfnIntHandler)(void));
+extern void GPIOIntUnregister(uint32_t ui32Port);
+extern int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val);
+extern void GPIOPinConfigure(uint32_t ui32PinConfig);
+extern void GPIOPinTypeADC(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeCAN(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeComparator(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeComparatorOutput(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeEPI(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeEthernetLED(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeEthernetMII(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeGPIOInput(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeGPIOOutputOD(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeI2C(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeI2CSCL(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeLCD(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypePWM(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeQEI(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeSSI(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeTimer(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeUART(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeUSBAnalog(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeUSBDigital(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeWakeHigh(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOPinTypeWakeLow(uint32_t ui32Port, uint8_t ui8Pins);
+extern uint32_t GPIOPinWakeStatus(uint32_t ui32Port);
+extern void GPIODMATriggerEnable(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIODMATriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOADCTriggerEnable(uint32_t ui32Port, uint8_t ui8Pins);
+extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
+
+
+
+
+
+
+
+
+
+
+#line 16 "modules\\adc_handler\\adc_handler.c"
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/interrupt.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern _Bool IntMasterEnable(void);
+extern _Bool IntMasterDisable(void);
+extern void IntRegister(uint32_t ui32Interrupt, void (*pfnHandler)(void));
+extern void IntUnregister(uint32_t ui32Interrupt);
+extern void IntPriorityGroupingSet(uint32_t ui32Bits);
+extern uint32_t IntPriorityGroupingGet(void);
+extern void IntPrioritySet(uint32_t ui32Interrupt,
+                           uint8_t ui8Priority);
+extern int32_t IntPriorityGet(uint32_t ui32Interrupt);
+extern void IntEnable(uint32_t ui32Interrupt);
+extern void IntDisable(uint32_t ui32Interrupt);
+extern uint32_t IntIsEnabled(uint32_t ui32Interrupt);
+extern void IntPendSet(uint32_t ui32Interrupt);
+extern void IntPendClear(uint32_t ui32Interrupt);
+extern void IntPriorityMaskSet(uint32_t ui32PriorityMask);
+extern uint32_t IntPriorityMaskGet(void);
+extern void IntTrigger(uint32_t ui32Interrupt);
+
+
+
+
+
+
+
+
+
+
+#line 17 "modules\\adc_handler\\adc_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
@@ -759,174 +1063,9 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
 
 
 
-#line 10 "modules\\adc_handler\\adc_handler.c"
-#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
+#line 18 "modules\\adc_handler\\adc_handler.c"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#line 68 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#line 91 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
-
-
-
-
-
-
-
-#line 105 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
-
-
-
-
-
-
-
-#line 119 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
-
-
-
-
-
-
-
-#line 135 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
-
-
-
-
-
-
-extern void GPIODirModeSet(uint32_t ui32Port, uint8_t ui8Pins,
-                           uint32_t ui32PinIO);
-extern uint32_t GPIODirModeGet(uint32_t ui32Port, uint8_t ui8Pin);
-extern void GPIOIntTypeSet(uint32_t ui32Port, uint8_t ui8Pins,
-                           uint32_t ui32IntType);
-extern uint32_t GPIOIntTypeGet(uint32_t ui32Port, uint8_t ui8Pin);
-extern void GPIOPadConfigSet(uint32_t ui32Port, uint8_t ui8Pins,
-                             uint32_t ui32Strength, uint32_t ui32PadType);
-extern void GPIOPadConfigGet(uint32_t ui32Port, uint8_t ui8Pin,
-                             uint32_t *pui32Strength, uint32_t *pui32PadType);
-extern void GPIOIntEnable(uint32_t ui32Port, uint32_t ui32IntFlags);
-extern void GPIOIntDisable(uint32_t ui32Port, uint32_t ui32IntFlags);
-extern uint32_t GPIOIntStatus(uint32_t ui32Port, _Bool bMasked);
-extern void GPIOIntClear(uint32_t ui32Port, uint32_t ui32IntFlags);
-extern void GPIOIntRegister(uint32_t ui32Port, void (*pfnIntHandler)(void));
-extern void GPIOIntUnregister(uint32_t ui32Port);
-extern int32_t GPIOPinRead(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinWrite(uint32_t ui32Port, uint8_t ui8Pins, uint8_t ui8Val);
-extern void GPIOPinConfigure(uint32_t ui32PinConfig);
-extern void GPIOPinTypeADC(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeCAN(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeComparator(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeComparatorOutput(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeEPI(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeEthernetLED(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeEthernetMII(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeGPIOInput(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeGPIOOutput(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeGPIOOutputOD(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeI2C(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeI2CSCL(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeLCD(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypePWM(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeQEI(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeSSI(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeTimer(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeUART(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeUSBAnalog(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeUSBDigital(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeWakeHigh(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOPinTypeWakeLow(uint32_t ui32Port, uint8_t ui8Pins);
-extern uint32_t GPIOPinWakeStatus(uint32_t ui32Port);
-extern void GPIODMATriggerEnable(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIODMATriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOADCTriggerEnable(uint32_t ui32Port, uint8_t ui8Pins);
-extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
-
-
-
-
-
-
-
-
-
-
-#line 11 "modules\\adc_handler\\adc_handler.c"
-
+ 
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
 
 
@@ -988,16 +1127,128 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
                                             
 #line 150 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
 
-#line 13 "modules\\adc_handler\\adc_handler.c"
+#line 21 "modules\\adc_handler\\adc_handler.c"
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 58 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+#line 94 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+                                            
+#line 170 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+#line 244 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+                                            
+#line 283 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+#line 318 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+#line 339 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 475 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 22 "modules\\adc_handler\\adc_handler.c"
 
 void ADC_Temperature_sensor_init(void) 
 {
 	SysCtlPeripheralEnable(0xf0003800);			
+
+	IntDisable(33);
 	
-  
 	ADCIntClear(0x40038000, 3); 										
-	
 	ADCIntDisable(0x40038000, 3);
 	ADCSequenceDisable(0x40038000,3);							
 	
@@ -1006,17 +1257,42 @@ void ADC_Temperature_sensor_init(void)
 	
 	ADCSequenceEnable(0x40038000,3); 							
 	ADCIntEnable(0x40038000, 3); 
-	
-	ADCProcessorTrigger(0x40038000, 3);
-	
-	
- 
-	
+		
+	IntPrioritySet(33,((0x07))<<5);
+	IntEnable(33);	
 }
 
+void ADC_Light_sensor_init(void) 
+{
+	SysCtlPeripheralEnable(0xf0003801);		
+	SysCtlPeripheralEnable(0xf0000804);	
+	
+	GPIOPinTypeADC(0x40024000, 0x00000008);	
+	GPIODirModeSet(0x40024000, 0x00000008, 0x00000000);	
+	GPIOPadConfigSet(0x40024000, 0x00000008, 0x00000001,0x00000000); 
+
+	IntDisable(67);
+	
+	ADCIntClear(0x40039000, 3); 										
+	ADCIntDisable(0x40039000, 3);									
+	ADCSequenceDisable(0x40039000,3);							
+	
+	ADCSequenceConfigure(0x40039000,3, 0x00000000,   0); 
+	ADCSequenceStepConfigure(0x40039000,3,0, 0x00000000 | 0x00000040 | 0x00000020);  
+	
+	ADCSequenceEnable(0x40039000,3); 							
+	ADCIntEnable(0x40039000, 3); 									
+		
+	IntPrioritySet(67,((0x01))<<5);
+	IntEnable(67);												
+}
 
 	
  
+	
+
+
+
 
 
 
@@ -1034,7 +1310,5 @@ void ADC_Temperature_sensor_init(void)
 
 
  
-
-
 
 

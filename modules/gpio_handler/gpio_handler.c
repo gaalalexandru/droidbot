@@ -40,7 +40,7 @@ void GPIO_Light_sensor_init(void)
 	GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_0 | GPIO_PIN_4, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); //Configure PUR for PF0 and PF4
 	GPIOIntEnable(GPIO_PORTF_BASE, GPIO_INT_PIN_0 | GPIO_INT_PIN_4);									//Enable GPIO pin interrupt
 	
-	IntPrioritySet(INT_GPIOF,(Int_Prio_2_GPIO_PF_LightS)<<5); 												//Priority 2 = "010"0.0000
+	IntPrioritySet(INT_GPIOF,(Int_Prio_GPIO_PF_LightS)<<5); 												//Priority 2 = "010"0.0000
 	IntEnable(INT_GPIOF);																															//GPIO Port F enable of interrupts
 }
 

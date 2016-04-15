@@ -572,6 +572,7 @@ void SYS_startup(void);
 
 
 void ADC_Temperature_sensor_init(void);
+void ADC_Light_sensor_init(void);
 
 #line 17 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\comparator_handler\\comparator_handler.h"
@@ -931,12 +932,16 @@ void SYS_startup(void)
 	
 	
 	
+	TIMER_cyclic_50ms_init();		
+	
 	TIMER_cyclic_1s_init();		
 	clock = SysCtlClockGet();		
 	
 	
 	
 	
+	ADC_Light_sensor_init();
+	ADC_Temperature_sensor_init();
 	
 	Int_Master_Enable();			
 }

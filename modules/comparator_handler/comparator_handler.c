@@ -40,7 +40,7 @@ void COMP_mic_input_init(void)
 	ComparatorRefSet(COMP_BASE,COMP_REF_0_825V/*COMP_REF_0_825V*/); 
 	ComparatorIntEnable(COMP_BASE,0);
 	
-	IntPrioritySet(INT_COMP0,(Int_Prio_3_Comp_Mic)<<5); 								//Priority 3 = "100"0.0000
+	IntPrioritySet(INT_COMP0,(Int_Prio_Comp_Mic)<<5); 								//Priority 3 = "100"0.0000
 	IntEnable(INT_COMP0);														//Comparator 0 enable of interrupts
 	
 	/* List of possible reference voltages: COMP_REF_OFF to turn off the reference voltage

@@ -8,6 +8,7 @@
 #include "inc/hw_memmap.h"
 
 /*-------------------Driver Includes-----------------*/
+#include "driverlib/adc.h"
 #include "driverlib/gpio.h"
 //#include "driverlib/pin_map.h"
 
@@ -30,7 +31,7 @@ void CYCL_1_second(void)	//Fucntion container, with everything that executes at 
 	}
 	else
 	{
-		Print_Motor_Parameters();
+		//Print_Motor_Parameters();
 	}
 	PWM_Red_led_toggle();
 	if((counter%2)==0)
@@ -63,6 +64,8 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 	if((counter%2)==0)
 	{
 		//Code that runs only every 100 ms
+		Print_Motor_Parameters();
+		ADCProcessorTrigger(ADC1_BASE, 3);
 	}
 	if((counter%5)==0)
 	{
@@ -71,6 +74,7 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 	if((counter%10)==0)
 	{
 		//Code that runs only every 500 ms
+		ADCProcessorTrigger(ADC0_BASE, 3);
 	}
 	if(counter == 254)	//Max value reached (Not 255, to keep 50ms, 100ms, 250ms, 500ms interval)
 	{

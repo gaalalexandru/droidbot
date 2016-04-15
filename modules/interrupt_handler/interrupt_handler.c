@@ -23,6 +23,7 @@
 /*-------------Global Variable Definitions------------*/
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
 unsigned long internal_temperature = 0;
+unsigned long central_light_sensor = 0;	//Central light sensor output 
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {
@@ -102,6 +103,16 @@ void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
 		ADCSequenceDataGet(ADC0_BASE, 3, &Temperature);		
 		internal_temperature = Temperature;
+	}
+}
+void ADC1Seq3_Handler(void)		//ADC0 Seq3 ISR
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 3, false))
+	{
+		ADCIntClear(ADC1_BASE, 3); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 3, &Light);		
+		central_light_sensor = Light;
 	}
 }
 //EOF

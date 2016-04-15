@@ -41,7 +41,7 @@ void TIMER_cyclic_1s_init(void)	//1 second cyclic timer configuration
 	TimerEnable(WTIMER0_BASE, TIMER_A);
 	
 	TimerIntEnable(WTIMER0_BASE,TIMER_TIMA_TIMEOUT);
-	IntPrioritySet(INT_WTIMER0A,(Int_Prio_1_WTimer0A_1s)<<5); 			//Priority 1 = "001"0.0000
+	IntPrioritySet(INT_WTIMER0A,(Int_Prio_WTimer0A_1s)<<5); 			//Priority 1 = "001"0.0000
 	IntEnable(INT_WTIMER0A);	//Wide Timer 0A enable of interrupts
 }
 
@@ -59,7 +59,7 @@ void TIMER_cyclic_50ms_init(void)	//50 mili second cyclic timer configuration
 	TimerEnable(TIMER0_BASE, TIMER_A);
 	
 	TimerIntEnable(TIMER0_BASE,TIMER_TIMA_TIMEOUT);
-	IntPrioritySet(INT_TIMER0A,(Int_Prio_1_Timer0A_50ms)<<5);	//Priority 0 = "000"0.0000
+	IntPrioritySet(INT_TIMER0A,(Int_Prio_Timer0A_50ms)<<5);	//Priority 0 = "000"0.0000
 	IntEnable(INT_TIMER0A);	//Timer 0A enable of interrupts	
 }
 

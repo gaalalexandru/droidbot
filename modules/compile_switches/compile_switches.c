@@ -36,10 +36,12 @@
 0xBA optimal value so far - Gaal Alexandru */
 
 /*-------------------Interrupt priorities-------------*/
-#define Int_Prio_1_Timer0A_50ms		(0x00) 	//Priority 1 = "001"0.0000
-#define Int_Prio_1_WTimer0A_1s		(0x01) 	//Priority 1 = "001"0.0000
-#define Int_Prio_2_GPIO_PF_LightS	(0x02)	//Priority 2 = "010"0.0000
-#define Int_Prio_3_Comp_Mic				(0x03)	//Priority 3 = "011"0.0000
+#define Int_Prio_Timer0A_50ms		(0x00) 	//Priority 0 = "001"0.0000
+#define Int_Prio_WTimer0A_1s		(0x01) 	//Priority 1 = "001"0.0000
+#define Int_Prio_GPIO_PF_LightS	(0x02)	//Priority 2 = "010"0.0000
+#define Int_Prio_Comp_Mic				(0x03)	//Priority 3 = "011"0.0000
+#define Int_Prio_Temp_Sens			(0x07)	//Priority 7 = "111"0.0000
+#define Int_Prio_Light_Sens			(0x01)	//Priority 3 = "011"0.0000
 
 #endif
 //EOF

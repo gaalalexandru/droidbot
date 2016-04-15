@@ -101,12 +101,16 @@ void SYS_startup(void)
 	//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
+	TIMER_cyclic_50ms_init();		//Initialize 50 mili second timer
+	
 	TIMER_cyclic_1s_init();		//Initialize 1 second timer
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
 	//COMP_mic_input_init();		//Disabled temporarly
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
-	//ADC_Temperature_sensor_init();
+	
+	ADC_Light_sensor_init();
+	ADC_Temperature_sensor_init();
 	
 	Int_Master_Enable();			//Global interrupt enable
 }
