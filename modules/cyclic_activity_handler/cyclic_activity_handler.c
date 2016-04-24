@@ -14,6 +14,9 @@
 
 /*-------------------Self header Includes-------------*/
 #include "cyclic_activity_handler.h"
+
+/*-------------------Service Includes-----------------*/
+#include "motion_handler.h"
 #include "pwm_handler.h"
 #include "printing_handler.h"
 
@@ -61,6 +64,7 @@ void CYCL_1_second(void)	//Fucntion container, with everything that executes at 
 void CYCL_50_milisecond(void)	//Fucntion container, with everything that executes at 50 mili second interval
 {
 	static unsigned char counter = 0;
+	Motion_calculate_direction();
 	if((counter%2)==0)
 	{
 		//Code that runs only every 100 ms
@@ -68,15 +72,19 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 		ADCProcessorTrigger(ADC1_BASE, 1);
 		ADCProcessorTrigger(ADC1_BASE, 2);
 		ADCProcessorTrigger(ADC1_BASE, 3);
+
+
 	}
 	if((counter%5)==0)
 	{
+		Motion_calculate_direction();
 		//Code that runs only every 250 ms
 	}
 	if((counter%10)==0)
 	{
 		//Code that runs only every 500 ms
 		ADCProcessorTrigger(ADC0_BASE, 3);
+			Motion_Stop();
 	}
 	if(counter == 254)	//Max value reached (Not 255, to keep 50ms, 100ms, 250ms, 500ms interval)
 	{

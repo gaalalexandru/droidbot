@@ -16,10 +16,11 @@ int main(void)
 {
 	unsigned long count_me;
 	SYS_startup();
+	Motion_Stop();
 	while(1)
 	{
 		count_me++;
-		Motion_Stop();
+		//Motion_Stop();
 		
 	}
 }

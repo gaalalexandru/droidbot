@@ -19,6 +19,7 @@ void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
+void Motion_calculate_direction(void);
 
 #line 10 "main.c"
 #line 1 ".\\modules\\system_handler\\system_handler.h"
@@ -583,10 +584,11 @@ int main(void)
 {
 	unsigned long count_me;
 	SYS_startup();
+	Motion_Stop();
 	while(1)
 	{
 		count_me++;
-		Motion_Stop();
+		
 		
 	}
 }

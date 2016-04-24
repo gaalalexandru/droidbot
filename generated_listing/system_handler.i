@@ -821,6 +821,7 @@ void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
+void Motion_calculate_direction(void);
 
 #line 23 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"

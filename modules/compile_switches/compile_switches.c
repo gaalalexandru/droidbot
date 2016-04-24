@@ -13,6 +13,9 @@
 #define Cyan_LED (0x0C)
 #define White_LED (0x0E)
 
+/*-------------Motion calculation config--------------*/
+#define Min_Delta_LS (80)			//configure half of minimum difference between LS, to take into account as different LS
+#define Max_Speed_Delay (100)		//configure nr of 100ms to cruise before go ahead with max speed
 /*-------------Motor PWM duty cycle config------------*/
 #define Outer_Wheel_DS (70)			//PWM duty cycle for outer wheel at cornering
 #define Inner_Wheel_DS (0)			//PWM duty cycle for inner wheel at cornering
@@ -42,6 +45,8 @@
 #define Int_Prio_Comp_Mic				(0x03)	//Priority 3 = "011"0.0000
 #define Int_Prio_Temp_Sens			(0x07)	//Priority 7 = "111"0.0000
 #define Int_Prio_Light_Sens			(0x01)	//Priority 3 = "011"0.0000
+
+
 
 #endif
 //EOF

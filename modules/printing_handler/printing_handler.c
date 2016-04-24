@@ -15,9 +15,9 @@
 extern motor_parameters_st motor_parameters;	//Global structure variable for motor parameters
 extern unsigned long internal_temperature;
 
-extern unsigned long central_light_sensor;	//Central light sensor output
-extern unsigned long right_light_sensor;		//Right light sensor output
-extern unsigned long left_light_sensor;			//Left light sensor output
+extern unsigned long Mx_LS_Value;	//Central light sensor output
+extern unsigned long Rx_LS_Value;		//Right light sensor output
+extern unsigned long Lx_LS_Value;			//Left light sensor output
 
 char print_flag = 0;
 /*-------------------Function Definitions-------------*/
@@ -80,11 +80,11 @@ void Print_Motor_Parameters(void)
 	LCD_set_cursor(0,3);
 	LCD_out_string("Temp:");
 	LCD_set_cursor(8,4);
-	LCD_out_number(right_light_sensor);
+	LCD_out_number(Rx_LS_Value);
 	LCD_set_cursor(4,4);
-	LCD_out_number(central_light_sensor);
+	LCD_out_number(Mx_LS_Value);
 	LCD_set_cursor(0,4);
-	LCD_out_number(left_light_sensor);
+	LCD_out_number(Lx_LS_Value);
 
 
 

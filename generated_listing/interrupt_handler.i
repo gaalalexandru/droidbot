@@ -1839,6 +1839,7 @@ void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
+void Motion_calculate_direction(void);
 
 #line 21 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
@@ -1855,9 +1856,9 @@ void CYCL_50_milisecond(void);
  
 unsigned long comp0_interrupt_flag = 0;	
 unsigned long internal_temperature = 0;
-unsigned long central_light_sensor = 0;	
-unsigned long left_light_sensor = 0;		
-unsigned long right_light_sensor = 0;		
+unsigned long Mx_LS_Value = 0;	
+unsigned long Lx_LS_Value = 0;		
+unsigned long Rx_LS_Value = 0;		
  
 void Int_Master_Enable(void)
 {
@@ -1946,7 +1947,7 @@ void ADC1Seq3_Handler(void)
 	{
 		ADCIntClear(0x40039000, 3); 										
 		ADCSequenceDataGet(0x40039000, 3, &Light);		
-		central_light_sensor = Light;
+		Mx_LS_Value = Light;
 	}
 }
 
@@ -1957,7 +1958,7 @@ void ADC1Seq1_Handler(void)
 	{
 		ADCIntClear(0x40039000, 1); 										
 		ADCSequenceDataGet(0x40039000, 1, &Light);		
-		right_light_sensor = Light;
+		Rx_LS_Value = Light;
 	}
 }
 
@@ -1968,7 +1969,7 @@ void ADC1Seq2_Handler(void)
 	{
 		ADCIntClear(0x40039000, 2); 										
 		ADCSequenceDataGet(0x40039000, 2, &Light);		
-		left_light_sensor = Light;
+		Lx_LS_Value = Light;
 	}
 }
 

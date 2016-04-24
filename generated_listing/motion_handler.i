@@ -14,7 +14,10 @@
 #line 15 ".\\modules\\compile_switches\\compile_switches.c"
 
  
-#line 23 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+ 
+#line 26 ".\\modules\\compile_switches\\compile_switches.c"
 
  
 
@@ -31,7 +34,9 @@
  
 
  
-#line 45 ".\\modules\\compile_switches\\compile_switches.c"
+#line 48 ".\\modules\\compile_switches\\compile_switches.c"
+
+
 
 
 
@@ -105,6 +110,7 @@ void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
+void Motion_calculate_direction(void);
 
 #line 11 "modules\\motion_handler\\motion_handler.c"
 
@@ -143,6 +149,10 @@ void TIMER_delay_No_Int(unsigned long delay_time_ms);
  
 extern unsigned long comp0_interrupt_flag;	
 motor_parameters_st motor_parameters;	
+
+extern unsigned long Mx_LS_Value;	
+extern unsigned long Rx_LS_Value;		
+extern unsigned long Lx_LS_Value;			
 
  
 void Motion_Go_Left(void)
@@ -202,5 +212,62 @@ void Motion_Go_Back(void)
 	TIMER_delay_No_Int(1000);		
 	comp0_interrupt_flag = 0;
 	PWM_motor_reverse_stop();
+}
+
+
+void Motion_calculate_direction(void)
+{
+	
+
+
+
+ 
+	signed long Rx_Lx_LS_Delta = Rx_LS_Value - Lx_LS_Value;
+	signed long Rx_Mx_LS_Delta = Rx_LS_Value - Mx_LS_Value;
+	signed long Lx_Mx_LS_Delta = Lx_LS_Value - Mx_LS_Value;
+	static unsigned char Go_Fwd_Counter = 0;	
+	
+	if(((Rx_Lx_LS_Delta < (80))&&(Rx_Lx_LS_Delta > -(80)))&&	
+	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80)))&&			
+	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80))))			
+	{
+		
+		if(Go_Fwd_Counter < (100))
+		{
+			Motion_Cruise();		
+			if(Go_Fwd_Counter < 254)
+			{
+				Go_Fwd_Counter++;
+			}
+			else
+			{
+				Go_Fwd_Counter = (100);
+			}
+		}
+		else
+		{
+			Motion_Max_Speed(); 
+		}					
+	}
+	else if((Rx_Lx_LS_Delta > (80))&&															
+	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80))))	
+	{
+		
+		Motion_Go_Right();
+		Go_Fwd_Counter = 0;
+	}
+	else if((Rx_Lx_LS_Delta < -(80))&&														
+	((Lx_Mx_LS_Delta > (80))||(Lx_Mx_LS_Delta < -(80))))	
+	{
+		
+		Motion_Go_Left();
+		Go_Fwd_Counter = 0;		
+	}
+	else
+	{
+		
+		Motion_Stop();
+		Go_Fwd_Counter = 0;
+	}
 }
 

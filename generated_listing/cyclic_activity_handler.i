@@ -704,6 +704,23 @@ void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
 #line 17 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+
+ 
+#line 1 ".\\modules\\motion_handler\\motion_handler.h"
+
+
+
+
+
+void Motion_Go_Right(void);
+void Motion_Go_Left(void);
+void Motion_Stop(void);
+void Motion_Cruise(void);
+void Motion_Max_Speed(void);
+void Motion_Go_Back(void);
+void Motion_calculate_direction(void);
+
+#line 20 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -719,7 +736,7 @@ void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
 
-#line 18 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 21 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\printing_handler\\printing_handler.h"
 
 
@@ -786,7 +803,7 @@ void Print_Motor_Parameters(void);
 void Print_5s_img(void);
 
 
-#line 19 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 22 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 extern char print_flag;
@@ -832,6 +849,7 @@ void CYCL_1_second(void)
 void CYCL_50_milisecond(void)	
 {
 	static unsigned char counter = 0;
+	Motion_calculate_direction();
 	if((counter%2)==0)
 	{
 		
@@ -839,15 +857,19 @@ void CYCL_50_milisecond(void)
 		ADCProcessorTrigger(0x40039000, 1);
 		ADCProcessorTrigger(0x40039000, 2);
 		ADCProcessorTrigger(0x40039000, 3);
+
+
 	}
 	if((counter%5)==0)
 	{
+		Motion_calculate_direction();
 		
 	}
 	if((counter%10)==0)
 	{
 		
 		ADCProcessorTrigger(0x40038000, 3);
+			Motion_Stop();
 	}
 	if(counter == 254)	
 	{
