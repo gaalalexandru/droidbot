@@ -427,9 +427,6 @@ void ADC_Light_sensor_init(void);
 
 
 
-
- 
-
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -1253,7 +1250,7 @@ void ADC_Temperature_sensor_init(void)
 	ADCSequenceDisable(0x40038000,3);							
 	
 	ADCSequenceConfigure(0x40038000,3,  0x00000000, 0); 
-	ADCSequenceStepConfigure(0x40038000,3,0, 0x00000001 |0x00000080| 0x00000040 | 0x00000020);  
+	ADCSequenceStepConfigure(0x40038000,3,0, 0x00000003 |0x00000080| 0x00000040 | 0x00000020);  
 	
 	ADCSequenceEnable(0x40038000,3); 							
 	ADCIntEnable(0x40038000, 3); 
@@ -1267,23 +1264,54 @@ void ADC_Light_sensor_init(void)
 	SysCtlPeripheralEnable(0xf0003801);		
 	SysCtlPeripheralEnable(0xf0000804);	
 	
-	GPIOPinTypeADC(0x40024000, 0x00000008);	
-	GPIODirModeSet(0x40024000, 0x00000008, 0x00000000);	
-	GPIOPadConfigSet(0x40024000, 0x00000008, 0x00000001,0x00000000); 
+	GPIOPinTypeADC(0x40024000, 0x00000002|0x00000004|0x00000008);	
+	GPIODirModeSet(0x40024000, 0x00000002|0x00000004|0x00000008, 0x00000000);	
+	GPIOPadConfigSet(0x40024000, 0x00000002|0x00000004|0x00000008, 0x00000001,0x00000000); 
 
 	IntDisable(67);
+	IntDisable(66);
+	IntDisable(65);
+	
+	ADCIntClear(0x40039000, 1); 										
+	ADCIntDisable(0x40039000, 1);									
+	ADCSequenceDisable(0x40039000,1);							
+	
+	ADCIntClear(0x40039000, 2); 										
+	ADCIntDisable(0x40039000, 2);									
+	ADCSequenceDisable(0x40039000,2);							
 	
 	ADCIntClear(0x40039000, 3); 										
 	ADCIntDisable(0x40039000, 3);									
 	ADCSequenceDisable(0x40039000,3);							
 	
-	ADCSequenceConfigure(0x40039000,3, 0x00000000,   0); 
+	
+	
+	ADCSequenceConfigure(0x40039000,3, 0x00000000,   3); 
 	ADCSequenceStepConfigure(0x40039000,3,0, 0x00000000 | 0x00000040 | 0x00000020);  
 	
+	
+	ADCSequenceConfigure(0x40039000,2, 0x00000000,   0); 
+	ADCSequenceStepConfigure(0x40039000,2,0, 0x00000002 | 0x00000040 | 0x00000020);  
+	
+	
+	ADCSequenceConfigure(0x40039000,1, 0x00000000,   1); 
+	ADCSequenceStepConfigure(0x40039000,1,0, 0x00000001 | 0x00000040 | 0x00000020);  
+
+	ADCSequenceEnable(0x40039000,1); 							
+	ADCIntEnable(0x40039000, 1); 									
+	
+	ADCSequenceEnable(0x40039000,2); 							
+	ADCIntEnable(0x40039000, 2); 									
+
 	ADCSequenceEnable(0x40039000,3); 							
 	ADCIntEnable(0x40039000, 3); 									
 		
+	IntPrioritySet(65,((0x01))<<5);
+	IntPrioritySet(66,((0x01))<<5);
 	IntPrioritySet(67,((0x01))<<5);
+	
+	IntEnable(65);												
+	IntEnable(66);												
 	IntEnable(67);												
 }
 

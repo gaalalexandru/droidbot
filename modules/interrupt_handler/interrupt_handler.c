@@ -24,6 +24,8 @@
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
 unsigned long internal_temperature = 0;
 unsigned long central_light_sensor = 0;	//Central light sensor output 
+unsigned long left_light_sensor = 0;		//left light sensor output 
+unsigned long right_light_sensor = 0;		//roght light sensor output 
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {
@@ -115,4 +117,28 @@ void ADC1Seq3_Handler(void)		//ADC0 Seq3 ISR
 		central_light_sensor = Light;
 	}
 }
+
+void ADC1Seq1_Handler(void)		//ADC0 Seq3 ISR
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 1, false))
+	{
+		ADCIntClear(ADC1_BASE, 1); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 1, &Light);		
+		right_light_sensor = Light;
+	}
+}
+
+void ADC1Seq2_Handler(void)		//ADC0 Seq3 ISR
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 2, false))
+	{
+		ADCIntClear(ADC1_BASE, 2); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 2, &Light);		
+		left_light_sensor = Light;
+	}
+}
+
+
 //EOF

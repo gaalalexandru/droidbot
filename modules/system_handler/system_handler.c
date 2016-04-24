@@ -84,7 +84,7 @@ void SYS_startup(void)
 	unsigned long clock;
 	Int_Master_Disable();			//Global interrupt disable
 	
-	SYS_clock_init();	
+	SYS_clock_init();					//Set system clock
 	clock = SYS_clock_get;		//just to check if clock speed is changed in other modules
 	
 	LCD_init();								//Initialize LCD
@@ -109,8 +109,8 @@ void SYS_startup(void)
 	//COMP_mic_input_init();		//Disabled temporarly
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
 	
-	ADC_Light_sensor_init();
-	ADC_Temperature_sensor_init();
+	ADC_Light_sensor_init();				//Initialize ADC for light sensors
+	ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
 	
 	Int_Master_Enable();			//Global interrupt enable
 }

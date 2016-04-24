@@ -17,6 +17,10 @@
 extern unsigned long comp0_interrupt_flag;	//Global variable used to measure in debugger time till backwards motion is active
 motor_parameters_st motor_parameters;	//Global structure variable for motor parameters
 // motor_direction;		//0 - stop, 1 - forward left, 2 - forward right, 3 - forward straight, 4 - backward
+extern unsigned long central_light_sensor;	//Central light sensor output
+extern unsigned long right_light_sensor;		//Right light sensor output
+extern unsigned long left_light_sensor;			//Left light sensor output
+
 /*-------------------Function Definitions-------------*/
 void Motion_Go_Left(void)
 {
@@ -75,5 +79,9 @@ void Motion_Go_Back(void)
 	TIMER_delay_No_Int(1000);		//1 second delay, but with interrupts disabled
 	comp0_interrupt_flag = 0;
 	PWM_motor_reverse_stop();
+}
+
+void Motion_calculate_direction(void)
+{
 }
 //EOF

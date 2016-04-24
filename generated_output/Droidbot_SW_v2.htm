@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\generated_output\Droidbot_SW_v2.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\generated_output\Droidbot_SW_v2.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri Apr 15 16:52:35 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sun Apr 24 14:34:25 2016
 <BR><P>
 <H3>Maximum Stack Usage =         88 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -46,8 +46,8 @@ Function Pointers
  <LI><a href="#[1c]">ADC0Seq2_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
  <LI><a href="#[1d]">ADC0Seq3_Handler</a> from interrupt_handler.o(.text) referenced from startup_new.o(RESET)
  <LI><a href="#[3c]">ADC1Seq0_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
- <LI><a href="#[3d]">ADC1Seq1_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
- <LI><a href="#[3e]">ADC1Seq2_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
+ <LI><a href="#[3d]">ADC1Seq1_Handler</a> from interrupt_handler.o(.text) referenced from startup_new.o(RESET)
+ <LI><a href="#[3e]">ADC1Seq2_Handler</a> from interrupt_handler.o(.text) referenced from startup_new.o(RESET)
  <LI><a href="#[3f]">ADC1Seq3_Handler</a> from interrupt_handler.o(.text) referenced from startup_new.o(RESET)
  <LI><a href="#[6]">BusFault_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
  <LI><a href="#[33]">CAN0_Handler</a> from startup_new.o(.text) referenced from startup_new.o(RESET)
@@ -409,12 +409,6 @@ Global Symbols
 <P><STRONG><a name="[3c]"></a>ADC1Seq0_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_new.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
 </UL>
-<P><STRONG><a name="[3d]"></a>ADC1Seq1_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_new.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
-</UL>
-<P><STRONG><a name="[3e]"></a>ADC1Seq2_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_new.o(.text))
-<BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
-</UL>
 <P><STRONG><a name="[33]"></a>CAN0_Handler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_new.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
 </UL>
@@ -762,7 +756,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYS_startup
 </UL>
 
-<P><STRONG><a name="[a6]"></a>ADC_Light_sensor_init</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, adc_handler.o(.text))
+<P><STRONG><a name="[a6]"></a>ADC_Light_sensor_init</STRONG> (Thumb, 300 bytes, Stack size 8 bytes, adc_handler.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = ADC_Light_sensor_init &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
@@ -792,7 +786,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WideTimer0A_Handler
 </UL>
 
-<P><STRONG><a name="[ad]"></a>CYCL_50_milisecond</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, cyclic_activity_handler.o(.text))
+<P><STRONG><a name="[ad]"></a>CYCL_50_milisecond</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, cyclic_activity_handler.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = CYCL_50_milisecond &rArr; Print_Motor_Parameters &rArr; LCD_out_number &rArr; LCD_out_string &rArr; LCD_out_char &rArr; LCD_write &rArr; SSI_lcd_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Print_Motor_Parameters
@@ -945,6 +939,24 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
 </UL>
+<P><STRONG><a name="[3d]"></a>ADC1Seq1_Handler</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, interrupt_handler.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC1Seq1_Handler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
+</UL>
+<P><STRONG><a name="[3e]"></a>ADC1Seq2_Handler</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, interrupt_handler.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADC1Seq2_Handler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_new.o(RESET)
+</UL>
 <P><STRONG><a name="[d0]"></a>LCD_set_cursor</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, lcd_handler.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = LCD_set_cursor &rArr; LCD_write &rArr; SSI_lcd_write
 </UL>
@@ -1080,7 +1092,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_out_image
 </UL>
 
-<P><STRONG><a name="[ae]"></a>Print_Motor_Parameters</STRONG> (Thumb, 220 bytes, Stack size 8 bytes, printing_handler.o(.text))
+<P><STRONG><a name="[ae]"></a>Print_Motor_Parameters</STRONG> (Thumb, 270 bytes, Stack size 8 bytes, printing_handler.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = Print_Motor_Parameters &rArr; LCD_out_number &rArr; LCD_out_string &rArr; LCD_out_char &rArr; LCD_write &rArr; SSI_lcd_write
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_out_number
@@ -1345,7 +1357,9 @@ Global Symbols
 <P><STRONG><a name="[132]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[9d]"></a>ADCIntClear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adc.o(i.ADCIntClear))
-<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq2_Handler
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq1_Handler
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0Seq3_Handler
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Light_sensor_init
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Temperature_sensor_init
@@ -1364,7 +1378,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cc]"></a>ADCIntStatus</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, adc.o(i.ADCIntStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq2_Handler
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq1_Handler
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0Seq3_Handler
 </UL>
 
@@ -1380,7 +1396,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cd]"></a>ADCSequenceDataGet</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceDataGet))
-<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq2_Handler
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq1_Handler
+<LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1Seq3_Handler
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0Seq3_Handler
 </UL>
 

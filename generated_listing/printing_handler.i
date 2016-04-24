@@ -348,7 +348,10 @@ const unsigned char res_welcome_img[] = {
  
 extern motor_parameters_st motor_parameters;	
 extern unsigned long internal_temperature;
+
 extern unsigned long central_light_sensor;	
+extern unsigned long right_light_sensor;		
+extern unsigned long left_light_sensor;			
 
 char print_flag = 0;
  
@@ -406,12 +409,18 @@ void Print_Motor_Parameters(void)
 			LCD_out_string("St");
 			break;
 	}
-	LCD_set_cursor(3,3);
+	LCD_set_cursor(4,3);
 	LCD_out_number(internal_temperature);
-	
-	
+	LCD_set_cursor(0,3);
+	LCD_out_string("Temp:");
+	LCD_set_cursor(8,4);
+	LCD_out_number(right_light_sensor);
 	LCD_set_cursor(4,4);
 	LCD_out_number(central_light_sensor);
+	LCD_set_cursor(0,4);
+	LCD_out_number(left_light_sensor);
+
+
 
 }
 

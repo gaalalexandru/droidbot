@@ -65,6 +65,8 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 	{
 		//Code that runs only every 100 ms
 		Print_Motor_Parameters();
+		ADCProcessorTrigger(ADC1_BASE, 1);
+		ADCProcessorTrigger(ADC1_BASE, 2);
 		ADCProcessorTrigger(ADC1_BASE, 3);
 	}
 	if((counter%5)==0)

@@ -915,7 +915,7 @@ void SYS_startup(void)
 	unsigned long clock;
 	Int_Master_Disable();			
 	
-	SYS_clock_init();	
+	SYS_clock_init();					
 	clock = SysCtlClockGet();		
 	
 	LCD_init();								
@@ -940,8 +940,8 @@ void SYS_startup(void)
 	
 	
 	
-	ADC_Light_sensor_init();
-	ADC_Temperature_sensor_init();
+	ADC_Light_sensor_init();				
+	ADC_Temperature_sensor_init();	
 	
 	Int_Master_Enable();			
 }
