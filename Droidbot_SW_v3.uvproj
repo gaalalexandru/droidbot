@@ -54,7 +54,7 @@
           <ListingPath>.\generated_listing\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
-          <CreateBatchFile>1</CreateBatchFile>
+          <CreateBatchFile>0</CreateBatchFile>
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
@@ -436,16 +436,6 @@
               <FilePath>.\modules\comparator_handler\comparator_handler.c</FilePath>
             </File>
             <File>
-              <FileName>compile_switches.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\compile_switches\compile_switches.c</FilePath>
-            </File>
-            <File>
-              <FileName>custom_types.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\modules\custom_types\custom_types.h</FilePath>
-            </File>
-            <File>
               <FileName>cyclic_activity_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\modules\cyclic_activity_handler\cyclic_activity_handler.c</FilePath>
@@ -514,6 +504,26 @@
               <FileName>Nokia5110.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\3rd_pty_drv\Nokia5110.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Configs_Types_Resorces</GroupName>
+          <Files>
+            <File>
+              <FileName>compile_switches.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\compile_switches\compile_switches.c</FilePath>
+            </File>
+            <File>
+              <FileName>custom_types.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\modules\custom_types\custom_types.h</FilePath>
+            </File>
+            <File>
+              <FileName>resources.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\modules\resources\resources.h</FilePath>
             </File>
           </Files>
         </Group>

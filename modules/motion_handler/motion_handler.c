@@ -84,19 +84,16 @@ void Motion_Go_Back(void)
 
 void Motion_calculate_direction(void)
 {
-	/*
-extern unsigned long Mx_LS_Value;	//Central light sensor output
-extern unsigned long Rx_LS_Value;		//Right light sensor output
-extern unsigned long Lx_LS_Value;	
-	*/
-	signed long Rx_Lx_LS_Delta = Rx_LS_Value - Lx_LS_Value;
-	signed long Rx_Mx_LS_Delta = Rx_LS_Value - Mx_LS_Value;
-	signed long Lx_Mx_LS_Delta = Lx_LS_Value - Mx_LS_Value;
+//							Delta-------------Condition--------------------True--------------------------False----------------------
+	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
+	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
+	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
 	static unsigned char Go_Fwd_Counter = 0;	//Will be incremented every 100 ms, if condition fulfill
 	
-	if(((Rx_Lx_LS_Delta < Min_Delta_LS)&&(Rx_Lx_LS_Delta > -Min_Delta_LS))&&	//Check if Rx = Lx (within min delta)
-	((Rx_Mx_LS_Delta > Min_Delta_LS)||(Rx_Mx_LS_Delta < -Min_Delta_LS))&&			//Check if Rx != Mx	(not within delta)
-	((Rx_Mx_LS_Delta > Min_Delta_LS)||(Rx_Mx_LS_Delta < -Min_Delta_LS)))			//Check if Lx != Mx	(not within delta)
+	//Check if GO FORWARD
+	if((Rx_Lx_LS_Delta < Min_Delta_LS)&&	//Check if Rx = Lx (within min delta)
+		 (Rx_Mx_LS_Delta > Min_Delta_LS)&&	//Check if Rx != Mx	(not within delta)
+		 (Rx_Mx_LS_Delta > Min_Delta_LS))		//Check if Lx != Mx	(not within delta)
 	{
 		//Condition furfilled to go forward, lightsource in front of droidbot
 		if(Go_Fwd_Counter < Max_Speed_Delay)
@@ -116,20 +113,25 @@ extern unsigned long Lx_LS_Value;
 			Motion_Max_Speed(); //Switch to max speed
 		}					
 	}
-	else if((Rx_Lx_LS_Delta > Min_Delta_LS)&&															//Check if Rx > Lx	(not within delta)
-	((Rx_Mx_LS_Delta > Min_Delta_LS)||(Rx_Mx_LS_Delta < -Min_Delta_LS)))	//Check if Rx != Mx	(not within delta)
+	//Check if GO RIGHT
+	else if ((Rx_Lx_LS_Delta > Min_Delta_LS)&&	//Check if Rx > Lx	(not within delta)
+					(Rx_Mx_LS_Delta > Min_Delta_LS))		//Check if Rx != Mx	(not within delta)
 	{
 		//Condition fulfill to go right, lightsource in right of droidbot
 		Motion_Go_Right();
 		Go_Fwd_Counter = 0;
 	}
-	else if((Rx_Lx_LS_Delta < -Min_Delta_LS)&&														//Check if Lx > Rx	(not within delta)
-	((Lx_Mx_LS_Delta > Min_Delta_LS)||(Lx_Mx_LS_Delta < -Min_Delta_LS)))	//Check if Lx != Mx	(not within delta)
+	//Check if GO LEFT
+	else if((Rx_Lx_LS_Delta < -Min_Delta_LS)&&	//Check if Lx > Rx	(not within delta)
+					(Lx_Mx_LS_Delta > Min_Delta_LS))		//Check if Lx != Mx	(not within delta)
 	{
 		//Condition fulfill to go left, lightsource in left of droidbot
 		Motion_Go_Left();
 		Go_Fwd_Counter = 0;		
 	}
+	#if Mx_LS_Go_BckW
+	elseif
+	#endif
 	else
 	{
 		//None of the above conditions fulfill, stop droidbot

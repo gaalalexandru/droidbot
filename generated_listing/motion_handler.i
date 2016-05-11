@@ -10,31 +10,36 @@
 
 
 
- 
-#line 15 ".\\modules\\compile_switches\\compile_switches.c"
-
- 
-
-
- 
-#line 26 ".\\modules\\compile_switches\\compile_switches.c"
-
- 
-
-
-
-
-
-
-
 
 
 
 
  
+#line 19 ".\\modules\\compile_switches\\compile_switches.c"
 
  
-#line 48 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+ 
+#line 31 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 53 ".\\modules\\compile_switches\\compile_switches.c"
 
 
 
@@ -217,19 +222,16 @@ void Motion_Go_Back(void)
 
 void Motion_calculate_direction(void)
 {
-	
 
-
-
- 
-	signed long Rx_Lx_LS_Delta = Rx_LS_Value - Lx_LS_Value;
-	signed long Rx_Mx_LS_Delta = Rx_LS_Value - Mx_LS_Value;
-	signed long Lx_Mx_LS_Delta = Lx_LS_Value - Mx_LS_Value;
+	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
+	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
+	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
 	static unsigned char Go_Fwd_Counter = 0;	
 	
-	if(((Rx_Lx_LS_Delta < (80))&&(Rx_Lx_LS_Delta > -(80)))&&	
-	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80)))&&			
-	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80))))			
+	
+	if((Rx_Lx_LS_Delta < (80))&&	
+		 (Rx_Mx_LS_Delta > (80))&&	
+		 (Rx_Mx_LS_Delta > (80)))		
 	{
 		
 		if(Go_Fwd_Counter < (100))
@@ -249,20 +251,24 @@ void Motion_calculate_direction(void)
 			Motion_Max_Speed(); 
 		}					
 	}
-	else if((Rx_Lx_LS_Delta > (80))&&															
-	((Rx_Mx_LS_Delta > (80))||(Rx_Mx_LS_Delta < -(80))))	
+	
+	else if ((Rx_Lx_LS_Delta > (80))&&	
+					(Rx_Mx_LS_Delta > (80)))		
 	{
 		
 		Motion_Go_Right();
 		Go_Fwd_Counter = 0;
 	}
-	else if((Rx_Lx_LS_Delta < -(80))&&														
-	((Lx_Mx_LS_Delta > (80))||(Lx_Mx_LS_Delta < -(80))))	
+	
+	else if((Rx_Lx_LS_Delta < -(80))&&	
+					(Lx_Mx_LS_Delta > (80)))		
 	{
 		
 		Motion_Go_Left();
 		Go_Fwd_Counter = 0;		
 	}
+
+
 	else
 	{
 		

@@ -4,6 +4,10 @@
 #define COMP_SW
 
 #define SysTick_Enabled (0x07)		//0x00 - disable; 0x05 - SysTick enabled W/O Interrupts;	0x07 - SysTick enable with Interrupts (For periodic interrupts)
+#define Off (0)
+#define On 	(1)
+#define False (0)
+#define True 	(1)
 
 /*----------------On board LED definitions-------------*/
 #define Red_LED (0x02)
@@ -16,6 +20,7 @@
 /*-------------Motion calculation config--------------*/
 #define Min_Delta_LS (80)			//configure half of minimum difference between LS, to take into account as different LS
 #define Max_Speed_Delay (100)		//configure nr of 100ms to cruise before go ahead with max speed
+#define Mx_LS_Go_BckW (Off)
 /*-------------Motor PWM duty cycle config------------*/
 #define Outer_Wheel_DS (70)			//PWM duty cycle for outer wheel at cornering
 #define Inner_Wheel_DS (0)			//PWM duty cycle for inner wheel at cornering

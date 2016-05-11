@@ -120,5 +120,6 @@ void LCD_out_char(unsigned char data);
 void LCD_out_string(char *string);
 void LCD_out_number(unsigned short number);
 void LCD_out_image(const unsigned char *image);
+
 #endif
 //EOF

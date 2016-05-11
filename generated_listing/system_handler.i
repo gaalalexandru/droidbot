@@ -808,6 +808,7 @@ void LCD_out_number(unsigned short number);
 void LCD_out_image(const unsigned char *image);
 
 
+
 #line 22 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 

@@ -11,7 +11,7 @@
 /*-------------------Service Includes----------------*/
 #include "gpio_handler.h"
 #include "ssi_handler.h"
-#include "Nokia5110.h"
+#include "resources.h"
 
 /*-------------------Self header Includes------------*/
 #include "lcd_handler.h"

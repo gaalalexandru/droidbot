@@ -1,6 +1,0 @@
-modules\gpio_handler\gpio_handler.c -E -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler
--I C:\Keil\ARM\RV31\INC
--I C:\Keil\ARM\CMSIS\Include
--I C:\Keil\ARM\Inc\TI\TM4C123
--Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM
--o .\generated_listing\gpio_handler.i
