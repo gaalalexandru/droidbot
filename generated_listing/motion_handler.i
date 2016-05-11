@@ -21,25 +21,26 @@
 
 
 
- 
-#line 31 ".\\modules\\compile_switches\\compile_switches.c"
 
  
-
-
-
-
-
-
-
-
-
-
+#line 32 ".\\modules\\compile_switches\\compile_switches.c"
 
  
 
+
+
+
+
+
+
+
+
+
+
  
-#line 53 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+#line 54 ".\\modules\\compile_switches\\compile_switches.c"
 
 
 
@@ -151,6 +152,9 @@ void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
 #line 15 "modules\\motion_handler\\motion_handler.c"
 
+
+
+
  
 extern unsigned long comp0_interrupt_flag;	
 motor_parameters_st motor_parameters;	
@@ -231,7 +235,9 @@ void Motion_calculate_direction(void)
 	
 	if((Rx_Lx_LS_Delta < (80))&&	
 		 (Rx_Mx_LS_Delta > (80))&&	
-		 (Rx_Mx_LS_Delta > (80)))		
+		 (Rx_Mx_LS_Delta > (80))&&
+		 (Rx_LS_Value > (Mx_LS_Value + (80)))&&	
+		 (Lx_LS_Value > (Mx_LS_Value + (80))))	
 	{
 		
 		if(Go_Fwd_Counter < (100))
@@ -253,22 +259,29 @@ void Motion_calculate_direction(void)
 	}
 	
 	else if ((Rx_Lx_LS_Delta > (80))&&	
-					(Rx_Mx_LS_Delta > (80)))		
+					 (Rx_Mx_LS_Delta > (80))&&	
+					 (Rx_LS_Value > (Lx_LS_Value + (80)))&&	
+					 (Rx_LS_Value > (Mx_LS_Value + (80))))	
 	{
 		
 		Motion_Go_Right();
 		Go_Fwd_Counter = 0;
 	}
 	
-	else if((Rx_Lx_LS_Delta < -(80))&&	
-					(Lx_Mx_LS_Delta > (80)))		
+	else if((Rx_Lx_LS_Delta > (80))&&	
+					(Lx_Mx_LS_Delta > (80))&&	
+					(Lx_LS_Value > (Rx_LS_Value + (80)))&&	
+					(Lx_LS_Value > (Mx_LS_Value + (80))))		
 	{
 		
 		Motion_Go_Left();
 		Go_Fwd_Counter = 0;		
 	}
-
-
+	
+	
+	
+	
+	
 	else
 	{
 		
