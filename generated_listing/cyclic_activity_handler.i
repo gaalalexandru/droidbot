@@ -445,9 +445,6 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-
- 
-
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -857,11 +854,9 @@ void CYCL_50_milisecond(void)
 	{
 		
 		Print_Motor_Parameters();
+		ADCProcessorTrigger(0x40039000, 0);
 		ADCProcessorTrigger(0x40039000, 1);
 		ADCProcessorTrigger(0x40039000, 2);
-		ADCProcessorTrigger(0x40039000, 3);
-
-
 	}
 	if((counter%5)==0)
 	{

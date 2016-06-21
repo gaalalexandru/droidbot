@@ -18,7 +18,7 @@
 #define White_LED (0x0E)
 
 /*-------------Motion calculation config--------------*/
-#define Min_Delta_LS (80)			//configure half of minimum difference between LS, to take into account as different LS
+#define Min_Delta_LS (120)			//configure half of minimum difference between LS, to take into account as different LS
 #define Max_Speed_Delay (100)		//configure nr of 100ms to cruise before go ahead with max speed
 #define Mx_LS_Go_BckW (Off)
 
@@ -29,6 +29,9 @@
 #define Cruise_Wheel_DS (60)		//PWM duty cycle for cruising speed
 #define Max_Speed_Wheel_DS (95)	//PWM duty cycle for cruising speed
 #define Revers_Wheel_DS (50)		//PWM duty cycle for reverse
+
+/*------------Temperature sensor config--------------*/
+#define ADC_Ref_Voltage 		(33)	//33 represents 3v3, 50 represents 5v
 
 /*---------------------LCD config--------------------*/
 // Maximum dimensions of the LCD, although the pixels are numbered from zero to (MAX-1).  

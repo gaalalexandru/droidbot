@@ -28,6 +28,9 @@
  
 
 
+ 
+
+
 
 
 
@@ -40,7 +43,7 @@
  
 
  
-#line 54 ".\\modules\\compile_switches\\compile_switches.c"
+#line 57 ".\\modules\\compile_switches\\compile_switches.c"
 
 
 
@@ -233,11 +236,11 @@ void Motion_calculate_direction(void)
 	static unsigned char Go_Fwd_Counter = 0;	
 	
 	
-	if((Rx_Lx_LS_Delta < (80))&&	
-		 (Rx_Mx_LS_Delta > (80))&&	
-		 (Rx_Mx_LS_Delta > (80))&&
-		 (Rx_LS_Value > (Mx_LS_Value + (80)))&&	
-		 (Lx_LS_Value > (Mx_LS_Value + (80))))	
+	if((Rx_Lx_LS_Delta < (120))&&	
+		 (Rx_Mx_LS_Delta > (120))&&	
+		 (Rx_Mx_LS_Delta > (120))&&
+		 (Rx_LS_Value > (Mx_LS_Value + (120)))&&	
+		 (Lx_LS_Value > (Mx_LS_Value + (120))))	
 	{
 		
 		if(Go_Fwd_Counter < (100))
@@ -258,20 +261,20 @@ void Motion_calculate_direction(void)
 		}					
 	}
 	
-	else if ((Rx_Lx_LS_Delta > (80))&&	
-					 (Rx_Mx_LS_Delta > (80))&&	
-					 (Rx_LS_Value > (Lx_LS_Value + (80)))&&	
-					 (Rx_LS_Value > (Mx_LS_Value + (80))))	
+	else if ((Rx_Lx_LS_Delta > (120))&&	
+					 (Rx_Mx_LS_Delta > (120))&&	
+					 (Rx_LS_Value > (Lx_LS_Value + (120)))&&	
+					 (Rx_LS_Value > (Mx_LS_Value + (120))))	
 	{
 		
 		Motion_Go_Right();
 		Go_Fwd_Counter = 0;
 	}
 	
-	else if((Rx_Lx_LS_Delta > (80))&&	
-					(Lx_Mx_LS_Delta > (80))&&	
-					(Lx_LS_Value > (Rx_LS_Value + (80)))&&	
-					(Lx_LS_Value > (Mx_LS_Value + (80))))		
+	else if((Rx_Lx_LS_Delta > (120))&&	
+					(Lx_Mx_LS_Delta > (120))&&	
+					(Lx_LS_Value > (Rx_LS_Value + (120)))&&	
+					(Lx_LS_Value > (Mx_LS_Value + (120))))		
 	{
 		
 		Motion_Go_Left();

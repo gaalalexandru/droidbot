@@ -1,4 +1,6 @@
 //interrupt_handler.c
+/*-------------------Configuration Includes-----------*/
+#include "compile_switches.c"
 
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
@@ -104,7 +106,7 @@ void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 	{
 		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
 		ADCSequenceDataGet(ADC0_BASE, 3, &Voltage);		
-		internal_temperature = (1475 - ((75 * (33) * Voltage) / 4096))/10;
+		internal_temperature = (1475 - ((75 * (ADC_Ref_Voltage) * Voltage) / 4096))/10;
 		//internal_temperature = Voltage; //Gaal Alexandru use this for RAW ADC value
 		/*
 		The internal temperature sensor converts a temperature measurement into a voltage. This voltage

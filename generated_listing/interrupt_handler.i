@@ -1,5 +1,54 @@
 #line 1 "modules\\interrupt_handler\\interrupt_handler.c"
 
+ 
+#line 1 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 19 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+
+
+ 
+#line 32 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 57 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+
+
+#line 4 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
@@ -20,7 +69,7 @@
 
 
 
-#line 5 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 7 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
  
  
@@ -246,7 +295,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 6 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 8 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
@@ -310,7 +359,7 @@ typedef unsigned       __int64 uintmax_t;
                                             
 #line 150 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
 
-#line 9 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 11 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
@@ -445,9 +494,6 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-
- 
-
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -527,7 +573,7 @@ extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
 
 
 
-#line 12 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 14 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
 
 
@@ -693,7 +739,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 
 
-#line 13 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 15 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/pin_map.h"
 
 
@@ -1383,7 +1429,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 #line 20952 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/pin_map.h"
 
-#line 14 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 16 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/interrupt.h"
 
 
@@ -1478,7 +1524,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 15 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 17 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/comp.h"
 
 
@@ -1577,7 +1623,7 @@ extern void ComparatorIntClear(uint32_t ui32Base, uint32_t ui32Comp);
 
 
 
-#line 16 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 18 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/timer.h"
 
 
@@ -1810,7 +1856,7 @@ extern void TimerUpdateMode(uint32_t ui32Base, uint32_t ui32Timer,
 
 
 
-#line 17 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 19 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "modules\\interrupt_handler\\interrupt_handler.h"
@@ -1829,7 +1875,7 @@ void Int_Peripherials_Enable(void);
 
 
 
-#line 20 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 22 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -1844,7 +1890,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 21 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 23 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
 
 
@@ -1854,7 +1900,7 @@ void Motion_calculate_direction(void);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 22 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 24 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 unsigned long comp0_interrupt_flag = 0;	
@@ -1935,21 +1981,34 @@ void Timer0A_Handler(void)
 
 void ADC0Seq3_Handler(void)		
 {
-	uint32_t Temperature;
+	uint32_t Voltage;
 	if(ADCIntStatus(0x40038000, 3, 0))
 	{
 		ADCIntClear(0x40038000, 3); 										
-		ADCSequenceDataGet(0x40038000, 3, &Temperature);		
-		internal_temperature = Temperature;
+		ADCSequenceDataGet(0x40038000, 3, &Voltage);		
+		internal_temperature = (1475 - ((75 * ((33)) * Voltage) / 4096))/10;
+		
+		
+
+
+
+
+
+
+
+
+
+
+ 
 	}
 }
-void ADC1Seq3_Handler(void)		
+void ADC1Seq0_Handler(void)		
 {
 	uint32_t Light;
-	if(ADCIntStatus(0x40039000, 3, 0))
+	if(ADCIntStatus(0x40039000, 0, 0))
 	{
-		ADCIntClear(0x40039000, 3); 										
-		ADCSequenceDataGet(0x40039000, 3, &Light);		
+		ADCIntClear(0x40039000, 0); 										
+		ADCSequenceDataGet(0x40039000, 0, &Light);		
 		Mx_LS_Value = Light;
 	}
 }

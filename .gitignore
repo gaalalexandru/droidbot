@@ -1,0 +1,6 @@
+*.i
+generated_listing/compile_switches.i
+*.dep
+*.o
+*.i
+*.dep
