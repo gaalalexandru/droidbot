@@ -99,26 +99,39 @@ void Timer0A_Handler(void)		//Timer 0 A ISR
 //for the interrupt handler ISR
 void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 {
-	uint32_t Temperature;
+	uint32_t Voltage;
 	if(ADCIntStatus(ADC0_BASE, 3, false))
 	{
 		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC0_BASE, 3, &Temperature);		
-		internal_temperature = Temperature;
+		ADCSequenceDataGet(ADC0_BASE, 3, &Voltage);		
+		internal_temperature = (1475 - ((75 * (33) * Voltage) / 4096))/10;
+		//internal_temperature = Voltage; //Gaal Alexandru use this for RAW ADC value
+		/*
+		The internal temperature sensor converts a temperature measurement into a voltage. This voltage
+		value, VTSENS, is given by the following equation (where TEMP is the temperature in °C):
+		VTSENS = 2.7 - ((TEMP + 55) / 75)
+		
+		The temperature sensor reading can be sampled in a sample sequence by setting the TSn bit in
+		the ADCSSCTLn register. The temperature reading from the temperature sensor can also be given
+		as a function of the ADC value. The following formula calculates temperature (TEMP in ?) based
+		on the ADC reading (ADCCODE, given as an unsigned decimal number from 0 to 4095) and the
+		maximum ADC voltage range (VREFP - VREFN):
+		TEMP = 147.5 - ((75 * (VREFP - VREFN) × ADCCODE) / 4096)
+		*/
 	}
 }
-void ADC1Seq3_Handler(void)		//ADC0 Seq3 ISR
+void ADC1Seq0_Handler(void)		//ADC0 Seq0 ISR
 {
 	uint32_t Light;
-	if(ADCIntStatus(ADC1_BASE, 3, false))
+	if(ADCIntStatus(ADC1_BASE, 0, false))
 	{
-		ADCIntClear(ADC1_BASE, 3); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC1_BASE, 3, &Light);		
+		ADCIntClear(ADC1_BASE, 0); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 0, &Light);		
 		Mx_LS_Value = Light;
 	}
 }
 
-void ADC1Seq1_Handler(void)		//ADC0 Seq3 ISR
+void ADC1Seq1_Handler(void)		//ADC0 Seq1 ISR
 {
 	uint32_t Light;
 	if(ADCIntStatus(ADC1_BASE, 1, false))
@@ -129,7 +142,7 @@ void ADC1Seq1_Handler(void)		//ADC0 Seq3 ISR
 	}
 }
 
-void ADC1Seq2_Handler(void)		//ADC0 Seq3 ISR
+void ADC1Seq2_Handler(void)		//ADC0 Seq2 ISR
 {
 	uint32_t Light;
 	if(ADCIntStatus(ADC1_BASE, 2, false))
@@ -139,6 +152,6 @@ void ADC1Seq2_Handler(void)		//ADC0 Seq3 ISR
 		Lx_LS_Value = Light;
 	}
 }
-
-
 //EOF
+
+
