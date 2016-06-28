@@ -4,14 +4,13 @@
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
 /*-------------------Function Definitions-------------*/
-void GPIO_Light_sensor_init(void);
-void GPIO_Red_led_init(void);
-void GPIO_Red_led_toggle(void);
+void GPIO_direction_switch_init(void);
+void GPIO_red_led_init(void);
+void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
-void GPIO_motor_mode_select(Motor_Mode_en mode);
-
-void GPIO_LS_Feedback_Init(void);	//LS = Light Sensor
-void GPIO_LS_Feedback_Toogle(Led_State_en State);
+void GPIO_motor_direction_select(Motor_Direction_en direction);
 #endif
+
+//EOF

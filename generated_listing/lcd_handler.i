@@ -92,6 +92,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,
@@ -116,16 +123,16 @@ typedef enum Led_State
  
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_Light_sensor_init(void);
-void GPIO_Red_led_init(void);
-void GPIO_Red_led_toggle(void);
+void GPIO_direction_switch_init(void);
+void GPIO_red_led_init(void);
+void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
-void GPIO_motor_mode_select(Motor_Mode_en mode);
+void GPIO_motor_direction_select(Motor_Direction_en direction);
 
-void GPIO_LS_Feedback_Init(void);	
-void GPIO_LS_Feedback_Toogle(Led_State_en State);
+
+
 #line 13 "modules\\lcd_handler\\lcd_handler.c"
 #line 1 ".\\modules\\ssi_handler\\ssi_handler.h"
 
@@ -136,6 +143,20 @@ void SSI_lcd_init(void);
 void SSI_lcd_write(unsigned char message);
 
 #line 14 "modules\\lcd_handler\\lcd_handler.c"
+#line 1 ".\\modules\\timer_handler\\timer_handler.h"
+
+
+
+
+ 
+void TIMER_cyclic_1s_init(void);
+void TIMER_cyclic_50ms_init(void);
+unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
+
+void TIMER_delay(unsigned long delay_time_ms);
+void TIMER_delay_No_Int(unsigned long delay_time_ms);
+
+#line 15 "modules\\lcd_handler\\lcd_handler.c"
 #line 1 ".\\modules\\resources\\resources.h"
 
 
@@ -368,7 +389,7 @@ static const char ASCII[][5] = {
 
 
 
-#line 15 "modules\\lcd_handler\\lcd_handler.c"
+#line 16 "modules\\lcd_handler\\lcd_handler.c"
 
  
 #line 1 "modules\\lcd_handler\\lcd_handler.h"
@@ -515,7 +536,7 @@ void LCD_out_image(const unsigned char *image);
 
 
 
-#line 18 "modules\\lcd_handler\\lcd_handler.c"
+#line 19 "modules\\lcd_handler\\lcd_handler.c"
 
  
 
@@ -559,14 +580,12 @@ void static LCD_write(LCD_typeOfWrite_en type, unsigned char message)
 void LCD_init(void)
 {
 	volatile unsigned long delay;
-	
 
 	SSI_lcd_init();						
 	GPIO_lcd_init();					
 
 	GPIO_lcd_RST(0);	
-	
-  for(delay=0; delay<10; delay=delay+1);
+	TIMER_delay_No_Int(1);
 	GPIO_lcd_RST(0x80); 
 
 	LCD_write(COMMAND, 0x21);              

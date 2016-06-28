@@ -42,6 +42,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,
@@ -69,7 +76,6 @@ typedef enum Led_State
  
 void Print_Welcome_Image(void);
 void Print_Motor_Parameters(void);
-void Print_5s_img(void);
 
 
 #line 9 "modules\\printing_handler\\printing_handler.c"
@@ -467,10 +473,7 @@ char print_flag = 0;
 void Print_Welcome_Image(void)
 {
 	LCD_out_image(res_welcome_img);
-}
-void Print_5s_img(void)
-{
-	LCD_out_image(res_Longhorn1);
+	
 }
 void Print_Motor_Parameters(void)
 {

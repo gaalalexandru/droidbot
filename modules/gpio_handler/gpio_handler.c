@@ -24,7 +24,7 @@
 #define GPIO_PORTF_CR_R         (*((volatile unsigned long *)0x40025524))
 
 /*-------------------Function Definitions-------------*/
-void GPIO_Light_sensor_init(void)
+void GPIO_direction_switch_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);																			//Enable clock on port F
 	
@@ -44,7 +44,7 @@ void GPIO_Light_sensor_init(void)
 	IntEnable(INT_GPIOF);																															//GPIO Port F enable of interrupts
 }
 
-void GPIO_Red_led_init(void)
+void GPIO_red_led_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);																			//Enable clock on port F
 	
@@ -57,7 +57,7 @@ void GPIO_Red_led_init(void)
 	GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_1, 0);
 }
 
-void GPIO_Red_led_toggle(void)
+void GPIO_red_led_toggle(void)
 {
 	static char Red_Led_Status = 0;
 	Red_Led_Status ^= 0x02;																			//Toggle the status (bit 1 - 0000.0010)
@@ -90,37 +90,23 @@ void GPIO_lcd_RST(unsigned char RST)
 	GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, RST);
 }
 
-void GPIO_motor_mode_select(Motor_Mode_en mode)
+void GPIO_motor_direction_select(Motor_Direction_en direction)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);		//Enable clock on port D
-	GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_7);		//Set PD7 as GPIO Output
-	GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_7, GPIO_DIR_MODE_OUT);		//Set direction Output for PD7
-	GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_7, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PD7
+	GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7);		//Set PD6, PD7 as GPIO Output
+	GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_DIR_MODE_OUT);		//Set direction Output for PD6, PD7
+	GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PD6, PD7
 	
-	
-	if(mode) //Phase / Enable mode
+	if(direction) //1 (RWD)
 	{
+		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
 		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PIN_7);
 	}
-	else	//In / In mode
+	else	//0 (FWD)
 	{
+		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, 0);
 		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
 	}
 }
 
-void GPIO_LS_Feedback_Init(void)
-{
-	//LS = Light Sensor
-}
-void GPIO_LS_Feedback_Toogle(Led_State_en State)
-{
-	//abcd
-	/*
-  Right_Feedback_Off, = 0
-	Right_Feedback_On,
-	Left_Feedback_Off,
-	Left_Feedback_On,
-	Center_Feedback_Off,
-	Center_Feedback_On	=	5
-	*/
-}
+//EOF

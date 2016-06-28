@@ -10,11 +10,9 @@
 #include "motion_handler.h"
 
 /*-------------------Service Includes-----------------*/
+#include "gpio_handler.h"
 #include "pwm_handler.h"
 #include "timer_handler.h"
-
-
-
 
 /*-------------Global Variable Definitions------------*/
 extern unsigned long comp0_interrupt_flag;	//Global variable used to measure in debugger time till backwards motion is active
@@ -27,6 +25,7 @@ extern unsigned long Lx_LS_Value;			//Left light sensor output
 /*-------------------Function Definitions-------------*/
 void Motion_Go_Left(void)
 {
+	GPIO_motor_direction_select(FWD);
 	PWM_right_motor_duty_cycle(Outer_Wheel_DS);
 	PWM_left_motor_duty_cycle(Inner_Wheel_DS);
 	motor_parameters.right_motor_DC = Outer_Wheel_DS;
@@ -36,6 +35,7 @@ void Motion_Go_Left(void)
 
 void Motion_Go_Right(void)
 {
+	GPIO_motor_direction_select(FWD);
 	PWM_right_motor_duty_cycle(Inner_Wheel_DS);
 	PWM_left_motor_duty_cycle(Outer_Wheel_DS);
 	motor_parameters.left_motor_DC = Outer_Wheel_DS;
@@ -54,6 +54,7 @@ void Motion_Stop(void)
 
 void Motion_Cruise(void)
 {
+	GPIO_motor_direction_select(FWD);
 	PWM_right_motor_duty_cycle(Cruise_Wheel_DS);
 	PWM_left_motor_duty_cycle(Cruise_Wheel_DS);
 	motor_parameters.left_motor_DC = Cruise_Wheel_DS;
@@ -63,6 +64,7 @@ void Motion_Cruise(void)
 
 void Motion_Max_Speed(void)
 {
+	GPIO_motor_direction_select(FWD);
 	PWM_right_motor_duty_cycle(Max_Speed_Wheel_DS);
 	PWM_left_motor_duty_cycle(Max_Speed_Wheel_DS);
 	motor_parameters.left_motor_DC = Max_Speed_Wheel_DS;
@@ -73,7 +75,10 @@ void Motion_Max_Speed(void)
 void Motion_Go_Back(void)
 {
 	Motion_Stop();
-	PWM_motor_reverse_init(1000, Revers_Wheel_DS);
+	GPIO_motor_direction_select(RWD);
+	PWM_right_motor_duty_cycle(Revers_Wheel_DS);
+	PWM_left_motor_duty_cycle(Revers_Wheel_DS);
+	//PWM_motor_reverse_init(1000, Revers_Wheel_DS);
 	motor_parameters.left_motor_DC = Revers_Wheel_DS;
 	motor_parameters.right_motor_DC = Revers_Wheel_DS;	
 	motor_parameters.motor_direction=4;
@@ -81,7 +86,8 @@ void Motion_Go_Back(void)
 	//TIMER_delay(1000);						//1 second delay, but with interrupts enabled
 	TIMER_delay_No_Int(1000);		//1 second delay, but with interrupts disabled
 	comp0_interrupt_flag = 0;
-	PWM_motor_reverse_stop();
+	//PWM_motor_reverse_stop();
+	Motion_Stop();
 }
 
 

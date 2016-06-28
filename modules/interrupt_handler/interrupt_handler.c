@@ -26,8 +26,9 @@
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
 unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	//Central light sensor output 
-unsigned long Lx_LS_Value = 0;		//left light sensor output 
-unsigned long Rx_LS_Value = 0;		//roght light sensor output 
+unsigned long Lx_LS_Value = 0;	//left light sensor output 
+unsigned long Rx_LS_Value = 0;	//roght light sensor output 
+
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {
@@ -46,7 +47,6 @@ void GPIOPortF_Handler(void) 	//GPIO port F ISR
 	{
 		//Go Straight ahead
 		Motion_Cruise();
-		//Motion_Go_Back();
 	}
 	else if(Light_sensor_status & GPIO_INT_PIN_4)
 	{
@@ -61,17 +61,11 @@ void GPIOPortF_Handler(void) 	//GPIO port F ISR
 }
 void Comp0_Handler(void)			//Analog comparator 0 ISR
 {
-	//unsigned long delay = 10;
 	comp0_interrupt_flag = 1;
 	if(ComparatorIntStatus(COMP_BASE,0,false))
 	{
 		ComparatorIntClear(COMP_BASE,0);
-		Motion_Go_Back();
-		/*while (delay) 
-		{
-			delay --;	//delay 10 cycles
-		}*/
-		
+		Motion_Go_Back();		
 	}
 }
 void WideTimer0A_Handler(void)		//Wide Timer 0 A ISR
@@ -82,7 +76,6 @@ void WideTimer0A_Handler(void)		//Wide Timer 0 A ISR
 		TimerIntClear(WTIMER0_BASE, TIMER_A);
 		timer_value = TimerValueGet(WTIMER0_BASE, TIMER_A);
 		CYCL_1_second();
-		//Toggle PF2
 	}
 }
 
@@ -94,11 +87,9 @@ void Timer0A_Handler(void)		//Timer 0 A ISR
 		TimerIntClear(TIMER0_BASE, TIMER_A);
 		timer_value = TimerValueGet(TIMER0_BASE, TIMER_A);
 		CYCL_50_milisecond();
-		//Toggle PF2
 	}
 }
 
-//for the interrupt handler ISR
 void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 {
 	uint32_t Voltage;
@@ -108,6 +99,7 @@ void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 		ADCSequenceDataGet(ADC0_BASE, 3, &Voltage);		
 		internal_temperature = (1475 - ((75 * (ADC_Ref_Voltage) * Voltage) / 4096))/10;
 		//internal_temperature = Voltage; //Gaal Alexandru use this for RAW ADC value
+		
 		/*
 		The internal temperature sensor converts a temperature measurement into a voltage. This voltage
 		value, VTSENS, is given by the following equation (where TEMP is the temperature in °C):
@@ -122,7 +114,7 @@ void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 		*/
 	}
 }
-void ADC1Seq0_Handler(void)		//ADC0 Seq0 ISR
+void ADC1Seq0_Handler(void)		//ADC1 Seq0 ISR
 {
 	uint32_t Light;
 	if(ADCIntStatus(ADC1_BASE, 0, false))
@@ -133,7 +125,7 @@ void ADC1Seq0_Handler(void)		//ADC0 Seq0 ISR
 	}
 }
 
-void ADC1Seq1_Handler(void)		//ADC0 Seq1 ISR
+void ADC1Seq1_Handler(void)		//ADC1 Seq1 ISR
 {
 	uint32_t Light;
 	if(ADCIntStatus(ADC1_BASE, 1, false))
@@ -144,7 +136,7 @@ void ADC1Seq1_Handler(void)		//ADC0 Seq1 ISR
 	}
 }
 
-void ADC1Seq2_Handler(void)		//ADC0 Seq2 ISR
+void ADC1Seq2_Handler(void)		//ADC1 Seq2 ISR
 {
 	uint32_t Light;
 	if(ADCIntStatus(ADC1_BASE, 2, false))

@@ -90,10 +90,8 @@ void SYS_startup(void)
 	LCD_init();								//Initialize LCD
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules	
 
-	GPIO_Light_sensor_init();	//Initialize GPIO input from light sensors
+	GPIO_direction_switch_init();	//Initialize GPIO input from light sensors
 	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
-	
-	//GPIO_motor_mode_select(1);
 	
 	PWM_motor_init(1000);			//Initialize PWM for motors forward
 	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules

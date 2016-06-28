@@ -641,6 +641,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,
@@ -655,16 +662,16 @@ typedef enum Led_State
 
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_Light_sensor_init(void);
-void GPIO_Red_led_init(void);
-void GPIO_Red_led_toggle(void);
+void GPIO_direction_switch_init(void);
+void GPIO_red_led_init(void);
+void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
-void GPIO_motor_mode_select(Motor_Mode_en mode);
+void GPIO_motor_direction_select(Motor_Direction_en direction);
 
-void GPIO_LS_Feedback_Init(void);	
-void GPIO_LS_Feedback_Toogle(Led_State_en State);
+
+
 #line 20 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\interrupt_handler\\interrupt_handler.h"
 
@@ -923,10 +930,8 @@ void SYS_startup(void)
 	LCD_init();								
 	
 
-	GPIO_Light_sensor_init();	
+	GPIO_direction_switch_init();	
 	clock = SysCtlClockGet();		
-	
-	
 	
 	PWM_motor_init(1000);			
 	

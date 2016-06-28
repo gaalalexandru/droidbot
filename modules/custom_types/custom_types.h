@@ -37,6 +37,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,

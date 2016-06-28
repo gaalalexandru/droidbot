@@ -1906,8 +1906,9 @@ void CYCL_50_milisecond(void);
 unsigned long comp0_interrupt_flag = 0;	
 unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	
-unsigned long Lx_LS_Value = 0;		
-unsigned long Rx_LS_Value = 0;		
+unsigned long Lx_LS_Value = 0;	
+unsigned long Rx_LS_Value = 0;	
+
  
 void Int_Master_Enable(void)
 {
@@ -1926,7 +1927,6 @@ void GPIOPortF_Handler(void)
 	{
 		
 		Motion_Cruise();
-		
 	}
 	else if(Light_sensor_status & 0x00000010)
 	{
@@ -1941,17 +1941,11 @@ void GPIOPortF_Handler(void)
 }
 void Comp0_Handler(void)			
 {
-	
 	comp0_interrupt_flag = 1;
 	if(ComparatorIntStatus(0x4003C000,0,0))
 	{
 		ComparatorIntClear(0x4003C000,0);
-		Motion_Go_Back();
-		
-
-
- 
-		
+		Motion_Go_Back();		
 	}
 }
 void WideTimer0A_Handler(void)		
@@ -1962,7 +1956,6 @@ void WideTimer0A_Handler(void)
 		TimerIntClear(0x40036000, 0x000000ff);
 		timer_value = TimerValueGet(0x40036000, 0x000000ff);
 		CYCL_1_second();
-		
 	}
 }
 
@@ -1974,10 +1967,8 @@ void Timer0A_Handler(void)
 		TimerIntClear(0x40030000, 0x000000ff);
 		timer_value = TimerValueGet(0x40030000, 0x000000ff);
 		CYCL_50_milisecond();
-		
 	}
 }
-
 
 void ADC0Seq3_Handler(void)		
 {
@@ -1987,6 +1978,7 @@ void ADC0Seq3_Handler(void)
 		ADCIntClear(0x40038000, 3); 										
 		ADCSequenceDataGet(0x40038000, 3, &Voltage);		
 		internal_temperature = (1475 - ((75 * ((33)) * Voltage) / 4096))/10;
+		
 		
 		
 

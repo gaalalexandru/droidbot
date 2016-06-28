@@ -11,6 +11,7 @@
 /*-------------------Service Includes----------------*/
 #include "gpio_handler.h"
 #include "ssi_handler.h"
+#include "timer_handler.h"
 #include "resources.h"
 
 /*-------------------Self header Includes------------*/
@@ -58,14 +59,12 @@ void static LCD_write(LCD_typeOfWrite_en type, unsigned char message)
 void LCD_init(void)
 {
 	volatile unsigned long delay;
-	//Nokia5110_Init();	//Gaal Alexandru Will be deleted after current driver is finished
 
 	SSI_lcd_init();						// Initialize SSI pins
 	GPIO_lcd_init();					// Initialize GPIO pins
 
 	GPIO_lcd_RST(RESET_LOW);	// reset the LCD to a known state
-	//Gaal Alexandru replace in the future with delay function
-  for(delay=0; delay<10; delay=delay+1);// delay minimum 100 ns
+	TIMER_delay_No_Int(1);
 	GPIO_lcd_RST(RESET_HIGH); // negative logic
 
 	LCD_write(COMMAND, 0x21);              // chip active; horizontal addressing mode (V = 0); use extended instruction set (H = 1)

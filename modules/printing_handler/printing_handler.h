@@ -8,6 +8,5 @@
 /*-------------------Function Definitions-------------*/
 void Print_Welcome_Image(void);
 void Print_Motor_Parameters(void);
-void Print_5s_img(void);
 #endif
 //EOF

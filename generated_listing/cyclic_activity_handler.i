@@ -784,6 +784,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,
@@ -800,7 +807,6 @@ typedef enum Led_State
  
 void Print_Welcome_Image(void);
 void Print_Motor_Parameters(void);
-void Print_5s_img(void);
 
 
 #line 22 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
@@ -809,17 +815,20 @@ void Print_5s_img(void);
 extern char print_flag;
 
  
+static unsigned char startup_image = 1;
+
+ 
 void CYCL_1_second(void)	
 {
+
 	static unsigned char counter = 0;
 	if (counter <=2)
 	{
-		print_flag = 0;
 		Print_Welcome_Image();
 	}
 	else
 	{
-		
+		startup_image = 0;
 	}
 	PWM_Red_led_toggle();
 	if((counter%2)==0)
@@ -828,8 +837,6 @@ void CYCL_1_second(void)
 	}
 	if((counter%5)==0)
 	{
-		
-		
 		
 	}
 	if((counter%10)==0)
@@ -853,21 +860,25 @@ void CYCL_50_milisecond(void)
 	if((counter%2)==0)
 	{
 		
-		Print_Motor_Parameters();
-		ADCProcessorTrigger(0x40039000, 0);
-		ADCProcessorTrigger(0x40039000, 1);
-		ADCProcessorTrigger(0x40039000, 2);
+
+		ADCProcessorTrigger(0x40039000, 0);	
+		ADCProcessorTrigger(0x40039000, 1);	
+		ADCProcessorTrigger(0x40039000, 2);	
 	}
 	if((counter%5)==0)
 	{
-		Motion_calculate_direction();
 		
+		Motion_calculate_direction();
 	}
 	if((counter%10)==0)
 	{
 		
-		ADCProcessorTrigger(0x40038000, 3);
-			Motion_Stop();
+		if(startup_image != 1)
+		{
+			Print_Motor_Parameters();
+		}
+		ADCProcessorTrigger(0x40038000, 3);		
+		Motion_Stop();
 	}
 	if(counter == 254)	
 	{

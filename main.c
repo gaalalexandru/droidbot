@@ -19,8 +19,6 @@ int main(void)
 	Motion_Stop();
 	while(1)
 	{
-		count_me++;
-		//Motion_Stop();
-		
+		count_me++;		
 	}
 }

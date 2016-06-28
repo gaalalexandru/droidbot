@@ -587,8 +587,6 @@ int main(void)
 	Motion_Stop();
 	while(1)
 	{
-		count_me++;
-		
-		
+		count_me++;		
 	}
 }

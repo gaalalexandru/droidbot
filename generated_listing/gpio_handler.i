@@ -336,6 +336,13 @@ typedef enum Motor_Mode
   PHASE_ENABLE
 } Motor_Mode_en;
 
+typedef enum Motor_Direction
+{
+  FWD,
+  RWD
+} Motor_Direction_en;
+
+
 typedef enum Led_State
 {
   Right_Feedback_Off,
@@ -1780,16 +1787,16 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
  
 #line 6 "modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_Light_sensor_init(void);
-void GPIO_Red_led_init(void);
-void GPIO_Red_led_toggle(void);
+void GPIO_direction_switch_init(void);
+void GPIO_red_led_init(void);
+void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
-void GPIO_motor_mode_select(Motor_Mode_en mode);
+void GPIO_motor_direction_select(Motor_Direction_en direction);
 
-void GPIO_LS_Feedback_Init(void);	
-void GPIO_LS_Feedback_Toogle(Led_State_en State);
+
+
 #line 21 "modules\\gpio_handler\\gpio_handler.c"
 
  
@@ -1797,7 +1804,7 @@ void GPIO_LS_Feedback_Toogle(Led_State_en State);
 
 
  
-void GPIO_Light_sensor_init(void)
+void GPIO_direction_switch_init(void)
 {
 	SysCtlPeripheralEnable(0xf0000805);																			
 	
@@ -1817,7 +1824,7 @@ void GPIO_Light_sensor_init(void)
 	IntEnable(46);																															
 }
 
-void GPIO_Red_led_init(void)
+void GPIO_red_led_init(void)
 {
 	SysCtlPeripheralEnable(0xf0000805);																			
 	
@@ -1830,7 +1837,7 @@ void GPIO_Red_led_init(void)
 	GPIOPinWrite(0x40025000, 0x00000002, 0);
 }
 
-void GPIO_Red_led_toggle(void)
+void GPIO_red_led_toggle(void)
 {
 	static char Red_Led_Status = 0;
 	Red_Led_Status ^= 0x02;																			
@@ -1863,37 +1870,23 @@ void GPIO_lcd_RST(unsigned char RST)
 	GPIOPinWrite(0x40004000, 0x00000080, RST);
 }
 
-void GPIO_motor_mode_select(Motor_Mode_en mode)
+void GPIO_motor_direction_select(Motor_Direction_en direction)
 {
 	SysCtlPeripheralEnable(0xf0000803);		
-	GPIOPinTypeGPIOOutput(0x40007000, 0x00000080);		
-	GPIODirModeSet(0x40007000, 0x00000080, 0x00000001);		
-	GPIOPadConfigSet(0x40007000, 0x00000080, 0x00000001,0x0000000C); 
+	GPIOPinTypeGPIOOutput(0x40007000, 0x00000040 | 0x00000080);		
+	GPIODirModeSet(0x40007000, 0x00000040 | 0x00000080, 0x00000001);		
+	GPIOPadConfigSet(0x40007000, 0x00000040 | 0x00000080, 0x00000001,0x0000000C); 
 	
-	
-	if(mode) 
+	if(direction) 
 	{
+		GPIOPinWrite(0x40004000, 0x00000040, 0x00000040);
 		GPIOPinWrite(0x40004000, 0x00000080, 0x00000080);
 	}
 	else	
 	{
+		GPIOPinWrite(0x40004000, 0x00000040, 0);
 		GPIOPinWrite(0x40004000, 0x00000080, 0);
 	}
 }
 
-void GPIO_LS_Feedback_Init(void)
-{
-	
-}
-void GPIO_LS_Feedback_Toogle(Led_State_en State)
-{
-	
-	
 
-
-
-
-
-
- 
-}

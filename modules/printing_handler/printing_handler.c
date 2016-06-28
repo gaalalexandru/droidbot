@@ -24,10 +24,7 @@ char print_flag = 0;
 void Print_Welcome_Image(void)
 {
 	LCD_out_image(res_welcome_img);
-}
-void Print_5s_img(void)
-{
-	LCD_out_image(res_Longhorn1);
+	//	LCD_out_image(res_Longhorn1);
 }
 void Print_Motor_Parameters(void)
 {

@@ -23,18 +23,21 @@
 /*-------------Global Variable Definitions------------*/
 extern char print_flag;
 
+/*-------------Local Variable Definitions-------------*/
+static unsigned char startup_image = 1;
+
 /*-------------------Function Definitions-------------*/
 void CYCL_1_second(void)	//Fucntion container, with everything that executes at 1 second interval
 {
+
 	static unsigned char counter = 0;
 	if (counter <=2)
 	{
-		print_flag = 0;
 		Print_Welcome_Image();
 	}
 	else
 	{
-		//Print_Motor_Parameters();
+		startup_image = 0;
 	}
 	PWM_Red_led_toggle();
 	if((counter%2)==0)
@@ -44,8 +47,6 @@ void CYCL_1_second(void)	//Fucntion container, with everything that executes at 
 	if((counter%5)==0)
 	{
 		//Code that runs only every 5 seconds
-		//print_flag = 0;
-		//Print_5s_img();
 	}
 	if((counter%10)==0)
 	{
@@ -68,21 +69,25 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 	if((counter%2)==0)
 	{
 		//Code that runs only every 100 ms
-		Print_Motor_Parameters();
-		ADCProcessorTrigger(ADC1_BASE, 0);
-		ADCProcessorTrigger(ADC1_BASE, 1);
-		ADCProcessorTrigger(ADC1_BASE, 2);
+
+		ADCProcessorTrigger(ADC1_BASE, 0);	//Trigger Light sensor ADC
+		ADCProcessorTrigger(ADC1_BASE, 1);	//Trigger Light sensor ADC
+		ADCProcessorTrigger(ADC1_BASE, 2);	//Trigger Light sensor ADC
 	}
 	if((counter%5)==0)
 	{
-		Motion_calculate_direction();
 		//Code that runs only every 250 ms
+		Motion_calculate_direction();
 	}
 	if((counter%10)==0)
 	{
 		//Code that runs only every 500 ms
-		ADCProcessorTrigger(ADC0_BASE, 3);
-			Motion_Stop();
+		if(startup_image != 1)
+		{
+			Print_Motor_Parameters();
+		}
+		ADCProcessorTrigger(ADC0_BASE, 3);		//Trigger Temperature sensor ADC
+		Motion_Stop();
 	}
 	if(counter == 254)	//Max value reached (Not 255, to keep 50ms, 100ms, 250ms, 500ms interval)
 	{
