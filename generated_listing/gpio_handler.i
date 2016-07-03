@@ -1854,7 +1854,6 @@ void GPIO_lcd_init(void)
 
 void GPIO_lcd_DC(unsigned char DC)
 {
-	
 	if(DC) 
 	{
 		GPIOPinWrite(0x40004000, 0x00000040, 0x00000040);
@@ -1879,13 +1878,13 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	
 	if(direction) 
 	{
-		GPIOPinWrite(0x40004000, 0x00000040, 0x00000040);
-		GPIOPinWrite(0x40004000, 0x00000080, 0x00000080);
+		GPIOPinWrite(0x40007000, 0x00000040, 0x00000040);
+		GPIOPinWrite(0x40007000, 0x00000080, 0x00000080);
 	}
 	else	
 	{
-		GPIOPinWrite(0x40004000, 0x00000040, 0);
-		GPIOPinWrite(0x40004000, 0x00000080, 0);
+		GPIOPinWrite(0x40007000, 0x00000040, 0);
+		GPIOPinWrite(0x40007000, 0x00000080, 0);
 	}
 }
 

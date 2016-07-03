@@ -74,7 +74,6 @@ void GPIO_lcd_init(void)
 
 void GPIO_lcd_DC(unsigned char DC)
 {
-	//GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, DC);
 	if(DC) 
 	{
 		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
@@ -99,13 +98,13 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	
 	if(direction) //1 (RWD)
 	{
-		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, GPIO_PIN_6);
-		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, GPIO_PIN_7);
+		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, GPIO_PIN_6);
+		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_7, GPIO_PIN_7);
 	}
 	else	//0 (FWD)
 	{
-		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_6, 0);
-		GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, 0);
+		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0);
+		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_7, 0);
 	}
 }
 
