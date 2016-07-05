@@ -1,5 +1,8 @@
 //system_handler.c
 //Service layer
+
+/*-------------------Configuration Includes-----------*/
+#include "compile_switches.c"
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
 #include "stdint.h"
@@ -42,12 +45,8 @@ void SYS_clock_init(void)
 										// -configures for use of 16 MHz crystal/oscillator input
 		
 	SysCtlClockSet(SYSCTL_SYSDIV_15 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ| SYSCTL_OSC_MAIN);	// Configure to run at 13.33 MHz from the PLL using a 16 MHz crystal as the input.
-
-
-
-	
 	/*
-		This function configures the clocking of the device. The input crystal frequency, oscillator to be
+	This function configures the clocking of the device. The input crystal frequency, oscillator to be
 	used, use of the PLL, and the system clock divider are all configured with this function.
 	The ui32Config parameter is the logical OR of several different values, many of which are
 	grouped into sets where only one can be chosen.
@@ -81,36 +80,31 @@ void SYS_clock_init(void)
 }
 void SYS_startup(void)
 {
-	unsigned long clock;
+	unsigned long clock1, clock2;
 	Int_Master_Disable();			//Global interrupt disable
-	
 	SYS_clock_init();					//Set system clock
-	clock = SYS_clock_get;		//just to check if clock speed is changed in other modules
+	clock1 = SYS_clock_get;		//clock before modules initialized
 	
-	LCD_init();								//Initialize LCD
-	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules	
-
-	GPIO_direction_switch_init();	//Initialize GPIO input from light sensors
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	#if Full_SW	//Initialize complete system
+		TIMER_cyclic_50ms_init();		//Initialize 50 mili second timer
+		TIMER_cyclic_1s_init();		//Initialize 1 second timer	
+		LCD_init();								//Initialize LCD
+		GPIO_direction_switch_init();	//Initialize GPIO input from light sensors	
+		PWM_motor_init(1000);			//Initialize PWM for motors forward
+		ADC_Light_sensor_init();				//Initialize ADC for light sensors	
+		ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
+	#endif
 	
-	PWM_motor_init(1000);			//Initialize PWM for motors forward
-	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
+	#if !Full_SW //Initialize modules under development
+		//COMP_mic_input_init();		//Disabled temporarly	
+		//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink	
+	#endif
 	
-	//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
-	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
-	
-	TIMER_cyclic_50ms_init();		//Initialize 50 mili second timer
-	
-	TIMER_cyclic_1s_init();		//Initialize 1 second timer
-	clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
-	
-	//COMP_mic_input_init();		//Disabled temporarly
-	//clock = SYS_clock_get;		//just to check if clock speed is cahnged in other modules
-	
-	ADC_Light_sensor_init();				//Initialize ADC for light sensors
-	ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
-	
-	Int_Master_Enable();			//Global interrupt enable
+	clock2 = SYS_clock_get;		//clock after modules initialized
+	if(clock1 == clock2)			//just to check if clock speed is changed in other modules
+	{
+		Int_Master_Enable();			//Global interrupt enable
+	}
 }
 //EOF
 

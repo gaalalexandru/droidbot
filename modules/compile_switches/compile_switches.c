@@ -8,6 +8,7 @@
 #define On 	(1)
 #define False (0)
 #define True 	(1)
+#define Full_SW	(No)		//Use "Yes" to have the full functionality of the SW, Use "No" only for specific module development
 
 /*----------------On board LED definitions-------------*/
 #define Red_LED (0x02)

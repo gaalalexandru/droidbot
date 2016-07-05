@@ -7,14 +7,10 @@
 
 
 
-
-
-
-
-
+#line 12 ".\\modules\\compile_switches\\compile_switches.c"
 
  
-#line 19 ".\\modules\\compile_switches\\compile_switches.c"
+#line 20 ".\\modules\\compile_switches\\compile_switches.c"
 
  
 
@@ -22,7 +18,7 @@
 
 
  
-#line 32 ".\\modules\\compile_switches\\compile_switches.c"
+#line 33 ".\\modules\\compile_switches\\compile_switches.c"
 
  
 
@@ -42,7 +38,7 @@
  
 
  
-#line 57 ".\\modules\\compile_switches\\compile_switches.c"
+#line 58 ".\\modules\\compile_switches\\compile_switches.c"
 
 
 
@@ -493,6 +489,9 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
+
+
+ 
 
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));

@@ -1,6 +1,52 @@
 #line 1 "modules\\system_handler\\system_handler.c"
 
 
+
+ 
+#line 1 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+
+
+#line 12 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+#line 20 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+
+
+ 
+#line 33 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+
+
+#line 6 "modules\\system_handler\\system_handler.c"
  
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
  
@@ -20,7 +66,7 @@
 
 
 
-#line 5 "modules\\system_handler\\system_handler.c"
+#line 8 "modules\\system_handler\\system_handler.c"
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
  
  
@@ -246,7 +292,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 6 "modules\\system_handler\\system_handler.c"
+#line 9 "modules\\system_handler\\system_handler.c"
 
  
 
@@ -543,7 +589,7 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
 
 
 
-#line 11 "modules\\system_handler\\system_handler.c"
+#line 14 "modules\\system_handler\\system_handler.c"
 
  
 #line 1 "modules\\system_handler\\system_handler.h"
@@ -564,7 +610,7 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
  
 void SYS_clock_init(void);
 void SYS_startup(void);
-#line 14 "modules\\system_handler\\system_handler.c"
+#line 17 "modules\\system_handler\\system_handler.c"
 
  
 #line 1 ".\\modules\\adc_handler\\adc_handler.h"
@@ -574,7 +620,7 @@ void SYS_startup(void);
 void ADC_Temperature_sensor_init(void);
 void ADC_Light_sensor_init(void);
 
-#line 17 "modules\\system_handler\\system_handler.c"
+#line 20 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\comparator_handler\\comparator_handler.h"
 
 
@@ -585,7 +631,7 @@ void COMP_mic_input_init(void);
 
 
 
-#line 18 "modules\\system_handler\\system_handler.c"
+#line 21 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
 
 
@@ -595,7 +641,7 @@ void COMP_mic_input_init(void);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 19 "modules\\system_handler\\system_handler.c"
+#line 22 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\gpio_handler\\gpio_handler.h"
 
 
@@ -672,7 +718,7 @@ void GPIO_motor_direction_select(Motor_Direction_en direction);
 
 
 
-#line 20 "modules\\system_handler\\system_handler.c"
+#line 23 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\interrupt_handler\\interrupt_handler.h"
 
 
@@ -689,7 +735,7 @@ void Int_Peripherials_Enable(void);
 
 
 
-#line 21 "modules\\system_handler\\system_handler.c"
+#line 24 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\lcd_handler\\lcd_handler.h"
 
 
@@ -816,7 +862,7 @@ void LCD_out_image(const unsigned char *image);
 
 
 
-#line 22 "modules\\system_handler\\system_handler.c"
+#line 25 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -831,7 +877,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 23 "modules\\system_handler\\system_handler.c"
+#line 26 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -847,7 +893,7 @@ void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
 
-#line 24 "modules\\system_handler\\system_handler.c"
+#line 27 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
 
 
@@ -861,7 +907,7 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
 void TIMER_delay(unsigned long delay_time_ms);
 void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
-#line 25 "modules\\system_handler\\system_handler.c"
+#line 28 "modules\\system_handler\\system_handler.c"
 
  
 
@@ -882,10 +928,6 @@ void SYS_clock_init(void)
 										
 		
 	SysCtlClockSet(0x07400000 | 0x00000000 | 0x00000540| 0x00000000);	
-
-
-
-	
 	
 
 
@@ -921,36 +963,23 @@ void SYS_clock_init(void)
 }
 void SYS_startup(void)
 {
-	unsigned long clock;
+	unsigned long clock1, clock2;
 	Int_Master_Disable();			
-	
 	SYS_clock_init();					
-	clock = SysCtlClockGet();		
+	clock1 = SysCtlClockGet();		
 	
-	LCD_init();								
+#line 97 "modules\\system_handler\\system_handler.c"
 	
 
-	GPIO_direction_switch_init();	
-	clock = SysCtlClockGet();		
+		
+		
+
 	
-	PWM_motor_init(1000);			
-	
-	
-	
-	
-	
-	TIMER_cyclic_50ms_init();		
-	
-	TIMER_cyclic_1s_init();		
-	clock = SysCtlClockGet();		
-	
-	
-	
-	
-	ADC_Light_sensor_init();				
-	ADC_Temperature_sensor_init();	
-	
-	Int_Master_Enable();			
+	clock2 = SysCtlClockGet();		
+	if(clock1 == clock2)			
+	{
+		Int_Master_Enable();			
+	}
 }
 
 
