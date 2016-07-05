@@ -253,8 +253,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>75</TopLine>
-      <CurrentLine>90</CurrentLine>
+      <TopLine>22</TopLine>
+      <CurrentLine>1</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\modules\adc_handler\adc_handler.c</PathWithFileName>
       <FilenameWithoutPath>adc_handler.c</FilenameWithoutPath>
