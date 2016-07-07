@@ -6,7 +6,7 @@
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "motion_handler.h"
 
 /*-------------------Service Includes-----------------*/

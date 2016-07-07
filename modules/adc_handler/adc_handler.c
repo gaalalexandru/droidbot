@@ -7,7 +7,7 @@
 #include "stdbool.h"
 #include "stdint.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "adc_handler.h"
 
 /*-------------------Driver Includes-----------------*/

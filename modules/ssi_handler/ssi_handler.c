@@ -17,7 +17,7 @@
 /*-------------------Service Includes-----------------*/
 #include "system_handler.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "ssi_handler.h"
 
 /*-------------------Macro Definitions----------------*/

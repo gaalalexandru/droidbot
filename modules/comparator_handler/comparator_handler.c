@@ -18,7 +18,7 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "comparator_handler.h"
 
 /*-------------------Function Definitions-------------*/

@@ -16,7 +16,7 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/sysctl.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "gpio_handler.h"
 
 /*-------------------Macro Definitions----------------*/
@@ -88,14 +88,16 @@ void GPIO_lcd_RST(unsigned char RST)
 {
 	GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, RST);
 }
-
-void GPIO_motor_direction_select(Motor_Direction_en direction)
+void GPIO_motor_direction_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);		//Enable clock on port D
 	GPIOPinTypeGPIOOutput(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7);		//Set PD6, PD7 as GPIO Output
 	GPIODirModeSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_DIR_MODE_OUT);		//Set direction Output for PD6, PD7
 	GPIOPadConfigSet(GPIO_PORTD_BASE, GPIO_PIN_6 | GPIO_PIN_7, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PD6, PD7
-	
+}
+
+void GPIO_motor_direction_select(Motor_Direction_en direction)
+{
 	if(direction) //1 (RWD)
 	{
 		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, GPIO_PIN_6);
@@ -105,6 +107,26 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	{
 		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_6, 0);
 		GPIOPinWrite(GPIO_PORTD_BASE, GPIO_PIN_7, 0);
+	}
+}
+
+void GPIO_accelerometer_CS_init(void)
+{
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);												//Enable clock on port E
+	GPIOPinTypeGPIOOutput(GPIO_PORTE_BASE, GPIO_PIN_0);									//Set PE0 - CS
+	GPIODirModeSet(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_DIR_MODE_OUT);			//Set direction Output for PE0
+	GPIOPadConfigSet(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PE0
+}
+
+void GPIO_accelerometer_CS_select(unsigned char CS)
+{
+	if(CS) //If high enable I2C communication
+	{
+		GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_PIN_0);
+	}
+	else	//If low enable SPI communication
+	{
+		GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, 0);
 	}
 }
 

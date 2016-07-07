@@ -632,16 +632,6 @@ void COMP_mic_input_init(void);
 
 
 #line 21 "modules\\system_handler\\system_handler.c"
-#line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
-
-
-
-
- 
-void CYCL_1_second(void);
-void CYCL_50_milisecond(void);
-
-#line 22 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\gpio_handler\\gpio_handler.h"
 
 
@@ -714,11 +704,14 @@ void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
+void GPIO_motor_direction_init(void);
 void GPIO_motor_direction_select(Motor_Direction_en direction);
+void GPIO_accelerometer_CS_init(void);
+void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 
-#line 23 "modules\\system_handler\\system_handler.c"
+#line 22 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\interrupt_handler\\interrupt_handler.h"
 
 
@@ -735,7 +728,66 @@ void Int_Peripherials_Enable(void);
 
 
 
+#line 23 "modules\\system_handler\\system_handler.c"
+#line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
+
+
+
+
+
+void PWM_motor_init(unsigned long PWM_Period);
+void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
+void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
+void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
+void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
+void PWM_motor_reverse_stop(void);;
+void PWM_Red_led_init(unsigned long PWM_Period);
+void PWM_Red_led_toggle(void);
+
 #line 24 "modules\\system_handler\\system_handler.c"
+#line 1 ".\\modules\\timer_handler\\timer_handler.h"
+
+
+
+
+ 
+void TIMER_cyclic_1s_init(void);
+void TIMER_cyclic_50ms_init(void);
+unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
+
+void TIMER_delay(unsigned long delay_time_ms);
+void TIMER_delay_No_Int(unsigned long delay_time_ms);
+
+#line 25 "modules\\system_handler\\system_handler.c"
+
+ 
+#line 1 ".\\modules\\accelerometer_handler\\accelerometer_handler.h"
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+void accelerometer_init(void);
+
+
+
+#line 28 "modules\\system_handler\\system_handler.c"
+#line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
+
+
+
+
+ 
+void CYCL_1_second(void);
+void CYCL_50_milisecond(void);
+
+#line 29 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\lcd_handler\\lcd_handler.h"
 
 
@@ -862,7 +914,7 @@ void LCD_out_image(const unsigned char *image);
 
 
 
-#line 25 "modules\\system_handler\\system_handler.c"
+#line 30 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -877,38 +929,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 26 "modules\\system_handler\\system_handler.c"
-#line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
-
-
-
-
-
-void PWM_motor_init(unsigned long PWM_Period);
-void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
-void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
-void PWM_motor_reverse_stop(void);;
-void PWM_Red_led_init(unsigned long PWM_Period);
-void PWM_Red_led_toggle(void);
-
-#line 27 "modules\\system_handler\\system_handler.c"
-#line 1 ".\\modules\\timer_handler\\timer_handler.h"
-
-
-
-
- 
-void TIMER_cyclic_1s_init(void);
-void TIMER_cyclic_50ms_init(void);
-unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
-
-void TIMER_delay(unsigned long delay_time_ms);
-void TIMER_delay_No_Int(unsigned long delay_time_ms);
-
-#line 28 "modules\\system_handler\\system_handler.c"
-
+#line 31 "modules\\system_handler\\system_handler.c"
  
 
  
@@ -968,11 +989,12 @@ void SYS_startup(void)
 	SYS_clock_init();					
 	clock1 = SysCtlClockGet();		
 	
-#line 97 "modules\\system_handler\\system_handler.c"
+#line 100 "modules\\system_handler\\system_handler.c"
 	
 
 		
 		
+		accelerometer_init();
 
 	
 	clock2 = SysCtlClockGet();		

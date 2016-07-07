@@ -4,7 +4,7 @@
 #include "custom_types.h"
 /*-------------------HW define Includes--------------*/
 /*-------------------Driver Includes-----------------*/
-/*-------------------Self header Includes------------*/
+/*------Export interface---Self header Includes------*/
 #include "printing_handler.h"
 
 /*-------------------Service Includes----------------*/

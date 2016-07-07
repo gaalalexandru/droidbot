@@ -17,7 +17,7 @@
 #include "driverlib/comp.h"
 #include "driverlib/timer.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "interrupt_handler.h"
 #include "motion_handler.h"
 #include "cyclic_activity_handler.h"

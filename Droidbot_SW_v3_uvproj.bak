@@ -485,6 +485,11 @@
               <FileType>1</FileType>
               <FilePath>.\modules\timer_handler\timer_handler.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\i2c_handler\i2c_handler.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

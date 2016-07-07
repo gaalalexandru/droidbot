@@ -1789,7 +1789,10 @@ void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
 void GPIO_lcd_DC(unsigned char DC);
 void GPIO_lcd_RST(unsigned char RST);
+void GPIO_motor_direction_init(void);
 void GPIO_motor_direction_select(Motor_Direction_en direction);
+void GPIO_accelerometer_CS_init(void);
+void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 
@@ -1864,14 +1867,16 @@ void GPIO_lcd_RST(unsigned char RST)
 {
 	GPIOPinWrite(0x40004000, 0x00000080, RST);
 }
-
-void GPIO_motor_direction_select(Motor_Direction_en direction)
+void GPIO_motor_direction_init(void)
 {
 	SysCtlPeripheralEnable(0xf0000803);		
 	GPIOPinTypeGPIOOutput(0x40007000, 0x00000040 | 0x00000080);		
 	GPIODirModeSet(0x40007000, 0x00000040 | 0x00000080, 0x00000001);		
 	GPIOPadConfigSet(0x40007000, 0x00000040 | 0x00000080, 0x00000001,0x0000000C); 
-	
+}
+
+void GPIO_motor_direction_select(Motor_Direction_en direction)
+{
 	if(direction) 
 	{
 		GPIOPinWrite(0x40007000, 0x00000040, 0x00000040);
@@ -1881,6 +1886,26 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	{
 		GPIOPinWrite(0x40007000, 0x00000040, 0);
 		GPIOPinWrite(0x40007000, 0x00000080, 0);
+	}
+}
+
+void GPIO_accelerometer_CS_init(void)
+{
+	SysCtlPeripheralEnable(0xf0000804);												
+	GPIOPinTypeGPIOOutput(0x40024000, 0x00000001);									
+	GPIODirModeSet(0x40024000, 0x00000001, 0x00000001);			
+	GPIOPadConfigSet(0x40024000, 0x00000001, 0x00000001,0x0000000C); 
+}
+
+void GPIO_accelerometer_CS_select(unsigned char CS)
+{
+	if(CS) 
+	{
+		GPIOPinWrite(0x40024000, 0x00000001, 0x00000001);
+	}
+	else	
+	{
+		GPIOPinWrite(0x40024000, 0x00000001, 0);
 	}
 }
 

@@ -7,3 +7,4 @@ generated_listing/compile_switches.i
 *.dep
 *.i
 *.o
+*.lnp

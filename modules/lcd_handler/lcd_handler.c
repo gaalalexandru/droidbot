@@ -14,7 +14,7 @@
 #include "timer_handler.h"
 #include "resources.h"
 
-/*-------------------Self header Includes------------*/
+/*------Export interface---Self header Includes------*/
 #include "lcd_handler.h"
 
 /*-------------------Macro Definitions----------------*/

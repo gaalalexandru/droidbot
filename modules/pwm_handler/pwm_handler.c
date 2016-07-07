@@ -15,7 +15,7 @@
 #include "driverlib/pwm.h"
 #include "driverlib/sysctl.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "pwm_handler.h"
 
 /*-------------------Macro Definitions----------------*/

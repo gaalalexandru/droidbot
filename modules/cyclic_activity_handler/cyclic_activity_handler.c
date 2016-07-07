@@ -12,7 +12,7 @@
 #include "driverlib/gpio.h"
 //#include "driverlib/pin_map.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "cyclic_activity_handler.h"
 
 /*-------------------Service Includes-----------------*/

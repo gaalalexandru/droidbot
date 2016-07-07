@@ -12,20 +12,22 @@
 /*-------------------Driver Includes-----------------*/
 #include "driverlib/sysctl.h"
 
-/*-------------------Self header Includes------------*/
+/*------Export interface---Self header Includes------*/
 #include "system_handler.h"
 
 /*-------------------Service Includes----------------*/
 #include "adc_handler.h"
 #include "comparator_handler.h"
-#include "cyclic_activity_handler.h"
 #include "gpio_handler.h"
 #include "interrupt_handler.h"
-#include "lcd_handler.h"
-#include "motion_handler.h"
 #include "pwm_handler.h"
 #include "timer_handler.h"
 
+/*-------------------Application Includes----------------*/
+#include "accelerometer_handler.h"
+#include "cyclic_activity_handler.h"
+#include "lcd_handler.h"
+#include "motion_handler.h"
 /*-------------------Macro Definitions----------------*/
 
 /*-------------Global Variable Definitions------------*/
@@ -86,11 +88,12 @@ void SYS_startup(void)
 	clock1 = SYS_clock_get;		//clock before modules initialized
 	
 	#if Full_SW	//Initialize complete system
-		TIMER_cyclic_50ms_init();		//Initialize 50 mili second timer
-		TIMER_cyclic_1s_init();		//Initialize 1 second timer	
-		LCD_init();								//Initialize LCD
+		TIMER_cyclic_50ms_init();			//Initialize 50 mili second timer
+		TIMER_cyclic_1s_init();				//Initialize 1 second timer	
+		LCD_init();										//Initialize LCD
 		GPIO_direction_switch_init();	//Initialize GPIO input from light sensors	
-		PWM_motor_init(1000);			//Initialize PWM for motors forward
+		GPIO_motor_direction_init();	//Initialize GPIO output to select motor direction
+		PWM_motor_init(1000);						//Initialize PWM for motors forward
 		ADC_Light_sensor_init();				//Initialize ADC for light sensors	
 		ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
 	#endif
@@ -98,6 +101,7 @@ void SYS_startup(void)
 	#if !Full_SW //Initialize modules under development
 		//COMP_mic_input_init();		//Disabled temporarly	
 		//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink	
+		accelerometer_init();
 	#endif
 	
 	clock2 = SYS_clock_get;		//clock after modules initialized

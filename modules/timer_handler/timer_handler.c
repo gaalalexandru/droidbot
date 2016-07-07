@@ -19,7 +19,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
 
-/*-------------------Self header Includes-------------*/
+/*------Export interface---Self header Includes------*/
 #include "timer_handler.h"
 
 /*-------------------Service Includes-----------------*/

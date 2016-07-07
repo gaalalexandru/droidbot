@@ -6,7 +6,6 @@
  
  
  
- 
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
@@ -21,7 +20,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 10 "main.c"
+#line 9 "main.c"
 #line 1 ".\\modules\\system_handler\\system_handler.h"
 
 
@@ -575,7 +574,7 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
  
 void SYS_clock_init(void);
 void SYS_startup(void);
-#line 11 "main.c"
+#line 10 "main.c"
  
  
  

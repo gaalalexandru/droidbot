@@ -4,7 +4,6 @@
 /*-------------------Type Includes--------------------*/
 /*-------------------HW define Includes---------------*/
 /*-------------------Driver Includes------------------*/
-/*-------------------Self header Includes-------------*/
 /*-------------------Service Includes-----------------*/
 #include "motion_handler.h"
 #include "system_handler.h"
