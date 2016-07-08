@@ -56,7 +56,11 @@
 #define Int_Prio_Temp_Sens			(0x07)	//Priority 7 = "111"0.0000
 #define Int_Prio_Light_Sens			(0x01)	//Priority 3 = "011"0.0000
 
-
+/*-------------------Accelerometer config-------------*/
+#define Accelerometer_Slave_Adress	(0x1D) 	//MMA 7455 accelerometer adress is 0x1D, see datasheet page 23: $0D: I2C Device Address
+#define Master_Rx_Slave_Tx		(1)		//Configures master to receive data from the slave
+#define Master_Tx_Slave_Rx		(0)		//Configures master to send data to the slave
+#define I2C_Rate_100kbps	(0)	//Configure I2C transfer rate to normal mode 100 kbps
 
 #endif
 //EOF
