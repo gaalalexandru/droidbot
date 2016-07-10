@@ -39,11 +39,10 @@
  
 
  
-#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
 
-
-
-
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
 
 #line 5 "modules\\adc_handler\\adc_handler.c"
 
@@ -436,9 +435,6 @@ void ADC_Light_sensor_init(void);
 
 
 
-
-
- 
 
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));

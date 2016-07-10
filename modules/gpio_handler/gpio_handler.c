@@ -24,7 +24,7 @@
 #define GPIO_PORTF_CR_R         (*((volatile unsigned long *)0x40025524))
 
 /*-------------------Function Definitions-------------*/
-void GPIO_direction_switch_init(void)
+void GPIO_steering_switch_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);																			//Enable clock on port F
 	

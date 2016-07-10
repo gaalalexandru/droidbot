@@ -4,7 +4,7 @@
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
 /*-------------------Function Definitions-------------*/
-void GPIO_direction_switch_init(void);
+void GPIO_steering_switch_init(void);
 void GPIO_red_led_init(void);
 void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);

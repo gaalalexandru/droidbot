@@ -19,9 +19,10 @@
 #define CS_SPI            	(0)			//Communication with accelerometer through SPI
 #define CS_I2C              (1)			//Communication with accelerometer through I2C
 
-void accelerometer_init(void)
+void Accelerometer_init(void)
 {
 	GPIO_accelerometer_CS_init();
 	GPIO_accelerometer_CS_select(CS_I2C);
+	I2C_Accelerometer_Init();
 }
 //EOF

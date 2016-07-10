@@ -445,9 +445,6 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-
- 
-
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -715,6 +712,7 @@ void CYCL_50_milisecond(void);
 
 
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
@@ -731,13 +729,13 @@ void Motion_calculate_direction(void);
 
 
 void PWM_motor_init(unsigned long PWM_Period);
-void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
 void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
 void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
-void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
+
+
+
 
 #line 21 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\printing_handler\\printing_handler.h"

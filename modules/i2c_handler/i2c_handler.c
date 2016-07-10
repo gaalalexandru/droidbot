@@ -11,7 +11,7 @@
 #include "i2c_handler.h"
 
 /*-------------------Service Includes----------------*/
-#include "system_handler.c"
+#include "system_handler.h"
 
 /*-------------------Driver Includes-----------------*/
 #include "driverlib/i2c.h"
@@ -46,30 +46,37 @@ unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Addre
 		
 	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
-
 	
 	return Read_Value;
 }
 void I2C_Accelerometer_Init(void)
 {
+	//Init PB2 as I2C_0 SCL
+	//Init PB3 as I2C_0 SDA	
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);			//The I2C0 peripheral must be enabled for use.
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);		//The GPIOB peripheral must be enabled for use.
 	
 	IntDisable(INT_I2C0);
-
-	//Init PB2 as I2C_0 SCL
-	//Init PB3 as I2C_0 SDA	
+	
+	I2CMasterIntClear(I2C0_BASE);
+	I2CMasterIntDisable(I2C0_BASE);
+	
+	//Activation start
 	GPIOPinConfigure(GPIO_PB2_I2C0SCL);
 	GPIOPinConfigure(GPIO_PB3_I2C0SDA);
 	GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
 	GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
-	
-	I2CMasterInitExpClk(I2C0_BASE,SYS_clock_get,I2C_Rate_100kbps);		//Set System clock and normal (100 kbps) transfer rate for I2C_0
-	
-	
-	
+	GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_2, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); //Configure PUR for PB2
+	GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_3, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_OD); //Configure OD for PB3
+	GPIODirModeSet(GPIO_PORTB_BASE, GPIO_PIN_2|GPIO_PIN_3, GPIO_DIR_MODE_HW);	//Set direction by HW for PB2 and PB3
 
+	I2CMasterInitExpClk(I2C0_BASE,SYS_clock_get,I2C_Rate_100kbps);		//Set System clock and normal (100 kbps) transfer rate for I2C_0
+	//Activation end
 	
+	I2CMasterIntEnable(I2C0_BASE);
+	
+	IntPrioritySet(INT_I2C0,(Int_Prio_Acc_Sens)<<5);
+	IntEnable(INT_I2C0);
 	/*
 	      self.b.write_byte_data(0x1D,0x16,0x55) # Setup the Mode
         self.b.write_byte_data(0x1D,0x10,0) # Calibrate
@@ -79,26 +86,8 @@ void I2C_Accelerometer_Init(void)
         self.b.write_byte_data(0x1D,0x14,0) # Calibrate
         self.b.write_byte_data(0x1D,0x15,0) # Calibrate
 	*/
-	
-	/*
-	ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag	
-	ADCIntDisable(ADC0_BASE, 3);
-	ADCSequenceDisable(ADC0_BASE,3);							//Disable sequencer 3
-	
-	//ADCSequenceConfigure(ADC0_BASE,3, ADC_TRIGGER_PROCESSOR, 0); //Sequence 3 will do a single sample when the processor (SW) sends a signal to start the conversion
-	//ADCSequenceStepConfigure(ADC0_BASE,3,0, ADC_CTL_CH3 |ADC_CTL_TS| ADC_CTL_IE | ADC_CTL_END);  //Configure step 0 on sequencer 3 to channel 1, interrupt enable and end conversion when after 1 conversion
-	
-	//ADCSequenceEnable(ADC0_BASE,3); 							//Enable sequencer 3
-	//ADCIntEnable(ADC0_BASE, 3); 
-		
-	//IntPrioritySet(INT_ADC0SS3,(Int_Prio_Temp_Sens)<<5);
-	//IntEnable(INT_ADC0SS3);	
-	//*/
-	
 	//I2C_Busy = I2CMasterBusBusy(I2C0_BASE);	//True if I2C bus is busy, False if not
 	//I2CMasterBusy(I2C0_BASE);
-	//I2CMasterDataPut(I2C0_BASE, data);
-	//I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
 	/*
 	The next command available for I2CMasterControl:
 		I2C_MASTER_CMD_SINGLE_SEND
@@ -113,16 +102,6 @@ void I2C_Accelerometer_Init(void)
 		I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP
 		I2C_MASTER_CMD_QUICK_COMMAND
 		I2C_MASTER_CMD_HS_MASTER_CODE_SEND
-		I2C_MASTER_CMD_FIFO_SINGLE_SEND
-		I2C_MASTER_CMD_FIFO_SINGLE_RECEIVE
-		I2C_MASTER_CMD_FIFO_BURST_SEND_START
-		I2C_MASTER_CMD_FIFO_BURST_SEND_CONT
-		I2C_MASTER_CMD_FIFO_BURST_SEND_FINISH
-		I2C_MASTER_CMD_FIFO_BURST_SEND_ERROR_STOP
-		I2C_MASTER_CMD_FIFO_BURST_RECEIVE_START
-		I2C_MASTER_CMD_FIFO_BURST_RECEIVE_CONT
-		I2C_MASTER_CMD_FIFO_BURST_RECEIVE_FINISH
-		I2C_MASTER_CMD_FIFO_BURST_RECEIVE_ERROR_STOP
 	*/
 }
 //EOF

@@ -40,11 +40,10 @@
  
 
  
-#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
 
-
-
-
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
 
 #line 6 "modules\\system_handler\\system_handler.c"
  
@@ -698,7 +697,7 @@ typedef enum Led_State
 
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_direction_switch_init(void);
+void GPIO_steering_switch_init(void);
 void GPIO_red_led_init(void);
 void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
@@ -736,13 +735,13 @@ void Int_Peripherials_Enable(void);
 
 
 void PWM_motor_init(unsigned long PWM_Period);
-void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
 void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
 void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
-void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
+
+
+
 
 #line 24 "modules\\system_handler\\system_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
@@ -773,7 +772,7 @@ void TIMER_delay_No_Int(unsigned long delay_time_ms);
  
 
  
-void accelerometer_init(void);
+void Accelerometer_init(void);
 
 
 
@@ -921,6 +920,7 @@ void LCD_out_image(const unsigned char *image);
 
 
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
@@ -989,12 +989,20 @@ void SYS_startup(void)
 	SYS_clock_init();					
 	clock1 = SysCtlClockGet();		
 	
-#line 100 "modules\\system_handler\\system_handler.c"
+#line 99 "modules\\system_handler\\system_handler.c"
 	
 
 		
 		
-		accelerometer_init();
+		TIMER_cyclic_50ms_init();			
+		TIMER_cyclic_1s_init();				
+		LCD_init();										
+		GPIO_steering_switch_init();	
+		GPIO_motor_direction_init();	
+		PWM_motor_init(1000);						
+		ADC_Light_sensor_init();				
+		ADC_Temperature_sensor_init();	
+		Accelerometer_init();
 
 	
 	clock2 = SysCtlClockGet();		

@@ -12,6 +12,7 @@
 
 
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);

@@ -3,6 +3,7 @@
 #ifndef MOT_HDL
 #define MOT_HDL
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);

@@ -120,7 +120,7 @@ void PWM_Red_led_toggle(void)
 }
 
 void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle)
-{
+{	//Not needed anymore
 	if(PWM_duty_cycle < 1)
 	{
 		PWM_duty_cycle = 1;
@@ -133,7 +133,7 @@ void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, uns
 }
 
 void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle)
-{
+{	//Not needed anymore
 	SysCtlPWMClockSet(SYSCTL_PWMDIV_1);							//Enable clock for PWM
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM1);			//PWM enable 
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);		//Port D enable
@@ -150,11 +150,10 @@ void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cy
 	
 	PWMGenEnable(PWM1_BASE, PWM_GEN_0);							//Enable Generator 3
 	PWMOutputState(PWM1_BASE, PWM_OUT_0_BIT | PWM_OUT_1_BIT, PWM_enable);	//Enable PWM output on PD0 - Right motor
-	
 }
 
 void PWM_motor_reverse_stop(void)
-{
+{	//Not needed anymore
 	SysCtlPeripheralDisable(SYSCTL_PERIPH_GPIOD);		//Port D disable
 	PWMGenDisable(PWM1_BASE, PWM_GEN_0);						//Disable Generator 3
 	PWMOutputState(PWM1_BASE, PWM_OUT_0_BIT | PWM_OUT_1_BIT, PWM_disable);	//Enable PWM output on PD0 - Right motor

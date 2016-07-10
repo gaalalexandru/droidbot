@@ -54,13 +54,16 @@
 #define Int_Prio_GPIO_PF_LightS	(0x02)	//Priority 2 = "010"0.0000
 #define Int_Prio_Comp_Mic				(0x03)	//Priority 3 = "011"0.0000
 #define Int_Prio_Temp_Sens			(0x07)	//Priority 7 = "111"0.0000
-#define Int_Prio_Light_Sens			(0x01)	//Priority 3 = "011"0.0000
+#define Int_Prio_Light_Sens			(0x01)	//Priority 1 = "001"0.0000
+#define Int_Prio_Acc_Sens				(0x02)	//Priority 2 = "010"0.0000
 
 /*-------------------Accelerometer config-------------*/
-#define Accelerometer_Slave_Adress	(0x1D) 	//MMA 7455 accelerometer adress is 0x1D, see datasheet page 23: $0D: I2C Device Address
+#define Acc_Slave_Adress			(0x1D)//MMA 7455 accelerometer adress is 0x1D, see datasheet page 23: $0D: I2C Device Address
 #define Master_Rx_Slave_Tx		(1)		//Configures master to receive data from the slave
 #define Master_Tx_Slave_Rx		(0)		//Configures master to send data to the slave
-#define I2C_Rate_100kbps	(0)	//Configure I2C transfer rate to normal mode 100 kbps
-
+#define I2C_Rate_100kbps			(0)		//Configure I2C transfer rate to normal mode 100 kbps
+#define Acc_X8bit_Reg_Adress	(0x06)//MMA 74755 accelerometer X acc 8 bit output
+#define Acc_Y8bit_Reg_Adress	(0x07)//MMA 74755 accelerometer Y acc 8 bit output
+#define Acc_Z8bit_Reg_Adress	(0x08)//MMA 74755 accelerometer Z acc 8 bit output
 #endif
 //EOF

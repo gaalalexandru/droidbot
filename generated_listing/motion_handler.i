@@ -39,11 +39,10 @@
  
 
  
-#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
 
-
-
-
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
 
 #line 5 "modules\\motion_handler\\motion_handler.c"
 
@@ -116,6 +115,7 @@ typedef enum Led_State
 
 
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
@@ -134,7 +134,7 @@ void Motion_calculate_direction(void);
  
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_direction_switch_init(void);
+void GPIO_steering_switch_init(void);
 void GPIO_red_led_init(void);
 void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);
@@ -155,13 +155,13 @@ void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 void PWM_motor_init(unsigned long PWM_Period);
-void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
 void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
 void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
-void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
+
+
+
 
 #line 15 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
@@ -188,6 +188,12 @@ extern unsigned long Rx_LS_Value;
 extern unsigned long Lx_LS_Value;			
 
  
+void Motion_init(void)
+{
+	GPIO_steering_switch_init();	
+	GPIO_motor_direction_init();	
+	PWM_motor_init(1000);					
+}
 void Motion_Go_Left(void)
 {
 	GPIO_motor_direction_select(FWD);

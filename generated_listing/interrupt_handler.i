@@ -38,11 +38,10 @@
  
 
  
-#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
 
-
-
-
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
 
 #line 4 "modules\\interrupt_handler\\interrupt_handler.c"
 
@@ -489,9 +488,6 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-
-
- 
 
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
@@ -1429,6 +1425,234 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 #line 20952 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/pin_map.h"
 
 #line 16 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 119 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+#line 141 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 165 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 197 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+#line 218 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#line 264 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+#line 278 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/i2c.h"
+
+
+
+
+
+
+extern void I2CIntRegister(uint32_t ui32Base, void(pfnHandler)(void));
+extern void I2CIntUnregister(uint32_t ui32Base);
+extern void I2CTxFIFOConfigSet(uint32_t ui32Base, uint32_t ui32Config);
+extern void I2CTxFIFOFlush(uint32_t ui32Base);
+extern void I2CRxFIFOConfigSet(uint32_t ui32Base, uint32_t ui32Config);
+extern void I2CRxFIFOFlush(uint32_t ui32Base);
+extern uint32_t I2CFIFOStatus(uint32_t ui32Base);
+extern void I2CFIFODataPut(uint32_t ui32Base, uint8_t ui8Data);
+extern uint32_t I2CFIFODataPutNonBlocking(uint32_t ui32Base,
+                                          uint8_t ui8Data);
+extern uint32_t I2CFIFODataGet(uint32_t ui32Base);
+extern uint32_t I2CFIFODataGetNonBlocking(uint32_t ui32Base,
+                                          uint8_t *pui8Data);
+extern void I2CMasterBurstLengthSet(uint32_t ui32Base,
+                                    uint8_t ui8Length);
+extern uint32_t I2CMasterBurstCountGet(uint32_t ui32Base);
+extern void I2CMasterGlitchFilterConfigSet(uint32_t ui32Base,
+                                           uint32_t ui32Config);
+extern void I2CSlaveFIFOEnable(uint32_t ui32Base, uint32_t ui32Config);
+extern void I2CSlaveFIFODisable(uint32_t ui32Base);
+extern _Bool I2CMasterBusBusy(uint32_t ui32Base);
+extern _Bool I2CMasterBusy(uint32_t ui32Base);
+extern void I2CMasterControl(uint32_t ui32Base, uint32_t ui32Cmd);
+extern uint32_t I2CMasterDataGet(uint32_t ui32Base);
+extern void I2CMasterDataPut(uint32_t ui32Base, uint8_t ui8Data);
+extern void I2CMasterDisable(uint32_t ui32Base);
+extern void I2CMasterEnable(uint32_t ui32Base);
+extern uint32_t I2CMasterErr(uint32_t ui32Base);
+extern void I2CMasterInitExpClk(uint32_t ui32Base, uint32_t ui32I2CClk,
+                                _Bool bFast);
+extern void I2CMasterIntClear(uint32_t ui32Base);
+extern void I2CMasterIntDisable(uint32_t ui32Base);
+extern void I2CMasterIntEnable(uint32_t ui32Base);
+extern _Bool I2CMasterIntStatus(uint32_t ui32Base, _Bool bMasked);
+extern void I2CMasterIntEnableEx(uint32_t ui32Base,
+                                 uint32_t ui32IntFlags);
+extern void I2CMasterIntDisableEx(uint32_t ui32Base,
+                                  uint32_t ui32IntFlags);
+extern uint32_t I2CMasterIntStatusEx(uint32_t ui32Base,
+                                       _Bool bMasked);
+extern void I2CMasterIntClearEx(uint32_t ui32Base,
+                                uint32_t ui32IntFlags);
+extern void I2CMasterTimeoutSet(uint32_t ui32Base, uint32_t ui32Value);
+extern void I2CSlaveACKOverride(uint32_t ui32Base, _Bool bEnable);
+extern void I2CSlaveACKValueSet(uint32_t ui32Base, _Bool bACK);
+extern uint32_t I2CMasterLineStateGet(uint32_t ui32Base);
+extern void I2CMasterSlaveAddrSet(uint32_t ui32Base,
+                                  uint8_t ui8SlaveAddr,
+                                  _Bool bReceive);
+extern uint32_t I2CSlaveDataGet(uint32_t ui32Base);
+extern void I2CSlaveDataPut(uint32_t ui32Base, uint8_t ui8Data);
+extern void I2CSlaveDisable(uint32_t ui32Base);
+extern void I2CSlaveEnable(uint32_t ui32Base);
+extern void I2CSlaveInit(uint32_t ui32Base, uint8_t ui8SlaveAddr);
+extern void I2CSlaveAddressSet(uint32_t ui32Base, uint8_t ui8AddrNum,
+                                 uint8_t ui8SlaveAddr);
+extern void I2CSlaveIntClear(uint32_t ui32Base);
+extern void I2CSlaveIntDisable(uint32_t ui32Base);
+extern void I2CSlaveIntEnable(uint32_t ui32Base);
+extern void I2CSlaveIntClearEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern void I2CSlaveIntDisableEx(uint32_t ui32Base,
+                                 uint32_t ui32IntFlags);
+extern void I2CSlaveIntEnableEx(uint32_t ui32Base, uint32_t ui32IntFlags);
+extern _Bool I2CSlaveIntStatus(uint32_t ui32Base, _Bool bMasked);
+extern uint32_t I2CSlaveIntStatusEx(uint32_t ui32Base,
+                                      _Bool bMasked);
+extern uint32_t I2CSlaveStatus(uint32_t ui32Base);
+
+
+
+
+
+
+
+
+
+
+#line 17 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/interrupt.h"
 
 
@@ -1523,7 +1747,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 17 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 18 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/comp.h"
 
 
@@ -1622,7 +1846,7 @@ extern void ComparatorIntClear(uint32_t ui32Base, uint32_t ui32Comp);
 
 
 
-#line 18 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 19 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/timer.h"
 
 
@@ -1855,7 +2079,7 @@ extern void TimerUpdateMode(uint32_t ui32Base, uint32_t ui32Timer,
 
 
 
-#line 19 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 20 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 #line 1 "modules\\interrupt_handler\\interrupt_handler.h"
@@ -1874,13 +2098,14 @@ void Int_Peripherials_Enable(void);
 
 
 
-#line 22 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 23 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
 
 
 
 
 
+void Motion_init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
@@ -1889,7 +2114,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 23 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 24 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
 
 
@@ -1899,7 +2124,21 @@ void Motion_calculate_direction(void);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 24 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 25 "modules\\interrupt_handler\\interrupt_handler.c"
+#line 1 ".\\modules\\i2c_handler\\i2c_handler.h"
+
+
+
+ 
+
+ 
+
+void I2C_Accelerometer_Init(void);
+unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
+void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
+
+
+#line 26 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
 unsigned long comp0_interrupt_flag = 0;	
@@ -1907,7 +2146,9 @@ unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	
 unsigned long Lx_LS_Value = 0;	
 unsigned long Rx_LS_Value = 0;	
-
+unsigned long X_acceleration = 0;
+unsigned long Y_acceleration = 0;
+unsigned long Z_acceleration = 0;
  
 void Int_Master_Enable(void)
 {
@@ -2025,6 +2266,25 @@ void ADC1Seq2_Handler(void)
 		Lx_LS_Value = Light;
 	}
 }
+
+void I2C0_Handler(void)
+{
+	unsigned long X_acc = 0, Y_acc = 0, Z_acc = 0;
+	if(I2CMasterIntStatus(0x40020000,0))
+	{
+		I2CMasterIntClear(0x40020000);
+		
+		
+		X_acc = I2C_Read((0x1D),(0x06));
+		Y_acc = I2C_Read((0x1D),(0x07));
+		Z_acc = I2C_Read((0x1D),(0x08));
+		
+		X_acceleration = X_acc;
+		Y_acceleration = Y_acc;
+		Z_acceleration = Z_acc;
+	}
+}
+
 
 
 

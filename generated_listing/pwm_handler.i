@@ -1783,13 +1783,13 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
 
 
 void PWM_motor_init(unsigned long PWM_Period);
-void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle);
 void PWM_right_motor_duty_cycle(unsigned long PWM_duty_cycle);
 void PWM_left_motor_duty_cycle(unsigned long PWM_duty_cycle);
-void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle);
-void PWM_motor_reverse_stop(void);;
 void PWM_Red_led_init(unsigned long PWM_Period);
 void PWM_Red_led_toggle(void);
+
+
+
 
 #line 20 "modules\\pwm_handler\\pwm_handler.c"
 
@@ -1895,7 +1895,7 @@ void PWM_Red_led_toggle(void)
 }
 
 void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, unsigned long PWM_Output, unsigned long PWM_duty_cycle)
-{
+{	
 	if(PWM_duty_cycle < 1)
 	{
 		PWM_duty_cycle = 1;
@@ -1908,7 +1908,7 @@ void PWM_set_duty_cycle(unsigned long PWM_Base, unsigned long PWM_Generator, uns
 }
 
 void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cycle)
-{
+{	
 	SysCtlPWMClockSet(0x00000000);							
 	SysCtlPeripheralEnable(0xf0004001);			
 	SysCtlPeripheralEnable(0xf0000803);		
@@ -1925,11 +1925,10 @@ void PWM_motor_reverse_init(unsigned long PWM_Period, unsigned short PWM_duty_cy
 	
 	PWMGenEnable(0x40029000, 0x00000040);							
 	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (1));	
-	
 }
 
 void PWM_motor_reverse_stop(void)
-{
+{	
 	SysCtlPeripheralDisable(0xf0000803);		
 	PWMGenDisable(0x40029000, 0x00000040);						
 	PWMOutputState(0x40029000, 0x00000001 | 0x00000002, (0));	

@@ -39,11 +39,10 @@
  
 
  
-#line 58 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
 
-
-
-
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
 
 #line 5 "modules\\lcd_handler\\lcd_handler.c"
 
@@ -119,7 +118,7 @@ typedef enum Led_State
  
 #line 6 ".\\modules\\gpio_handler\\gpio_handler.h"
  
-void GPIO_direction_switch_init(void);
+void GPIO_steering_switch_init(void);
 void GPIO_red_led_init(void);
 void GPIO_red_led_toggle(void);
 void GPIO_lcd_init(void);

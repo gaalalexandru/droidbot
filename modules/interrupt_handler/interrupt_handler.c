@@ -13,6 +13,7 @@
 #include "driverlib/adc.h"
 #include "driverlib/gpio.h"
 #include "driverlib/pin_map.h"
+#include "driverlib/i2c.h"
 #include "driverlib/interrupt.h"
 #include "driverlib/comp.h"
 #include "driverlib/timer.h"
@@ -21,14 +22,17 @@
 #include "interrupt_handler.h"
 #include "motion_handler.h"
 #include "cyclic_activity_handler.h"
+#include "i2c_handler.h"
 
 /*-------------Global Variable Definitions------------*/
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
 unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	//Central light sensor output 
 unsigned long Lx_LS_Value = 0;	//left light sensor output 
-unsigned long Rx_LS_Value = 0;	//roght light sensor output 
-
+unsigned long Rx_LS_Value = 0;	//right light sensor output 
+unsigned long X_acceleration = 0;
+unsigned long Y_acceleration = 0;
+unsigned long Z_acceleration = 0;
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {
@@ -146,6 +150,25 @@ void ADC1Seq2_Handler(void)		//ADC1 Seq2 ISR
 		Lx_LS_Value = Light;
 	}
 }
+
+void I2C0_Handler(void)
+{
+	unsigned long X_acc = 0, Y_acc = 0, Z_acc = 0;
+	if(I2CMasterIntStatus(I2C0_BASE,false))
+	{
+		I2CMasterIntClear(I2C0_BASE);
+		//Perform a read from I2C
+		
+		X_acc = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
+		Y_acc = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
+		Z_acc = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
+		
+		X_acceleration = X_acc;
+		Y_acceleration = Y_acc;
+		Z_acceleration = Z_acc;
+	}
+}
+
 //EOF
 
 

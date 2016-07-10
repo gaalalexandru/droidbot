@@ -23,6 +23,12 @@ extern unsigned long Rx_LS_Value;		//Right light sensor output
 extern unsigned long Lx_LS_Value;			//Left light sensor output
 
 /*-------------------Function Definitions-------------*/
+void Motion_init(void)
+{
+	GPIO_steering_switch_init();	//Initialize GPIO input
+	GPIO_motor_direction_init();	//Initialize GPIO output to select motor direction
+	PWM_motor_init(1000);					//Initialize PWM for motors forward
+}
 void Motion_Go_Left(void)
 {
 	GPIO_motor_direction_select(FWD);

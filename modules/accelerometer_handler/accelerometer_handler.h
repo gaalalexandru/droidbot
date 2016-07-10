@@ -9,7 +9,7 @@
 /*-------------------Driver Includes-----------------*/
 
 /*-------------------HW define Includes--------------*/
-void accelerometer_init(void);
+void Accelerometer_init(void);
 #endif
 
 //EOF
