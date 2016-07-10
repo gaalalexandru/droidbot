@@ -183,9 +183,12 @@ void TIMER_delay_No_Int(unsigned long delay_time_ms);
 extern unsigned long comp0_interrupt_flag;	
 motor_parameters_st motor_parameters;	
 
-extern unsigned long Mx_LS_Value;	
+extern unsigned long Mx_LS_Value;		
 extern unsigned long Rx_LS_Value;		
-extern unsigned long Lx_LS_Value;			
+extern unsigned long Lx_LS_Value;		
+extern unsigned long X_acceleration;
+extern unsigned long Y_acceleration;
+extern unsigned long Z_acceleration;
 
  
 void Motion_init(void)
@@ -326,5 +329,8 @@ void Motion_calculate_direction(void)
 		Motion_Stop();
 		Go_Fwd_Counter = 0;
 	}
+	if (X_acceleration > 10) Motion_Go_Left();
+	if (Y_acceleration > 10) Motion_Go_Right();
+	if (Z_acceleration > 10) Motion_Cruise();
 }
 

@@ -30,9 +30,10 @@ unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	//Central light sensor output 
 unsigned long Lx_LS_Value = 0;	//left light sensor output 
 unsigned long Rx_LS_Value = 0;	//right light sensor output 
-unsigned long X_acceleration = 0;
-unsigned long Y_acceleration = 0;
-unsigned long Z_acceleration = 0;
+unsigned long X_acceleration = 0;	//X acceleration 8 bit value
+unsigned long Y_acceleration = 0;	//Y acceleration 8 bit value
+unsigned long Z_acceleration = 0;	//Z acceleration 8 bit value
+
 /*-------------------Function Definitions-------------*/
 void Int_Master_Enable(void)
 {

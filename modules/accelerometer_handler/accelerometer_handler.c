@@ -24,5 +24,16 @@ void Accelerometer_init(void)
 	GPIO_accelerometer_CS_init();
 	GPIO_accelerometer_CS_select(CS_I2C);
 	I2C_Accelerometer_Init();
+	
+	I2C_Write(Acc_Slave_Adress,0x16,0x05); //try 0x16, 0x15
 }
+/*
+	      self.b.write_byte_data(0x1D,0x16,0x16) # Setup the Mode
+        self.b.write_byte_data(0x1D,0x10,0) # Calibrate
+        self.b.write_byte_data(0x1D,0x11,0) # Calibrate
+        self.b.write_byte_data(0x1D,0x12,0) # Calibrate
+        self.b.write_byte_data(0x1D,0x13,0) # Calibrate
+        self.b.write_byte_data(0x1D,0x14,0) # Calibrate
+        self.b.write_byte_data(0x1D,0x15,0) # Calibrate
+	*/
 //EOF

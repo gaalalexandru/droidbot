@@ -18,9 +18,12 @@
 extern unsigned long comp0_interrupt_flag;	//Global variable used to measure in debugger time till backwards motion is active
 motor_parameters_st motor_parameters;	//Global structure variable for motor parameters
 // motor_direction;		//0 - stop, 1 - forward left, 2 - forward right, 3 - forward straight, 4 - backward
-extern unsigned long Mx_LS_Value;	//Central light sensor output
+extern unsigned long Mx_LS_Value;		//Central light sensor output
 extern unsigned long Rx_LS_Value;		//Right light sensor output
-extern unsigned long Lx_LS_Value;			//Left light sensor output
+extern unsigned long Lx_LS_Value;		//Left light sensor output
+extern unsigned long X_acceleration;//X acceleration 8 bit value
+extern unsigned long Y_acceleration;//Y acceleration 8 bit value
+extern unsigned long Z_acceleration;//Z acceleration 8 bit value
 
 /*-------------------Function Definitions-------------*/
 void Motion_init(void)
@@ -161,5 +164,8 @@ void Motion_calculate_direction(void)
 		Motion_Stop();
 		Go_Fwd_Counter = 0;
 	}
+	if (X_acceleration > 10) Motion_Go_Left();
+	if (Y_acceleration > 10) Motion_Go_Right();
+	if (Z_acceleration > 10) Motion_Cruise();
 }
 //EOF

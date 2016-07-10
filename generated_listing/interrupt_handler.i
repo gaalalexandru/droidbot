@@ -2133,10 +2133,10 @@ void CYCL_50_milisecond(void);
 
  
 
-void I2C_Accelerometer_Init(void);
+void I2C_Master_Wait(void);
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
 void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
-
+void I2C_Accelerometer_Init(void);
 
 #line 26 "modules\\interrupt_handler\\interrupt_handler.c"
 
@@ -2146,9 +2146,10 @@ unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	
 unsigned long Lx_LS_Value = 0;	
 unsigned long Rx_LS_Value = 0;	
-unsigned long X_acceleration = 0;
-unsigned long Y_acceleration = 0;
-unsigned long Z_acceleration = 0;
+unsigned long X_acceleration = 0;	
+unsigned long Y_acceleration = 0;	
+unsigned long Z_acceleration = 0;	
+
  
 void Int_Master_Enable(void)
 {

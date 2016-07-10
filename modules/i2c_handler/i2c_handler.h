@@ -5,8 +5,8 @@
 
 /*-------------------Function Definitions-------------*/
 #endif
-void I2C_Accelerometer_Init(void);
+void I2C_Master_Wait(void);
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
 void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
-
+void I2C_Accelerometer_Init(void);
 //EOF
