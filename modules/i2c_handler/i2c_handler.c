@@ -21,33 +21,61 @@
 /*-------------------HW define Includes--------------*/
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
-
+void I2C_Master_Wait(void)
+{
+	while(I2CMasterBusy(I2C0_BASE));
+}
 void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value)
 {	
-	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode
+	unsigned char error_nr = 0;
 	
-	I2CMasterDataPut(I2C0_BASE, 0);	//Send a 0 to the Slave device
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
-		
+	//Step 1. Set Slave adress and Write mode (R/W bit = 0)
+	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode
+	I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
+
+	//Step 2. Send the 8bit register adress to write to
 	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+	I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
 	
+	//Step 3. Send data to write on register
 	I2CMasterDataPut(I2C0_BASE, Register_Value);	//Send the register value to the Slave device
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+	I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
 }
 
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address)
 {
+	unsigned char error_nr = 0;
 	unsigned long Read_Value = 0;
-	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Rx_Slave_Tx);	//Set slave address and send mode	
 	
-	I2CMasterDataPut(I2C0_BASE, 0);	//Send a 0 to the Slave device
+	//Step 1. Set Slave adress and Write mode (R/W bit = 0)
+	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode	
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
-		
+	//I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
+	
+	//Step 2. Send the 8bit register adress to read
 	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+	I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
 	
-	return Read_Value;
+	//Step 3. Set Read mode (R/W bit = 1)
+	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Rx_Slave_Tx);
+	I2C_Master_Wait();
+	error_nr = I2CMasterErr(I2C0_BASE);
+	
+	Read_Value = I2CMasterDataGet(I2C0_BASE);
+	
+	if(I2CMasterErr(I2C0_BASE) == 0)
+	{
+		return Read_Value;
+	}
+	return 0;
 }
 void I2C_Accelerometer_Init(void)
 {
@@ -77,31 +105,5 @@ void I2C_Accelerometer_Init(void)
 	
 	IntPrioritySet(INT_I2C0,(Int_Prio_Acc_Sens)<<5);
 	IntEnable(INT_I2C0);
-	/*
-	      self.b.write_byte_data(0x1D,0x16,0x55) # Setup the Mode
-        self.b.write_byte_data(0x1D,0x10,0) # Calibrate
-        self.b.write_byte_data(0x1D,0x11,0) # Calibrate
-        self.b.write_byte_data(0x1D,0x12,0) # Calibrate
-        self.b.write_byte_data(0x1D,0x13,0) # Calibrate
-        self.b.write_byte_data(0x1D,0x14,0) # Calibrate
-        self.b.write_byte_data(0x1D,0x15,0) # Calibrate
-	*/
-	//I2C_Busy = I2CMasterBusBusy(I2C0_BASE);	//True if I2C bus is busy, False if not
-	//I2CMasterBusy(I2C0_BASE);
-	/*
-	The next command available for I2CMasterControl:
-		I2C_MASTER_CMD_SINGLE_SEND
-		I2C_MASTER_CMD_SINGLE_RECEIVE
-		I2C_MASTER_CMD_BURST_SEND_START
-		I2C_MASTER_CMD_BURST_SEND_CONT
-		I2C_MASTER_CMD_BURST_SEND_FINISH
-		I2C_MASTER_CMD_BURST_SEND_ERROR_STOP
-		I2C_MASTER_CMD_BURST_RECEIVE_START
-		I2C_MASTER_CMD_BURST_RECEIVE_CONT
-		I2C_MASTER_CMD_BURST_RECEIVE_FINISH
-		I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP
-		I2C_MASTER_CMD_QUICK_COMMAND
-		I2C_MASTER_CMD_HS_MASTER_CODE_SEND
-	*/
 }
 //EOF
