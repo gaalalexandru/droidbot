@@ -329,8 +329,8 @@ void Motion_calculate_direction(void)
 		Motion_Stop();
 		Go_Fwd_Counter = 0;
 	}
-	if (X_acceleration > 10) Motion_Go_Left();
-	if (Y_acceleration > 10) Motion_Go_Right();
-	if (Z_acceleration > 10) Motion_Cruise();
+	if (X_acceleration > 50) Motion_Go_Left();
+	if (Y_acceleration > 50) Motion_Go_Right();
+	if (Z_acceleration > 50) Motion_Cruise();
 }
 

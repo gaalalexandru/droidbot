@@ -1,6 +1,51 @@
 #line 1 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
 
+
+ 
+#line 1 ".\\modules\\compile_switches\\compile_switches.c"
+
+
+
+
+
+#line 12 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+#line 20 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+
+
+ 
+#line 33 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 59 ".\\modules\\compile_switches\\compile_switches.c"
+
+ 
+#line 69 ".\\modules\\compile_switches\\compile_switches.c"
+
+#line 6 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
  
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
  
@@ -20,7 +65,7 @@
 
 
 
-#line 5 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 8 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
  
  
@@ -246,7 +291,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 6 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 9 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
@@ -310,7 +355,7 @@ typedef unsigned       __int64 uintmax_t;
                                             
 #line 150 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
 
-#line 9 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 12 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
@@ -445,6 +490,9 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
+
+ 
+
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -524,7 +572,7 @@ extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
 
 
 
-#line 12 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 15 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
 
 
@@ -690,8 +738,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 
 
-#line 13 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
-
+#line 16 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 #line 1 "modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
@@ -703,7 +750,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 void CYCL_1_second(void);
 void CYCL_50_milisecond(void);
 
-#line 17 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 19 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 #line 1 ".\\modules\\motion_handler\\motion_handler.h"
@@ -721,7 +768,7 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_calculate_direction(void);
 
-#line 20 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 22 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -737,7 +784,7 @@ void PWM_Red_led_toggle(void);
 
 
 
-#line 21 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 23 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\printing_handler\\printing_handler.h"
 
 
@@ -810,11 +857,29 @@ void Print_Welcome_Image(void);
 void Print_Motor_Parameters(void);
 
 
-#line 22 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 24 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
+#line 1 ".\\modules\\i2c_handler\\i2c_handler.h"
+
+
+
+ 
+
+ 
+
+void I2C_Master_Wait(void);
+unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
+void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
+void I2C_Accelerometer_Init(void);
+
+#line 25 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
 extern char print_flag;
 
+extern unsigned long X_acceleration;
+extern unsigned long Y_acceleration;
+extern unsigned long Z_acceleration;
+extern unsigned char I2C_Init_Flag;
  
 static unsigned char startup_image = 1;
 
@@ -823,6 +888,7 @@ void CYCL_1_second(void)
 {
 
 	static unsigned char counter = 0;
+
 	if (counter <=2)
 	{
 		Print_Welcome_Image();
@@ -865,11 +931,18 @@ void CYCL_50_milisecond(void)
 		ADCProcessorTrigger(0x40039000, 0);	
 		ADCProcessorTrigger(0x40039000, 1);	
 		ADCProcessorTrigger(0x40039000, 2);	
+		if (I2C_Init_Flag)
+		{
+			X_acceleration = I2C_Read((0x1D),(0x06));
+			Y_acceleration = I2C_Read((0x1D),(0x07));
+			Z_acceleration = I2C_Read((0x1D),(0x08));
+		}
 	}
 	if((counter%5)==0)
 	{
 		
 		Motion_calculate_direction();
+
 	}
 	if((counter%10)==0)
 	{

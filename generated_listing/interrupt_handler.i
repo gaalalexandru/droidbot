@@ -489,6 +489,9 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
+
+ 
+
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -2268,23 +2271,23 @@ void ADC1Seq2_Handler(void)
 	}
 }
 
-void I2C0_Handler(void)
-{
-	unsigned long X_acc = 0, Y_acc = 0, Z_acc = 0;
-	if(I2CMasterIntStatus(0x40020000,0))
-	{
-		I2CMasterIntClear(0x40020000);
-		
-		
-		X_acc = I2C_Read((0x1D),(0x06));
-		Y_acc = I2C_Read((0x1D),(0x07));
-		Z_acc = I2C_Read((0x1D),(0x08));
-		
-		X_acceleration = X_acc;
-		Y_acceleration = Y_acc;
-		Z_acceleration = Z_acc;
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 

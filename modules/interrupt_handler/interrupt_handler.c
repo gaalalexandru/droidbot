@@ -152,7 +152,7 @@ void ADC1Seq2_Handler(void)		//ADC1 Seq2 ISR
 	}
 }
 
-void I2C0_Handler(void)
+/*void I2C0_Handler(void)
 {
 	unsigned long X_acc = 0, Y_acc = 0, Z_acc = 0;
 	if(I2CMasterIntStatus(I2C0_BASE,false))
@@ -160,15 +160,15 @@ void I2C0_Handler(void)
 		I2CMasterIntClear(I2C0_BASE);
 		//Perform a read from I2C
 		
-		X_acc = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
-		Y_acc = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
-		Z_acc = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
+		//X_acc = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
+		//Y_acc = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
+		//Z_acc = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
 		
-		X_acceleration = X_acc;
-		Y_acceleration = Y_acc;
-		Z_acceleration = Z_acc;
+		//X_acceleration = X_acc;
+		//Y_acceleration = Y_acc;
+		//Z_acceleration = Z_acc;
 	}
-}
+}*/
 
 //EOF
 

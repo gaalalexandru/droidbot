@@ -1,5 +1,8 @@
 //cyclic_activity_handler.c
 //Application layer
+
+/*-------------------Configuration Includes-----------*/
+#include "compile_switches.c"
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
 #include "stdint.h"
@@ -10,7 +13,6 @@
 /*-------------------Driver Includes-----------------*/
 #include "driverlib/adc.h"
 #include "driverlib/gpio.h"
-//#include "driverlib/pin_map.h"
 
 /*------Export interface---Self header Includes------*/
 #include "cyclic_activity_handler.h"
@@ -19,10 +21,15 @@
 #include "motion_handler.h"
 #include "pwm_handler.h"
 #include "printing_handler.h"
+#include "i2c_handler.h"
 
 /*-------------Global Variable Definitions------------*/
 extern char print_flag;
 
+extern unsigned long X_acceleration;//X acceleration 8 bit value
+extern unsigned long Y_acceleration;//Y acceleration 8 bit value
+extern unsigned long Z_acceleration;//Z acceleration 8 bit value
+extern unsigned char I2C_Init_Flag;
 /*-------------Local Variable Definitions-------------*/
 static unsigned char startup_image = 1;
 
@@ -31,6 +38,7 @@ void CYCL_1_second(void)	//Fucntion container, with everything that executes at 
 {
 
 	static unsigned char counter = 0;
+
 	if (counter <=2)
 	{
 		Print_Welcome_Image();
@@ -73,11 +81,18 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 		ADCProcessorTrigger(ADC1_BASE, 0);	//Trigger Light sensor ADC
 		ADCProcessorTrigger(ADC1_BASE, 1);	//Trigger Light sensor ADC
 		ADCProcessorTrigger(ADC1_BASE, 2);	//Trigger Light sensor ADC
+		if (I2C_Init_Flag)
+		{
+			X_acceleration = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
+			Y_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
+			Z_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
+		}
 	}
 	if((counter%5)==0)
 	{
 		//Code that runs only every 250 ms
 		Motion_calculate_direction();
+
 	}
 	if((counter%10)==0)
 	{

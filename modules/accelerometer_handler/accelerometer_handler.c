@@ -19,6 +19,8 @@
 #define CS_SPI            	(0)			//Communication with accelerometer through SPI
 #define CS_I2C              (1)			//Communication with accelerometer through I2C
 
+unsigned char I2C_Init_Flag = 0;
+
 void Accelerometer_init(void)
 {
 	GPIO_accelerometer_CS_init();
@@ -26,6 +28,13 @@ void Accelerometer_init(void)
 	I2C_Accelerometer_Init();
 	
 	I2C_Write(Acc_Slave_Adress,0x16,0x05); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x10,0); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x11,0); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x12,0); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x13,0); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x14,0); //try 0x16, 0x15
+	I2C_Write(Acc_Slave_Adress,0x15,0); //try 0x16, 0x15
+	I2C_Init_Flag = 1;
 }
 /*
 	      self.b.write_byte_data(0x1D,0x16,0x16) # Setup the Mode
