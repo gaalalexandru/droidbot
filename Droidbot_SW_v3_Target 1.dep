@@ -2,7 +2,7 @@ Dependencies for Project 'Droidbot_SW_v3', Target 'Target 1': (DO NOT MODIFY !)
 F (.\startup_new.s)(0x57336A37)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123--list .\generated_listing\startup_new.lst --xref -o .\generated_output\startup_new.o --depend .\generated_output\startup_new.d)
 F (.\main.c)(0x577E2909)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\main.o --omf_browse .\generated_output\main.crf --depend .\generated_output\main.d)
 I (.\modules\motion_handler\motion_handler.h)(0x578353BC)
-I (.\modules\system_handler\system_handler.h)(0x577F9C97)
+I (.\modules\system_handler\system_handler.h)(0x5784E9DF)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
@@ -29,7 +29,7 @@ I (..\TivaWare_C_Series-2.1.1.71\driverlib/interrupt.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/pin_map.h)(0x566AB9E8)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
 I (modules\comparator_handler\comparator_handler.h)(0x57336A37)
-F (.\modules\cyclic_activity_handler\cyclic_activity_handler.c)(0x5783BBBE)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\cyclic_activity_handler.o --omf_browse .\generated_output\cyclic_activity_handler.crf --depend .\generated_output\cyclic_activity_handler.d)
+F (.\modules\cyclic_activity_handler\cyclic_activity_handler.c)(0x5784ACD9)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\cyclic_activity_handler.o --omf_browse .\generated_output\cyclic_activity_handler.crf --depend .\generated_output\cyclic_activity_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
@@ -41,8 +41,8 @@ I (.\modules\motion_handler\motion_handler.h)(0x578353BC)
 I (.\modules\pwm_handler\pwm_handler.h)(0x578353BC)
 I (.\modules\printing_handler\printing_handler.h)(0x577B6693)
 I (.\modules\custom_types\custom_types.h)(0x577B6693)
-I (.\modules\i2c_handler\i2c_handler.h)(0x578353BC)
-F (.\modules\gpio_handler\gpio_handler.c)(0x578353BC)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\gpio_handler.o --omf_browse .\generated_output\gpio_handler.crf --depend .\generated_output\gpio_handler.d)
+I (.\modules\i2c_handler\i2c_handler.h)(0x5784BD65)
+F (.\modules\gpio_handler\gpio_handler.c)(0x5784E972)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\gpio_handler.o --omf_browse .\generated_output\gpio_handler.crf --depend .\generated_output\gpio_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
@@ -69,7 +69,7 @@ I (..\TivaWare_C_Series-2.1.1.71\driverlib/timer.h)(0x5648F588)
 I (modules\interrupt_handler\interrupt_handler.h)(0x57336A37)
 I (.\modules\motion_handler\motion_handler.h)(0x578353BC)
 I (.\modules\cyclic_activity_handler\cyclic_activity_handler.h)(0x57336A37)
-I (.\modules\i2c_handler\i2c_handler.h)(0x578353BC)
+I (.\modules\i2c_handler\i2c_handler.h)(0x5784BD65)
 F (.\modules\lcd_handler\lcd_handler.c)(0x577E2939)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\lcd_handler.o --omf_browse .\generated_output\lcd_handler.crf --depend .\generated_output\lcd_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (.\modules\custom_types\custom_types.h)(0x577B6693)
@@ -79,7 +79,7 @@ I (.\modules\timer_handler\timer_handler.h)(0x57336A37)
 I (.\modules\resources\resources.h)(0x57336C22)
 I (modules\lcd_handler\lcd_handler.h)(0x57336B70)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
-F (.\modules\motion_handler\motion_handler.c)(0x5783B48A)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\motion_handler.o --omf_browse .\generated_output\motion_handler.crf --depend .\generated_output\motion_handler.d)
+F (.\modules\motion_handler\motion_handler.c)(0x5784ACFE)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\motion_handler.o --omf_browse .\generated_output\motion_handler.crf --depend .\generated_output\motion_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (.\modules\custom_types\custom_types.h)(0x577B6693)
 I (modules\motion_handler\motion_handler.h)(0x578353BC)
@@ -110,14 +110,14 @@ I (..\TivaWare_C_Series-2.1.1.71\driverlib/gpio.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/pin_map.h)(0x566AB9E8)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/ssi.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
-I (.\modules\system_handler\system_handler.h)(0x577F9C97)
+I (.\modules\system_handler\system_handler.h)(0x5784E9DF)
 I (modules\ssi_handler\ssi_handler.h)(0x57336A37)
 F (.\modules\system_handler\system_handler.c)(0x5783652A)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\system_handler.o --omf_browse .\generated_output\system_handler.crf --depend .\generated_output\system_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
-I (modules\system_handler\system_handler.h)(0x577F9C97)
+I (modules\system_handler\system_handler.h)(0x5784E9DF)
 I (.\modules\adc_handler\adc_handler.h)(0x57336A37)
 I (.\modules\comparator_handler\comparator_handler.h)(0x57336A37)
 I (.\modules\gpio_handler\gpio_handler.h)(0x578353BC)
@@ -140,13 +140,13 @@ I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/timer.h)(0x5648F588)
 I (modules\timer_handler\timer_handler.h)(0x57336A37)
 I (.\modules\interrupt_handler\interrupt_handler.h)(0x57336A37)
-I (.\modules\system_handler\system_handler.h)(0x577F9C97)
-F (.\modules\i2c_handler\i2c_handler.c)(0x5783BCF0)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\i2c_handler.o --omf_browse .\generated_output\i2c_handler.crf --depend .\generated_output\i2c_handler.d)
+I (.\modules\system_handler\system_handler.h)(0x5784E9DF)
+F (.\modules\i2c_handler\i2c_handler.c)(0x5784EB05)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\i2c_handler.o --omf_browse .\generated_output\i2c_handler.crf --depend .\generated_output\i2c_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (C:\Keil\ARM\ARMCC\include\stdbool.h)(0x51C80BA4)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C80BA4)
-I (modules\i2c_handler\i2c_handler.h)(0x578353BC)
-I (.\modules\system_handler\system_handler.h)(0x577F9C97)
+I (modules\i2c_handler\i2c_handler.h)(0x5784BD65)
+I (.\modules\system_handler\system_handler.h)(0x5784E9DF)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/i2c.h)(0x5648F588)
 I (..\TivaWare_C_Series-2.1.1.71\driverlib/interrupt.h)(0x5648F588)
@@ -156,11 +156,12 @@ I (..\TivaWare_C_Series-2.1.1.71\inc/hw_memmap.h)(0x5710DA4C)
 I (..\TivaWare_C_Series-2.1.1.71\inc/hw_ints.h)(0x5648F5DD)
 I (..\TivaWare_C_Series-2.1.1.71\inc/hw_i2c.h)(0x5648F5DD)
 I (..\TivaWare_C_Series-2.1.1.71\inc/hw_types.h)(0x5648F5DD)
-F (.\modules\accelerometer_handler\accelerometer_handler.c)(0x5783BB8E)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\accelerometer_handler.o --omf_browse .\generated_output\accelerometer_handler.crf --depend .\generated_output\accelerometer_handler.d)
+F (.\modules\accelerometer_handler\accelerometer_handler.c)(0x5784EA26)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\accelerometer_handler.o --omf_browse .\generated_output\accelerometer_handler.crf --depend .\generated_output\accelerometer_handler.d)
 I (.\modules\compile_switches\compile_switches.c)(0x578353BC)
 I (.\modules\custom_types\custom_types.h)(0x577B6693)
 I (.\modules\gpio_handler\gpio_handler.h)(0x578353BC)
-I (.\modules\i2c_handler\i2c_handler.h)(0x578353BC)
+I (.\modules\i2c_handler\i2c_handler.h)(0x5784BD65)
+I (.\modules\motion_handler\motion_handler.h)(0x578353BC)
 I (modules\accelerometer_handler\accelerometer_handler.h)(0x578353BC)
 F (..\TivaWare_C_Series-2.1.1.71\driverlib\rvmdk\driverlib.lib)(0x5654628E)()
 F (.\modules\compile_switches\compile_switches.c)(0x578353BC)(-c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --signed_chars -I.\modules\pwm_handler -I.\modules\compile_switches -I.\modules\motion_handler -I..\TivaWare_C_Series-2.1.1.71 -I.\modules\interrupt_handler -I.\modules\comparator_handler -I.\modules\gpio_handler -I.\modules\timer_handler -I.\modules\cyclic_activity_handler -I.\modules\lcd_handler -I.\3rd_pty_drv -I.\modules\custom_types -I.\modules\printing_handler -I.\modules\ssi_handler -I.\modules\system_handler -I.\modules\resources -I.\modules\adc_handler -I.\modules\accelerometer_handler -I.\modules\i2c_handler-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\TI\TM4C123-Drvmdk -DPART_TM4C123GH6PM -DTARGET_IS_TM4C123_RA1 -DTM4C123GH6PM-o .\generated_output\compile_switches.o --omf_browse .\generated_output\compile_switches.crf --depend .\generated_output\compile_switches.d)

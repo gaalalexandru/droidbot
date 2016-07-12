@@ -102,7 +102,8 @@ void Motion_Go_Back(void)
 
 void Motion_calculate_direction(void)
 {
-//							Delta-------------Condition--------------------True--------------------------False----------------------
+	/*
+	//							Delta-------------Condition--------------------True--------------------------False----------------------
 	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
 	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
 	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
@@ -167,5 +168,6 @@ void Motion_calculate_direction(void)
 	if (X_acceleration > 50) Motion_Go_Left();
 	if (Y_acceleration > 50) Motion_Go_Right();
 	if (Z_acceleration > 50) Motion_Cruise();
+	*/
 }
 //EOF

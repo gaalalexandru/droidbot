@@ -1893,7 +1893,7 @@ void GPIO_accelerometer_CS_init(void)
 	SysCtlPeripheralEnable(0xf0000804);												
 	GPIOPinTypeGPIOOutput(0x40024000, 0x00000001);									
 	GPIODirModeSet(0x40024000, 0x00000001, 0x00000001);			
-	GPIOPadConfigSet(0x40024000, 0x00000001, 0x00000001,0x0000000C); 
+	GPIOPadConfigSet(0x40024000, 0x00000001, 0x00000001,0x0000000A); 
 }
 
 void GPIO_accelerometer_CS_select(unsigned char CS)

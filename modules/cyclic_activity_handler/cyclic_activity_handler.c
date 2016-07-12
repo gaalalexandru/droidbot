@@ -83,9 +83,9 @@ void CYCL_50_milisecond(void)	//Fucntion container, with everything that execute
 		ADCProcessorTrigger(ADC1_BASE, 2);	//Trigger Light sensor ADC
 		if (I2C_Init_Flag)
 		{
-			X_acceleration = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
-			Y_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
-			Z_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
+			//X_acceleration = I2C_Read(Acc_Slave_Adress,Acc_X8bit_Reg_Adress);
+			//Y_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Y8bit_Reg_Adress);
+			//Z_acceleration = I2C_Read(Acc_Slave_Adress,Acc_Z8bit_Reg_Adress);
 		}
 	}
 	if((counter%5)==0)

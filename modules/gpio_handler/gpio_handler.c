@@ -115,7 +115,7 @@ void GPIO_accelerometer_CS_init(void)
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);												//Enable clock on port E
 	GPIOPinTypeGPIOOutput(GPIO_PORTE_BASE, GPIO_PIN_0);									//Set PE0 - CS
 	GPIODirModeSet(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_DIR_MODE_OUT);			//Set direction Output for PE0
-	GPIOPadConfigSet(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPD); //Configure PE0
+	GPIOPadConfigSet(GPIO_PORTE_BASE, GPIO_PIN_0, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); //Configure PE0
 }
 
 void GPIO_accelerometer_CS_select(unsigned char CS)

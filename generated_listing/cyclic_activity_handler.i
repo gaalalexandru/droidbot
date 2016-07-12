@@ -868,7 +868,7 @@ void Print_Motor_Parameters(void);
 
 void I2C_Master_Wait(void);
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
-void I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
+unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
 void I2C_Accelerometer_Init(void);
 
 #line 25 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
@@ -933,9 +933,9 @@ void CYCL_50_milisecond(void)
 		ADCProcessorTrigger(0x40039000, 2);	
 		if (I2C_Init_Flag)
 		{
-			X_acceleration = I2C_Read((0x1D),(0x06));
-			Y_acceleration = I2C_Read((0x1D),(0x07));
-			Z_acceleration = I2C_Read((0x1D),(0x08));
+			
+			
+			
 		}
 	}
 	if((counter%5)==0)

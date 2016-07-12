@@ -267,70 +267,72 @@ void Motion_Go_Back(void)
 
 void Motion_calculate_direction(void)
 {
+	
 
-	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
-	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
-	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
-	static unsigned char Go_Fwd_Counter = 0;	
-	
-	
-	if((Rx_Lx_LS_Delta < (120))&&	
-		 (Rx_Mx_LS_Delta > (120))&&	
-		 (Rx_Mx_LS_Delta > (120))&&
-		 (Rx_LS_Value > (Mx_LS_Value + (120)))&&	
-		 (Lx_LS_Value > (Mx_LS_Value + (120))))	
-	{
-		
-		if(Go_Fwd_Counter < (100))
-		{
-			Motion_Cruise();		
-			if(Go_Fwd_Counter < 254)
-			{
-				Go_Fwd_Counter++;
-			}
-			else
-			{
-				Go_Fwd_Counter = (100);
-			}
-		}
-		else
-		{
-			Motion_Max_Speed(); 
-		}					
-	}
-	
-	else if ((Rx_Lx_LS_Delta > (120))&&	
-					 (Rx_Mx_LS_Delta > (120))&&	
-					 (Rx_LS_Value > (Lx_LS_Value + (120)))&&	
-					 (Rx_LS_Value > (Mx_LS_Value + (120))))	
-	{
-		
-		Motion_Go_Right();
-		Go_Fwd_Counter = 0;
-	}
-	
-	else if((Rx_Lx_LS_Delta > (120))&&	
-					(Lx_Mx_LS_Delta > (120))&&	
-					(Lx_LS_Value > (Rx_LS_Value + (120)))&&	
-					(Lx_LS_Value > (Mx_LS_Value + (120))))		
-	{
-		
-		Motion_Go_Left();
-		Go_Fwd_Counter = 0;		
-	}
-	
-	
-	
-	
-	
-	else
-	{
-		
-		Motion_Stop();
-		Go_Fwd_Counter = 0;
-	}
-	if (X_acceleration > 50) Motion_Go_Left();
-	if (Y_acceleration > 50) Motion_Go_Right();
-	if (Z_acceleration > 50) Motion_Cruise();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 }
 
