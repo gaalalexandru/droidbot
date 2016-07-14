@@ -1633,11 +1633,14 @@ void SYS_startup(void);
 
 
 void SSI_lcd_init(void);
-void SSI_lcd_write(unsigned char message);
+void SSI_shift_register_init(void);
+void SSI_write(unsigned char message);
 
 #line 22 "modules\\ssi_handler\\ssi_handler.c"
 
  
+
+
 
 
 
@@ -1660,15 +1663,32 @@ void SSI_lcd_init(void)
 	SSIClockSourceSet(0x40008000, 0x00000000);	
 	
 	
-	input_clock1 = SSIClockSourceGet(0x40008000);		
-	input_clock = SysCtlClockGet(); 										
 	
 	
-	SSIConfigSetExpClk(0x40008000, input_clock, 0x00000000, 0x00000000, (3125000) ,(8));
+	SSIConfigSetExpClk(0x40008000, SysCtlClockGet(), 0x00000000, 0x00000000, (3125000) ,(8));
 	SSIEnable(0x40008000);				
 }
 
-void SSI_lcd_write(unsigned char message)
+void SSI_shift_register_init(void)
+{
+	SysCtlPeripheralEnable(0xf0001c00);		
+	SysCtlPeripheralEnable(0xf0000803);	
+	
+	SSIDisable(0x4000B000);												
+	GPIOPinConfigure(0x00030001);		
+	GPIOPinConfigure(0x00030401);		
+	GPIOPinConfigure(0x00030801);		
+	GPIOPinConfigure(0x00030C01);		
+	
+	SSIClockSourceSet(0x4000B000, 0x00000000);	
+	
+	
+	
+	
+}
+
+void SSI_write(unsigned char message)
 {
 	SSIDataPut(0x40008000,message);
 }
+

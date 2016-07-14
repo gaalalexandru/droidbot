@@ -1,5 +1,5 @@
 //lcd_handler.h
-//Service layer
+//Application layer
 #ifndef LCD_HDL
 #define LCD_HDL
 /*-------------------Type Includes-------------------*/

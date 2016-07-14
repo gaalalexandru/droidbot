@@ -23,6 +23,8 @@
 /*-------------------Macro Definitions----------------*/
 #define LCD_DataRate		(3125000)
 #define LCD_DataWidth		(8)
+#define Shift_Register_DataRate		(xyz)
+#define Shift_Register_DataWidth	(xyz)
 
 /*-------------------Function Definitions-------------*/
 void SSI_lcd_init(void)
@@ -33,7 +35,7 @@ void SSI_lcd_init(void)
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI0);		//SSI 0 enable 
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);	//Port A enable
 	
-	SSIDisable(SSI0_BASE);												 //Disable SSI
+	SSIDisable(SSI0_BASE);												 //Disable SSI0
 
 	GPIOPinConfigure(GPIO_PA2_SSI0CLK);		//PA2 - Clock
 	GPIOPinConfigure(GPIO_PA3_SSI0FSS);		//PA3 - Slave Select
@@ -42,16 +44,33 @@ void SSI_lcd_init(void)
 	
 	SSIClockSourceSet(SSI0_BASE, SSI_CLOCK_SYSTEM);	// Set the SSI clock source
 	//SSI_CLOCK_SYSTEM for system clock, SSI_CLOCK_PIOSC for PIOSC precision internal oscilator
-	
-	input_clock1 = SSIClockSourceGet(SSI0_BASE);		// Get the clock source of the SSI, NOT the clock speed
-	input_clock = SYS_clock_get; 										// Get system Clock				FOR THE MOMENT IS 13.33 MHz
+	//input_clock1 = SSIClockSourceGet(SSI0_BASE);		// Get the clock source of the SSI, NOT the clock speed
 	
 	//Peripherial base, Input clock, Frame format, Mode, Bit Data Rate,	Data Width	
-	SSIConfigSetExpClk(SSI0_BASE, input_clock, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, LCD_DataRate ,LCD_DataWidth);
+	SSIConfigSetExpClk(SSI0_BASE, SYS_clock_get, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, LCD_DataRate ,LCD_DataWidth);
 	SSIEnable(SSI0_BASE);				//Enable SSI
 }
 
-void SSI_lcd_write(unsigned char message)
+void SSI_shift_register_init(void)
+{
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI0);		//SSI 3 enable 
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);	//Port D enable
+	
+	SSIDisable(SSI3_BASE);												//Disable SSI3
+	GPIOPinConfigure(GPIO_PD0_SSI3CLK);		//PD0 - Clock
+	GPIOPinConfigure(GPIO_PD1_SSI3FSS);		//PD1 - Slave Select
+	GPIOPinConfigure(GPIO_PD2_SSI3RX);		//PD2 - RX
+	GPIOPinConfigure(GPIO_PD3_SSI3TX);		//PD3 - TX
+	
+	SSIClockSourceSet(SSI3_BASE, SSI_CLOCK_SYSTEM);	// Set the SSI clock source
+	//SSI_CLOCK_SYSTEM for system clock, SSI_CLOCK_PIOSC for PIOSC precision internal oscilator
+	
+	//Peripherial base, Input clock, Frame format, Mode, Bit Data Rate,	Data Width	
+	//SSIConfigSetExpClk(SSI3_BASE, SYS_clock_get, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, Shift_Register_DataRate ,Shift_Register_DataWidth);
+}
+
+void SSI_write(unsigned char message)
 {
 	SSIDataPut(SSI0_BASE,message);
 }
+

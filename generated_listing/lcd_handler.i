@@ -138,7 +138,8 @@ void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 void SSI_lcd_init(void);
-void SSI_lcd_write(unsigned char message);
+void SSI_shift_register_init(void);
+void SSI_write(unsigned char message);
 
 #line 14 "modules\\lcd_handler\\lcd_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
@@ -561,7 +562,7 @@ void static LCD_write(LCD_typeOfWrite_en type, unsigned char message)
 
 		GPIO_lcd_DC(0x40);			
 	}
-	SSI_lcd_write(message);		
+	SSI_write(message);		
 }
 
 

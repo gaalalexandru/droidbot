@@ -42,7 +42,7 @@ void static LCD_write(LCD_typeOfWrite_en type, unsigned char message)
 
 		GPIO_lcd_DC(DC_DATA);			//Set data mode
 	}
-	SSI_lcd_write(message);		//Transmit the message
+	SSI_write(message);		//Transmit the message
 }
 
 //***********Nokia5110_Init**************
