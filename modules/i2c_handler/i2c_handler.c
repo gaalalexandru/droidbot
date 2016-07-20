@@ -31,7 +31,7 @@ void I2C_Master_Wait(void)
 {
 	while(I2CMasterBusy(I2C0_BASE));
 }
-unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value)
+unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Write_Value)
 {	
 	unsigned char error_nr = 0;
 	//Step 1. Set Slave adress and Write mode (R/W bit = 0)
@@ -56,7 +56,7 @@ unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Addr
 	else
 	{
 		//Step 3. Send data to write on register
-		I2CMasterDataPut(I2C0_BASE, Register_Value);	//Send the register value to the Slave device
+		I2CMasterDataPut(I2C0_BASE, Register_Write_Value);	//Send the register value to the Slave device
 		I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
 		while(I2CMasterBusy(I2C0_BASE)){}
 			
@@ -75,11 +75,15 @@ unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Addr
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address)
 {
 	unsigned char error_nr = 0;
-	unsigned long Read_Value = 0;
+	unsigned long Register_Read_Value = 0;
 	
-	//Step 1. Set Slave adress and Write mode (R/W bit = 0)
-	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode	
-	
+	//Step 1.1. Set Slave adress and Write mode (R/W bit = 0)
+	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode
+
+	//Step 1.2. Send the 8bit register adress to read from
+	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
+	while(I2CMasterBusBusy(I2C0_BASE)){}
+		
 	//I2C0_MCS = I2C_MASTER_CMD_SINGLE_SEND;
 	//HWREG(I2C0_BASE + I2C_O_MCS) = I2C_MASTER_CMD_SINGLE_SEND;
 	
@@ -105,7 +109,22 @@ unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Addre
 	{
 		return Read_Value;
 	}
-	return 0;
+	else
+	{
+		return 0;
+	}
+	/*
+		SINGLE BYTE READ
+		The MMA7455L has an 10-bit ADC that can sample, convert and return sensor data on request. The transmission of an 8-bit
+		command begins on the falling edge of SCL. After the eight clock cycles are used to send the command, note that the data returned
+		is sent with the MSB first once the data is received. Figure 7 shows the timing diagram for the accelerometer 8-bit I2C
+		read operation. The Master (or MCU) transmits a start condition (ST) to the MMA7455L, slave address ($1D), with the R/W bit
+		set to “0” for a write, and the MMA7455L sends an acknowledgement. Then the Master (or MCU) transmits the 8-bit address of
+		the register to read and the MMA7455L sends an acknowledgement. The Master (or MCU) transmits a repeated start condition
+		(SR) and then addresses the MMA7455L ($1D) with the R/W bit set to “1” for a read from the previously selected register. The
+		Slave then acknowledges and transmits the data from the requested register. The Master does not acknowledge (NAK) it received
+		the transmitted data, but transmits a stop condition to end the data transfer.
+	*/
 }
 void I2C_Accelerometer_Init(void)
 {
