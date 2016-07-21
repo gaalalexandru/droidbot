@@ -1,33 +1,33 @@
 #line 1 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
-#line 1 ".\\modules\\compile_switches\\compile_switches.c"
+#line 1 ".\\modules\\compile_switches\\compile_switches.h"
 
 
 
 
 
-#line 12 ".\\modules\\compile_switches\\compile_switches.c"
-
- 
-#line 20 ".\\modules\\compile_switches\\compile_switches.c"
+#line 12 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-
-
-
-
- 
-#line 33 ".\\modules\\compile_switches\\compile_switches.c"
-
- 
-
+#line 20 ".\\modules\\compile_switches\\compile_switches.h"
 
  
 
 
 
 
+ 
+#line 33 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+
+
+ 
+
+
+
+
 
 
 
@@ -38,10 +38,10 @@
  
 
  
-#line 59 ".\\modules\\compile_switches\\compile_switches.c"
+#line 59 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 69 ".\\modules\\compile_switches\\compile_switches.c"
+#line 69 ".\\modules\\compile_switches\\compile_switches.h"
 
 #line 4 "modules\\interrupt_handler\\interrupt_handler.c"
 
@@ -2138,7 +2138,7 @@ void CYCL_50_milisecond(void);
 
 void I2C_Master_Wait(void);
 unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Address);
-unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Value);
+unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Write_Value);
 void I2C_Accelerometer_Init(void);
 
 #line 26 "modules\\interrupt_handler\\interrupt_handler.c"

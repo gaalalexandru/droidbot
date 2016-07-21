@@ -1,5 +1,5 @@
 .\generated_output\cyclic_activity_handler.o: modules\cyclic_activity_handler\cyclic_activity_handler.c
-.\generated_output\cyclic_activity_handler.o: .\modules\compile_switches\compile_switches.c
+.\generated_output\cyclic_activity_handler.o: .\modules\compile_switches\compile_switches.h
 .\generated_output\cyclic_activity_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\generated_output\cyclic_activity_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\generated_output\cyclic_activity_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_memmap.h

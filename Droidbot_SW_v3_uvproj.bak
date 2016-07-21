@@ -362,7 +362,7 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C123GH6PM TARGET_IS_TM4C123_RA1</Define>
               <Undefine></Undefine>
-              <IncludePath>.\modules\pwm_handler;.\modules\compile_switches;.\modules\motion_handler;..\TivaWare_C_Series-2.1.1.71;.\modules\interrupt_handler;.\modules\comparator_handler;.\modules\gpio_handler;.\modules\timer_handler;.\modules\cyclic_activity_handler;.\modules\lcd_handler;.\3rd_pty_drv;.\modules\custom_types;.\modules\printing_handler;.\modules\ssi_handler;.\modules\system_handler;.\modules\resources;.\modules\adc_handler;.\modules\accelerometer_handler;.\modules\i2c_handler</IncludePath>
+              <IncludePath>.\modules\pwm_handler;.\modules\compile_switches;.\modules\motion_handler;..\TivaWare_C_Series-2.1.1.71;.\modules\interrupt_handler;.\modules\comparator_handler;.\modules\gpio_handler;.\modules\timer_handler;.\modules\cyclic_activity_handler;.\modules\lcd_handler;.\3rd_pty_drv;.\modules\custom_types;.\modules\printing_handler;.\modules\ssi_handler;.\modules\system_handler;.\modules\resources;.\modules\adc_handler;.\modules\accelerometer_handler;.\modules\i2c_handler;.\modules\shift_register_handler</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -494,6 +494,11 @@
               <FileName>accelerometer_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\modules\accelerometer_handler\accelerometer_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>shift_register_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\modules\shift_register_handler\shift_register_handler.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,7 +1,7 @@
 //accelerometer_handler.c
 //Application layer
 /*-------------------Configuration Includes-----------*/
-#include "compile_switches.c"
+#include "compile_switches.h"
 
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
@@ -12,6 +12,7 @@
 #include "gpio_handler.h"
 #include "i2c_handler.h"
 #include "motion_handler.h"
+#include "timer_handler.h"
 
 /*------Export interface---Self header Includes------*/
 #include "accelerometer_handler.h"
@@ -45,6 +46,7 @@ void Accelerometer_init(void)
 	if(write_check) 
 	{
 		Motion_Go_Left();
+		TIMER_delay_No_Int(3000);
 	}
 	
 	//while(!I2C_Write(Acc_Slave_Adress,0x16,0x05)) {}; //try 0x16, 0x15

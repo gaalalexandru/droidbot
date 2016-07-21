@@ -1,7 +1,7 @@
 //i2c_handler.c
 //Service layer
 /*-------------------Configuration Includes-----------*/
-#include "compile_switches.c"
+#include "compile_switches.h"
 
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
@@ -39,7 +39,7 @@ unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Addr
 	
 	//Step 2. Send the 8bit register adress to write to
 	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
-	while(I2CMasterBusBusy(I2C0_BASE)){}
+	//while(I2CMasterBusBusy(I2C0_BASE)){}
 	
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);
 	while(I2CMasterBusy(I2C0_BASE)){}
@@ -102,12 +102,12 @@ unsigned long I2C_Read(unsigned char Slave_Address, unsigned char Register_Addre
 	I2C_Master_Wait();
 	error_nr = I2CMasterErr(I2C0_BASE);
 	
-	Read_Value = I2CMasterDataGet(I2C0_BASE);
+	Register_Read_Value = I2CMasterDataGet(I2C0_BASE);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
 	
 	if(I2CMasterErr(I2C0_BASE) == 0)
 	{
-		return Read_Value;
+		return Register_Read_Value;
 	}
 	else
 	{
@@ -137,9 +137,9 @@ void I2C_Accelerometer_Init(void)
 	GPIOPinConfigure(GPIO_PB3_I2C0SDA);
 	GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
 	GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
-	GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_2, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); //Configure PUR for PB2
+	//GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_2, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU); //Configure PUR for PB2
 	GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_3, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_OD); //Configure OD for PB3
-	GPIODirModeSet(GPIO_PORTB_BASE, GPIO_PIN_2|GPIO_PIN_3, GPIO_DIR_MODE_HW);	//Set direction by HW for PB2 and PB3
+	//GPIODirModeSet(GPIO_PORTB_BASE, GPIO_PIN_2|GPIO_PIN_3, GPIO_DIR_MODE_HW);	//Set direction by HW for PB2 and PB3
 
 	I2CMasterInitExpClk(I2C0_BASE,SYS_clock_get,0/*I2C_Rate_100kbps*/);		//Set System clock and normal (100 kbps) transfer rate for I2C_0
 	

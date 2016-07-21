@@ -1,5 +1,5 @@
 .\generated_output\adc_handler.o: modules\adc_handler\adc_handler.c
-.\generated_output\adc_handler.o: .\modules\compile_switches\compile_switches.c
+.\generated_output\adc_handler.o: .\modules\compile_switches\compile_switches.h
 .\generated_output\adc_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\generated_output\adc_handler.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 .\generated_output\adc_handler.o: modules\adc_handler\adc_handler.h

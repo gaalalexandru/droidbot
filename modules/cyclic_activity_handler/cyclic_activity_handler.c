@@ -2,7 +2,7 @@
 //Application layer
 
 /*-------------------Configuration Includes-----------*/
-#include "compile_switches.c"
+#include "compile_switches.h"
 /*-------------------Type Includes-------------------*/
 #include "stdbool.h"
 #include "stdint.h"

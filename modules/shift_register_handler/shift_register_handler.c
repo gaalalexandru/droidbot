@@ -1,7 +1,7 @@
 //shift_register_handler.c
 //Application layer
 /*-------------------Configuration Includes-----------*/
-#include "compile_switches.c"
+#include "compile_switches.h"
 
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
