@@ -1,3 +1,0 @@
-//just to test the GIT service
-
-//I think it works :)

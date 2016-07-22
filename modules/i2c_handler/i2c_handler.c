@@ -141,7 +141,7 @@ void I2C_Accelerometer_Init(void)
 	GPIOPadConfigSet(GPIO_PORTB_BASE, GPIO_PIN_3, GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_OD); //Configure OD for PB3
 	//GPIODirModeSet(GPIO_PORTB_BASE, GPIO_PIN_2|GPIO_PIN_3, GPIO_DIR_MODE_HW);	//Set direction by HW for PB2 and PB3
 
-	I2CMasterInitExpClk(I2C0_BASE,SYS_clock_get,0/*I2C_Rate_100kbps*/);		//Set System clock and normal (100 kbps) transfer rate for I2C_0
+	I2CMasterInitExpClk(I2C0_BASE,SYS_clock_get,0);		//Set System clock and normal (100 kbps) transfer rate for I2C_0
 	
 }
 //EOF
