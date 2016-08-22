@@ -436,9 +436,6 @@ void ADC_Light_sensor_init(void);
 
 
 
-
- 
-
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);

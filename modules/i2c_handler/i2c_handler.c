@@ -34,22 +34,29 @@ void I2C_Master_Wait(void)
 unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Address, unsigned char Register_Write_Value)
 {	
 	unsigned char error_nr = 0;
+	//Step 0. Send a start condition - Test
+	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+	
 	//Step 1. Set Slave adress and Write mode (R/W bit = 0)
-	I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode
+	//I2CMasterSlaveAddrSet(I2C0_BASE,Slave_Address,Master_Tx_Slave_Rx);	//Set slave address and send mode
+	I2CMasterSlaveAddrSet(I2C0_BASE,0x16,0);	//Set slave address and send mode
 	
 	//Step 2. Send the 8bit register adress to write to
 	I2CMasterDataPut(I2C0_BASE, Register_Address); //Send the register adress to the Slave device
 	//while(I2CMasterBusBusy(I2C0_BASE)){}
 	
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+	//I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);	//0x00000003
+	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_CONT); //Try also this 0x00000001
+	
+	while(I2CMasterBusBusy(I2C0_BASE)){}
 	while(I2CMasterBusy(I2C0_BASE)){}
 		
 	error_nr = I2CMasterErr(I2C0_BASE);
-	if(error_nr !=0)
+		if(error_nr)	//If any error
 	{
-		if(error_nr ==0x10)
+		if(error_nr&0x10)	//If arbitration lost error (bit 4 is set)
 		{
-			I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_ERROR_STOP);
+			I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_ERROR_STOP); //0x00000004
 		}
 		return 0;
 	}
@@ -57,7 +64,7 @@ unsigned char I2C_Write(unsigned char Slave_Address, unsigned char Register_Addr
 	{
 		//Step 3. Send data to write on register
 		I2CMasterDataPut(I2C0_BASE, Register_Write_Value);	//Send the register value to the Slave device
-		I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
+		I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH); //0x00000005
 		while(I2CMasterBusy(I2C0_BASE)){}
 			
 		error_nr = I2CMasterErr(I2C0_BASE);
