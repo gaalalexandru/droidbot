@@ -22,7 +22,7 @@
 #include "interrupt_handler.h"
 #include "pwm_handler.h"
 #include "timer_handler.h"
-
+#include "UART.h"
 /*-------------------Application Includes----------------*/
 #include "accelerometer_handler.h"
 #include "cyclic_activity_handler.h"
@@ -86,7 +86,9 @@ void SYS_startup(void)
 	Int_Master_Disable();			//Global interrupt disable
 	SYS_clock_init();					//Set system clock
 	clock1 = SYS_clock_get;		//clock before modules initialized
-	
+	#if UART_Debug
+	UART_Init();
+	#endif
 	#if Full_SW	//Initialize complete system
 		TIMER_cyclic_50ms_init();			//Initialize 50 mili second timer
 		TIMER_cyclic_1s_init();				//Initialize 1 second timer	

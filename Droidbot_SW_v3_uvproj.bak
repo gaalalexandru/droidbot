@@ -519,11 +519,6 @@
           <GroupName>Configs_Types_Resorces</GroupName>
           <Files>
             <File>
-              <FileName>compile_switches.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\modules\compile_switches\compile_switches.c</FilePath>
-            </File>
-            <File>
               <FileName>custom_types.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\modules\custom_types\custom_types.h</FilePath>
@@ -532,6 +527,11 @@
               <FileName>resources.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\modules\resources\resources.h</FilePath>
+            </File>
+            <File>
+              <FileName>compile_switches.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\modules\compile_switches\compile_switches.h</FilePath>
             </File>
           </Files>
         </Group>

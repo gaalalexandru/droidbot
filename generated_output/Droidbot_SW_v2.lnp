@@ -17,6 +17,7 @@
 ".\generated_output\accelerometer_handler.o"
 ".\generated_output\shift_register_handler.o"
 "..\TivaWare_C_Series-2.1.1.71\driverlib\rvmdk\driverlib.lib"
+".\generated_output\uart.o"
 --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\generated_listing\Droidbot_SW_v2.map" -o .\generated_output\Droidbot_SW_v2.axf

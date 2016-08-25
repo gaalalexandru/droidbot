@@ -9,27 +9,27 @@
 
 
 
-#line 12 ".\\modules\\compile_switches\\compile_switches.h"
+#line 14 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 20 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
-
-
-
- 
-#line 33 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
+#line 22 ".\\modules\\compile_switches\\compile_switches.h"
 
  
 
 
 
 
+ 
+#line 35 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+
+
+ 
+
+
+
+
 
 
 
@@ -40,10 +40,10 @@
  
 
  
-#line 59 ".\\modules\\compile_switches\\compile_switches.h"
+#line 61 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 69 ".\\modules\\compile_switches\\compile_switches.h"
+#line 71 ".\\modules\\compile_switches\\compile_switches.h"
 
 #line 6 "modules\\system_handler\\system_handler.c"
  
@@ -758,7 +758,37 @@ void TIMER_delay(unsigned long delay_time_ms);
 void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
 #line 25 "modules\\system_handler\\system_handler.c"
+#line 1 ".\\3rd_pty_drv\\UART.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+#line 30 ".\\3rd_pty_drv\\UART.h"
+#line 26 "modules\\system_handler\\system_handler.c"
  
 #line 1 ".\\modules\\accelerometer_handler\\accelerometer_handler.h"
 
@@ -988,22 +1018,20 @@ void SYS_startup(void)
 	Int_Master_Disable();			
 	SYS_clock_init();					
 	clock1 = SysCtlClockGet();		
-	
-#line 99 "modules\\system_handler\\system_handler.c"
-	
 
-		
-		
+
+
+
 		TIMER_cyclic_50ms_init();			
 		TIMER_cyclic_1s_init();				
 		LCD_init();										
-		GPIO_steering_switch_init();	
-		GPIO_motor_direction_init();	
-		PWM_motor_init(1000);						
-		ADC_Light_sensor_init();				
-		ADC_Temperature_sensor_init();	
-		Accelerometer_init();
+		ADC_Light_sensor_init();			
+		ADC_Temperature_sensor_init();
+		Motion_init();								
+		Accelerometer_init();					
 
+	
+#line 115 "modules\\system_handler\\system_handler.c"
 	
 	clock2 = SysCtlClockGet();		
 	if(clock1 == clock2)			

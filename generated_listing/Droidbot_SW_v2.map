@@ -113,9 +113,8 @@ Section Cross References
     system_handler.o(.text) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
     system_handler.o(.text) refers to timer_handler.o(.text) for TIMER_cyclic_50ms_init
     system_handler.o(.text) refers to lcd_handler.o(.text) for LCD_init
-    system_handler.o(.text) refers to gpio_handler.o(.text) for GPIO_steering_switch_init
-    system_handler.o(.text) refers to pwm_handler.o(.text) for PWM_motor_init
     system_handler.o(.text) refers to adc_handler.o(.text) for ADC_Light_sensor_init
+    system_handler.o(.text) refers to motion_handler.o(.text) for Motion_init
     system_handler.o(.text) refers to accelerometer_handler.o(.text) for Accelerometer_init
     timer_handler.o(.text) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
     timer_handler.o(.text) refers to sysctl.o(i.SysCtlPeripheralEnable) for SysCtlPeripheralEnable
@@ -144,7 +143,6 @@ Section Cross References
     i2c_handler.o(.text) refers to gpio.o(i.GPIOPadConfigSet) for GPIOPadConfigSet
     i2c_handler.o(.text) refers to sysctl.o(i.SysCtlClockGet) for SysCtlClockGet
     i2c_handler.o(.text) refers to i2c.o(i.I2CMasterInitExpClk) for I2CMasterInitExpClk
-    accelerometer_handler.o(.text) refers to gpio_handler.o(.text) for GPIO_accelerometer_CS_init
     accelerometer_handler.o(.text) refers to i2c_handler.o(.text) for I2C_Accelerometer_Init
     accelerometer_handler.o(.text) refers to motion_handler.o(.text) for Motion_Go_Left
     accelerometer_handler.o(.text) refers to timer_handler.o(.text) for TIMER_delay_No_Int
@@ -653,54 +651,55 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      620  startup_new.o(RESET)
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
-    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
+    ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_copy.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry2.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtentry4.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
+    3rd_pty_drv\UART.c                       0x00000000   Number         0  uart.o ABSOLUTE
     adc.c                                    0x00000000   Number         0  adc.o ABSOLUTE
     comp.c                                   0x00000000   Number         0  comp.o ABSOLUTE
     cpu.c                                    0x00000000   Number         0  cpu.o ABSOLUTE
@@ -784,120 +783,120 @@ Image Symbol Table
     .text                                    0x000003a4   Section        0  adc_handler.o(.text)
     .text                                    0x00000544   Section        0  cyclic_activity_handler.o(.text)
     .text                                    0x00000618   Section        0  gpio_handler.o(.text)
-    .text                                    0x00000804   Section        0  interrupt_handler.o(.text)
-    .text                                    0x000009a0   Section        0  lcd_handler.o(.text)
-    LCD_write                                0x000009a1   Thumb Code    30  lcd_handler.o(.text)
-    .text                                    0x00000c68   Section        0  motion_handler.o(.text)
-    .text                                    0x00000d64   Section        0  printing_handler.o(.text)
-    .text                                    0x00000ecc   Section        0  pwm_handler.o(.text)
-    .text                                    0x00001198   Section        0  ssi_handler.o(.text)
-    .text                                    0x00001264   Section        0  system_handler.o(.text)
-    .text                                    0x000012bc   Section        0  timer_handler.o(.text)
-    .text                                    0x000013e4   Section        0  i2c_handler.o(.text)
-    .text                                    0x0000156c   Section        0  accelerometer_handler.o(.text)
-    .text                                    0x000015c0   Section        0  heapauxi.o(.text)
-    .text                                    0x000015c6   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x00001610   Section        0  exit.o(.text)
-    .text                                    0x0000161c   Section        8  libspace.o(.text)
-    .text                                    0x00001624   Section        0  sys_exit.o(.text)
-    .text                                    0x00001630   Section        2  use_no_semi.o(.text)
-    .text                                    0x00001632   Section        0  indicate_semi.o(.text)
-    i.ADCIntClear                            0x00001632   Section        0  adc.o(i.ADCIntClear)
-    i.ADCIntDisable                          0x0000163c   Section        0  adc.o(i.ADCIntDisable)
-    i.ADCIntEnable                           0x0000164c   Section        0  adc.o(i.ADCIntEnable)
-    i.ADCIntStatus                           0x0000165c   Section        0  adc.o(i.ADCIntStatus)
-    i.ADCProcessorTrigger                    0x00001690   Section        0  adc.o(i.ADCProcessorTrigger)
-    i.ADCSequenceConfigure                   0x000016aa   Section        0  adc.o(i.ADCSequenceConfigure)
-    i.ADCSequenceDataGet                     0x000016f8   Section        0  adc.o(i.ADCSequenceDataGet)
-    i.ADCSequenceDisable                     0x0000171c   Section        0  adc.o(i.ADCSequenceDisable)
-    i.ADCSequenceEnable                      0x0000172c   Section        0  adc.o(i.ADCSequenceEnable)
-    i.ADCSequenceStepConfigure               0x0000173a   Section        0  adc.o(i.ADCSequenceStepConfigure)
-    i.ComparatorIntClear                     0x000017d4   Section        0  comp.o(i.ComparatorIntClear)
-    i.ComparatorIntStatus                    0x000017de   Section        0  comp.o(i.ComparatorIntStatus)
-    i.GPIODirModeSet                         0x000017f4   Section        0  gpio.o(i.GPIODirModeSet)
-    i.GPIOIntClear                           0x0000181c   Section        0  gpio.o(i.GPIOIntClear)
-    i.GPIOIntDisable                         0x00001822   Section        0  gpio.o(i.GPIOIntDisable)
-    i.GPIOIntEnable                          0x00001830   Section        0  gpio.o(i.GPIOIntEnable)
-    i.GPIOIntStatus                          0x0000183e   Section        0  gpio.o(i.GPIOIntStatus)
-    i.GPIOIntTypeSet                         0x0000184c   Section        0  gpio.o(i.GPIOIntTypeSet)
-    i.GPIOPadConfigSet                       0x0000189c   Section        0  gpio.o(i.GPIOPadConfigSet)
-    i.GPIOPinConfigure                       0x000019d8   Section        0  gpio.o(i.GPIOPinConfigure)
-    i.GPIOPinTypeADC                         0x00001a20   Section        0  gpio.o(i.GPIOPinTypeADC)
-    i.GPIOPinTypeGPIOInput                   0x00001a3c   Section        0  gpio.o(i.GPIOPinTypeGPIOInput)
-    i.GPIOPinTypeGPIOOutput                  0x00001a58   Section        0  gpio.o(i.GPIOPinTypeGPIOOutput)
-    i.GPIOPinTypeI2C                         0x00001a74   Section        0  gpio.o(i.GPIOPinTypeI2C)
-    i.GPIOPinTypeI2CSCL                      0x00001a90   Section        0  gpio.o(i.GPIOPinTypeI2CSCL)
-    i.GPIOPinTypePWM                         0x00001aac   Section        0  gpio.o(i.GPIOPinTypePWM)
-    i.GPIOPinTypeSSI                         0x00001ac8   Section        0  gpio.o(i.GPIOPinTypeSSI)
-    i.GPIOPinWrite                           0x00001ae4   Section        0  gpio.o(i.GPIOPinWrite)
-    i.I2CMasterBusBusy                       0x00001aea   Section        0  i2c.o(i.I2CMasterBusBusy)
-    i.I2CMasterBusy                          0x00001af6   Section        0  i2c.o(i.I2CMasterBusy)
-    i.I2CMasterControl                       0x00001b02   Section        0  i2c.o(i.I2CMasterControl)
-    i.I2CMasterDataGet                       0x00001b06   Section        0  i2c.o(i.I2CMasterDataGet)
-    i.I2CMasterDataPut                       0x00001b0a   Section        0  i2c.o(i.I2CMasterDataPut)
-    i.I2CMasterErr                           0x00001b0e   Section        0  i2c.o(i.I2CMasterErr)
-    i.I2CMasterInitExpClk                    0x00001b28   Section        0  i2c.o(i.I2CMasterInitExpClk)
-    i.I2CMasterSlaveAddrSet                  0x00001b7c   Section        0  i2c.o(i.I2CMasterSlaveAddrSet)
-    i.IntDisable                             0x00001b84   Section        0  interrupt.o(i.IntDisable)
-    i.IntEnable                              0x00001be8   Section        0  interrupt.o(i.IntEnable)
-    i.IntMasterDisable                       0x00001c4c   Section        0  interrupt.o(i.IntMasterDisable)
-    i.IntMasterEnable                        0x00001c5a   Section        0  interrupt.o(i.IntMasterEnable)
-    i.IntPrioritySet                         0x00001c68   Section        0  interrupt.o(i.IntPrioritySet)
-    i.PWMGenConfigure                        0x00001c90   Section        0  pwm.o(i.PWMGenConfigure)
-    i.PWMGenDisable                          0x00001cb6   Section        0  pwm.o(i.PWMGenDisable)
-    i.PWMGenEnable                           0x00001cc0   Section        0  pwm.o(i.PWMGenEnable)
-    i.PWMGenPeriodGet                        0x00001cca   Section        0  pwm.o(i.PWMGenPeriodGet)
-    i.PWMGenPeriodSet                        0x00001cdc   Section        0  pwm.o(i.PWMGenPeriodSet)
-    i.PWMOutputState                         0x00001cee   Section        0  pwm.o(i.PWMOutputState)
-    i.PWMPulseWidthSet                       0x00001cfe   Section        0  pwm.o(i.PWMPulseWidthSet)
-    i.SSIClockSourceSet                      0x00001d1e   Section        0  ssi.o(i.SSIClockSourceSet)
-    i.SSIConfigSetExpClk                     0x00001d24   Section        0  ssi.o(i.SSIConfigSetExpClk)
-    i.SSIDataPut                             0x00001d5e   Section        0  ssi.o(i.SSIDataPut)
-    i.SSIDisable                             0x00001d6a   Section        0  ssi.o(i.SSIDisable)
-    i.SSIEnable                              0x00001d74   Section        0  ssi.o(i.SSIEnable)
-    i.SysCtlClockGet                         0x00001d80   Section        0  sysctl.o(i.SysCtlClockGet)
-    i.SysCtlClockSet                         0x00001ed4   Section        0  sysctl.o(i.SysCtlClockSet)
-    i.SysCtlPWMClockSet                      0x00001ff4   Section        0  sysctl.o(i.SysCtlPWMClockSet)
-    i.SysCtlPeripheralDisable                0x00002008   Section        0  sysctl.o(i.SysCtlPeripheralDisable)
-    i.SysCtlPeripheralEnable                 0x00002030   Section        0  sysctl.o(i.SysCtlPeripheralEnable)
-    i.TimerClockSourceSet                    0x00002058   Section        0  timer.o(i.TimerClockSourceSet)
-    i.TimerConfigure                         0x00002060   Section        0  timer.o(i.TimerConfigure)
-    i.TimerDisable                           0x000020c0   Section        0  timer.o(i.TimerDisable)
-    i.TimerEnable                            0x000020d0   Section        0  timer.o(i.TimerEnable)
-    i.TimerIntClear                          0x000020de   Section        0  timer.o(i.TimerIntClear)
-    i.TimerIntDisable                        0x000020e2   Section        0  timer.o(i.TimerIntDisable)
-    i.TimerIntEnable                         0x000020ec   Section        0  timer.o(i.TimerIntEnable)
-    i.TimerIntStatus                         0x000020f4   Section        0  timer.o(i.TimerIntStatus)
-    i.TimerLoadSet                           0x000020fe   Section        0  timer.o(i.TimerLoadSet)
-    i.TimerValueGet                          0x00002110   Section        0  timer.o(i.TimerValueGet)
-    x$fpl$fpinit                             0x0000211a   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x0000211a   Number         0  fpinit.o(x$fpl$fpinit)
-    .constdata                               0x00002124   Section     1992  lcd_handler.o(.constdata)
-    res_Longhorn1                            0x00002124   Data         504  lcd_handler.o(.constdata)
-    res_Longhorn2                            0x0000231c   Data         504  lcd_handler.o(.constdata)
-    res_welcome_img                          0x00002514   Data         504  lcd_handler.o(.constdata)
-    ASCII                                    0x0000270c   Data         480  lcd_handler.o(.constdata)
-    .constdata                               0x000028ec   Section     1992  printing_handler.o(.constdata)
-    res_Longhorn1                            0x000028ec   Data         504  printing_handler.o(.constdata)
-    res_Longhorn2                            0x00002ae4   Data         504  printing_handler.o(.constdata)
-    res_welcome_img                          0x00002cdc   Data         504  printing_handler.o(.constdata)
-    ASCII                                    0x00002ed4   Data         480  printing_handler.o(.constdata)
-    .constdata                               0x000030b4   Section      528  gpio.o(.constdata)
-    g_ppui32GPIOIntMapBlizzard               0x000030b4   Data         192  gpio.o(.constdata)
-    g_ppui32GPIOIntMapSnowflake              0x00003174   Data         192  gpio.o(.constdata)
-    g_pui32GPIOBaseAddrs                     0x00003234   Data         144  gpio.o(.constdata)
-    .constdata                               0x000032c4   Section      268  interrupt.o(.constdata)
-    g_pui32Priority                          0x000032c4   Data          32  interrupt.o(.constdata)
-    g_pui32Regs                              0x000032e4   Data         156  interrupt.o(.constdata)
-    g_pui32EnRegs                            0x00003380   Data          20  interrupt.o(.constdata)
-    g_pui32Dii16Regs                         0x00003394   Data          20  interrupt.o(.constdata)
-    g_pui32PendRegs                          0x000033a8   Data          20  interrupt.o(.constdata)
-    g_pui32UnpendRegs                        0x000033bc   Data          20  interrupt.o(.constdata)
-    .constdata                               0x000033d0   Section      452  sysctl.o(.constdata)
-    g_pui32VCOFrequencies                    0x000033d0   Data           8  sysctl.o(.constdata)
-    g_pui32Xtals                             0x000033d8   Data         108  sysctl.o(.constdata)
-    g_pppui32XTALtoVCO                       0x00003444   Data         288  sysctl.o(.constdata)
-    g_sXTALtoMEMTIM                          0x00003564   Data          48  sysctl.o(.constdata)
+    .text                                    0x000007b8   Section        0  interrupt_handler.o(.text)
+    .text                                    0x00000954   Section        0  lcd_handler.o(.text)
+    LCD_write                                0x00000955   Thumb Code    30  lcd_handler.o(.text)
+    .text                                    0x00000c1c   Section        0  motion_handler.o(.text)
+    .text                                    0x00000d18   Section        0  printing_handler.o(.text)
+    .text                                    0x00000e80   Section        0  pwm_handler.o(.text)
+    .text                                    0x0000114c   Section        0  ssi_handler.o(.text)
+    .text                                    0x00001218   Section        0  system_handler.o(.text)
+    .text                                    0x00001264   Section        0  timer_handler.o(.text)
+    .text                                    0x0000138c   Section        0  i2c_handler.o(.text)
+    .text                                    0x00001514   Section        0  accelerometer_handler.o(.text)
+    .text                                    0x0000155c   Section        0  heapauxi.o(.text)
+    .text                                    0x00001562   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x000015ac   Section        0  exit.o(.text)
+    .text                                    0x000015b8   Section        8  libspace.o(.text)
+    .text                                    0x000015c0   Section        0  sys_exit.o(.text)
+    .text                                    0x000015cc   Section        2  use_no_semi.o(.text)
+    .text                                    0x000015ce   Section        0  indicate_semi.o(.text)
+    i.ADCIntClear                            0x000015ce   Section        0  adc.o(i.ADCIntClear)
+    i.ADCIntDisable                          0x000015d8   Section        0  adc.o(i.ADCIntDisable)
+    i.ADCIntEnable                           0x000015e8   Section        0  adc.o(i.ADCIntEnable)
+    i.ADCIntStatus                           0x000015f8   Section        0  adc.o(i.ADCIntStatus)
+    i.ADCProcessorTrigger                    0x0000162c   Section        0  adc.o(i.ADCProcessorTrigger)
+    i.ADCSequenceConfigure                   0x00001646   Section        0  adc.o(i.ADCSequenceConfigure)
+    i.ADCSequenceDataGet                     0x00001694   Section        0  adc.o(i.ADCSequenceDataGet)
+    i.ADCSequenceDisable                     0x000016b8   Section        0  adc.o(i.ADCSequenceDisable)
+    i.ADCSequenceEnable                      0x000016c8   Section        0  adc.o(i.ADCSequenceEnable)
+    i.ADCSequenceStepConfigure               0x000016d6   Section        0  adc.o(i.ADCSequenceStepConfigure)
+    i.ComparatorIntClear                     0x00001770   Section        0  comp.o(i.ComparatorIntClear)
+    i.ComparatorIntStatus                    0x0000177a   Section        0  comp.o(i.ComparatorIntStatus)
+    i.GPIODirModeSet                         0x00001790   Section        0  gpio.o(i.GPIODirModeSet)
+    i.GPIOIntClear                           0x000017b8   Section        0  gpio.o(i.GPIOIntClear)
+    i.GPIOIntDisable                         0x000017be   Section        0  gpio.o(i.GPIOIntDisable)
+    i.GPIOIntEnable                          0x000017cc   Section        0  gpio.o(i.GPIOIntEnable)
+    i.GPIOIntStatus                          0x000017da   Section        0  gpio.o(i.GPIOIntStatus)
+    i.GPIOIntTypeSet                         0x000017e8   Section        0  gpio.o(i.GPIOIntTypeSet)
+    i.GPIOPadConfigSet                       0x00001838   Section        0  gpio.o(i.GPIOPadConfigSet)
+    i.GPIOPinConfigure                       0x00001974   Section        0  gpio.o(i.GPIOPinConfigure)
+    i.GPIOPinTypeADC                         0x000019bc   Section        0  gpio.o(i.GPIOPinTypeADC)
+    i.GPIOPinTypeGPIOInput                   0x000019d8   Section        0  gpio.o(i.GPIOPinTypeGPIOInput)
+    i.GPIOPinTypeGPIOOutput                  0x000019f4   Section        0  gpio.o(i.GPIOPinTypeGPIOOutput)
+    i.GPIOPinTypeI2C                         0x00001a10   Section        0  gpio.o(i.GPIOPinTypeI2C)
+    i.GPIOPinTypeI2CSCL                      0x00001a2c   Section        0  gpio.o(i.GPIOPinTypeI2CSCL)
+    i.GPIOPinTypePWM                         0x00001a48   Section        0  gpio.o(i.GPIOPinTypePWM)
+    i.GPIOPinTypeSSI                         0x00001a64   Section        0  gpio.o(i.GPIOPinTypeSSI)
+    i.GPIOPinWrite                           0x00001a80   Section        0  gpio.o(i.GPIOPinWrite)
+    i.I2CMasterBusBusy                       0x00001a86   Section        0  i2c.o(i.I2CMasterBusBusy)
+    i.I2CMasterBusy                          0x00001a92   Section        0  i2c.o(i.I2CMasterBusy)
+    i.I2CMasterControl                       0x00001a9e   Section        0  i2c.o(i.I2CMasterControl)
+    i.I2CMasterDataGet                       0x00001aa2   Section        0  i2c.o(i.I2CMasterDataGet)
+    i.I2CMasterDataPut                       0x00001aa6   Section        0  i2c.o(i.I2CMasterDataPut)
+    i.I2CMasterErr                           0x00001aaa   Section        0  i2c.o(i.I2CMasterErr)
+    i.I2CMasterInitExpClk                    0x00001ac4   Section        0  i2c.o(i.I2CMasterInitExpClk)
+    i.I2CMasterSlaveAddrSet                  0x00001b18   Section        0  i2c.o(i.I2CMasterSlaveAddrSet)
+    i.IntDisable                             0x00001b20   Section        0  interrupt.o(i.IntDisable)
+    i.IntEnable                              0x00001b84   Section        0  interrupt.o(i.IntEnable)
+    i.IntMasterDisable                       0x00001be8   Section        0  interrupt.o(i.IntMasterDisable)
+    i.IntMasterEnable                        0x00001bf6   Section        0  interrupt.o(i.IntMasterEnable)
+    i.IntPrioritySet                         0x00001c04   Section        0  interrupt.o(i.IntPrioritySet)
+    i.PWMGenConfigure                        0x00001c2c   Section        0  pwm.o(i.PWMGenConfigure)
+    i.PWMGenDisable                          0x00001c52   Section        0  pwm.o(i.PWMGenDisable)
+    i.PWMGenEnable                           0x00001c5c   Section        0  pwm.o(i.PWMGenEnable)
+    i.PWMGenPeriodGet                        0x00001c66   Section        0  pwm.o(i.PWMGenPeriodGet)
+    i.PWMGenPeriodSet                        0x00001c78   Section        0  pwm.o(i.PWMGenPeriodSet)
+    i.PWMOutputState                         0x00001c8a   Section        0  pwm.o(i.PWMOutputState)
+    i.PWMPulseWidthSet                       0x00001c9a   Section        0  pwm.o(i.PWMPulseWidthSet)
+    i.SSIClockSourceSet                      0x00001cba   Section        0  ssi.o(i.SSIClockSourceSet)
+    i.SSIConfigSetExpClk                     0x00001cc0   Section        0  ssi.o(i.SSIConfigSetExpClk)
+    i.SSIDataPut                             0x00001cfa   Section        0  ssi.o(i.SSIDataPut)
+    i.SSIDisable                             0x00001d06   Section        0  ssi.o(i.SSIDisable)
+    i.SSIEnable                              0x00001d10   Section        0  ssi.o(i.SSIEnable)
+    i.SysCtlClockGet                         0x00001d1c   Section        0  sysctl.o(i.SysCtlClockGet)
+    i.SysCtlClockSet                         0x00001e70   Section        0  sysctl.o(i.SysCtlClockSet)
+    i.SysCtlPWMClockSet                      0x00001f90   Section        0  sysctl.o(i.SysCtlPWMClockSet)
+    i.SysCtlPeripheralDisable                0x00001fa4   Section        0  sysctl.o(i.SysCtlPeripheralDisable)
+    i.SysCtlPeripheralEnable                 0x00001fcc   Section        0  sysctl.o(i.SysCtlPeripheralEnable)
+    i.TimerClockSourceSet                    0x00001ff4   Section        0  timer.o(i.TimerClockSourceSet)
+    i.TimerConfigure                         0x00001ffc   Section        0  timer.o(i.TimerConfigure)
+    i.TimerDisable                           0x0000205c   Section        0  timer.o(i.TimerDisable)
+    i.TimerEnable                            0x0000206c   Section        0  timer.o(i.TimerEnable)
+    i.TimerIntClear                          0x0000207a   Section        0  timer.o(i.TimerIntClear)
+    i.TimerIntDisable                        0x0000207e   Section        0  timer.o(i.TimerIntDisable)
+    i.TimerIntEnable                         0x00002088   Section        0  timer.o(i.TimerIntEnable)
+    i.TimerIntStatus                         0x00002090   Section        0  timer.o(i.TimerIntStatus)
+    i.TimerLoadSet                           0x0000209a   Section        0  timer.o(i.TimerLoadSet)
+    i.TimerValueGet                          0x000020ac   Section        0  timer.o(i.TimerValueGet)
+    x$fpl$fpinit                             0x000020b6   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x000020b6   Number         0  fpinit.o(x$fpl$fpinit)
+    .constdata                               0x000020c0   Section     1992  lcd_handler.o(.constdata)
+    res_Longhorn1                            0x000020c0   Data         504  lcd_handler.o(.constdata)
+    res_Longhorn2                            0x000022b8   Data         504  lcd_handler.o(.constdata)
+    res_welcome_img                          0x000024b0   Data         504  lcd_handler.o(.constdata)
+    ASCII                                    0x000026a8   Data         480  lcd_handler.o(.constdata)
+    .constdata                               0x00002888   Section     1992  printing_handler.o(.constdata)
+    res_Longhorn1                            0x00002888   Data         504  printing_handler.o(.constdata)
+    res_Longhorn2                            0x00002a80   Data         504  printing_handler.o(.constdata)
+    res_welcome_img                          0x00002c78   Data         504  printing_handler.o(.constdata)
+    ASCII                                    0x00002e70   Data         480  printing_handler.o(.constdata)
+    .constdata                               0x00003050   Section      528  gpio.o(.constdata)
+    g_ppui32GPIOIntMapBlizzard               0x00003050   Data         192  gpio.o(.constdata)
+    g_ppui32GPIOIntMapSnowflake              0x00003110   Data         192  gpio.o(.constdata)
+    g_pui32GPIOBaseAddrs                     0x000031d0   Data         144  gpio.o(.constdata)
+    .constdata                               0x00003260   Section      268  interrupt.o(.constdata)
+    g_pui32Priority                          0x00003260   Data          32  interrupt.o(.constdata)
+    g_pui32Regs                              0x00003280   Data         156  interrupt.o(.constdata)
+    g_pui32EnRegs                            0x0000331c   Data          20  interrupt.o(.constdata)
+    g_pui32Dii16Regs                         0x00003330   Data          20  interrupt.o(.constdata)
+    g_pui32PendRegs                          0x00003344   Data          20  interrupt.o(.constdata)
+    g_pui32UnpendRegs                        0x00003358   Data          20  interrupt.o(.constdata)
+    .constdata                               0x0000336c   Section      452  sysctl.o(.constdata)
+    g_pui32VCOFrequencies                    0x0000336c   Data           8  sysctl.o(.constdata)
+    g_pui32Xtals                             0x00003374   Data         108  sysctl.o(.constdata)
+    g_pppui32XTALtoVCO                       0x000033e0   Data         288  sysctl.o(.constdata)
+    g_sXTALtoMEMTIM                          0x00003500   Data          48  sysctl.o(.constdata)
     .data                                    0x20000000   Section        3  cyclic_activity_handler.o(.data)
     startup_image                            0x20000000   Data           1  cyclic_activity_handler.o(.data)
     counter                                  0x20000001   Data           1  cyclic_activity_handler.o(.data)
@@ -1141,143 +1140,141 @@ Image Symbol Table
     GPIO_lcd_RST                             0x00000733   Thumb Code    18  gpio_handler.o(.text)
     GPIO_motor_direction_init                0x00000745   Thumb Code    42  gpio_handler.o(.text)
     GPIO_motor_direction_select              0x0000076f   Thumb Code    50  gpio_handler.o(.text)
-    GPIO_accelerometer_CS_init               0x000007a1   Thumb Code    42  gpio_handler.o(.text)
-    GPIO_accelerometer_CS_select             0x000007cb   Thumb Code    30  gpio_handler.o(.text)
-    Int_Master_Enable                        0x00000805   Thumb Code     8  interrupt_handler.o(.text)
-    Int_Master_Disable                       0x0000080d   Thumb Code     8  interrupt_handler.o(.text)
-    GPIOPortF_Handler                        0x00000815   Thumb Code    60  interrupt_handler.o(.text)
-    Comp0_Handler                            0x00000851   Thumb Code    34  interrupt_handler.o(.text)
-    WideTimer0A_Handler                      0x00000873   Thumb Code    38  interrupt_handler.o(.text)
-    Timer0A_Handler                          0x00000899   Thumb Code    38  interrupt_handler.o(.text)
-    ADC0Seq3_Handler                         0x000008bf   Thumb Code    60  interrupt_handler.o(.text)
-    ADC1Seq0_Handler                         0x000008fb   Thumb Code    40  interrupt_handler.o(.text)
-    ADC1Seq1_Handler                         0x00000923   Thumb Code    40  interrupt_handler.o(.text)
-    ADC1Seq2_Handler                         0x0000094b   Thumb Code    40  interrupt_handler.o(.text)
-    LCD_set_cursor                           0x000009bf   Thumb Code    48  lcd_handler.o(.text)
-    LCD_clear                                0x000009ef   Thumb Code    34  lcd_handler.o(.text)
-    LCD_init                                 0x00000a11   Thumb Code    82  lcd_handler.o(.text)
-    LCD_out_char                             0x00000a63   Thumb Code    46  lcd_handler.o(.text)
-    LCD_out_string                           0x00000a91   Thumb Code    22  lcd_handler.o(.text)
-    LCD_out_number                           0x00000aa7   Thumb Code   394  lcd_handler.o(.text)
-    LCD_out_image                            0x00000c31   Thumb Code    36  lcd_handler.o(.text)
-    Motion_init                              0x00000c69   Thumb Code    20  motion_handler.o(.text)
-    Motion_Go_Left                           0x00000c7d   Thumb Code    36  motion_handler.o(.text)
-    Motion_Go_Right                          0x00000ca1   Thumb Code    36  motion_handler.o(.text)
-    Motion_Stop                              0x00000cc5   Thumb Code    26  motion_handler.o(.text)
-    Motion_Cruise                            0x00000cdf   Thumb Code    34  motion_handler.o(.text)
-    Motion_Max_Speed                         0x00000d01   Thumb Code    34  motion_handler.o(.text)
-    Motion_Go_Back                           0x00000d23   Thumb Code    56  motion_handler.o(.text)
-    Motion_calculate_direction               0x00000d5b   Thumb Code     2  motion_handler.o(.text)
-    Print_Welcome_Image                      0x00000d65   Thumb Code    10  printing_handler.o(.text)
-    Print_Motor_Parameters                   0x00000d6f   Thumb Code   270  printing_handler.o(.text)
-    PWM_right_motor_duty_cycle               0x00000ecd   Thumb Code    86  pwm_handler.o(.text)
-    PWM_left_motor_duty_cycle                0x00000f23   Thumb Code    86  pwm_handler.o(.text)
-    PWM_motor_init                           0x00000f79   Thumb Code   110  pwm_handler.o(.text)
-    PWM_Red_led_init                         0x00000fe7   Thumb Code    96  pwm_handler.o(.text)
-    PWM_Red_led_toggle                       0x00001047   Thumb Code    62  pwm_handler.o(.text)
-    PWM_set_duty_cycle                       0x00001085   Thumb Code    56  pwm_handler.o(.text)
-    PWM_motor_reverse_init                   0x000010bd   Thumb Code   146  pwm_handler.o(.text)
-    PWM_motor_reverse_stop                   0x0000114f   Thumb Code    30  pwm_handler.o(.text)
-    SSI_lcd_init                             0x00001199   Thumb Code    96  ssi_handler.o(.text)
-    SSI_shift_register_init                  0x000011f9   Thumb Code    56  ssi_handler.o(.text)
-    SSI_write                                0x00001231   Thumb Code    14  ssi_handler.o(.text)
-    SYS_clock_init                           0x00001265   Thumb Code    10  system_handler.o(.text)
-    SYS_startup                              0x0000126f   Thumb Code    72  system_handler.o(.text)
-    TIMER_reload_calculator                  0x000012bd   Thumb Code    30  timer_handler.o(.text)
-    TIMER_cyclic_1s_init                     0x000012db   Thumb Code    98  timer_handler.o(.text)
-    TIMER_cyclic_50ms_init                   0x0000133d   Thumb Code    96  timer_handler.o(.text)
-    TIMER_delay                              0x0000139d   Thumb Code    24  timer_handler.o(.text)
-    TIMER_delay_No_Int                       0x000013b5   Thumb Code    32  timer_handler.o(.text)
-    I2C_Master_Wait                          0x000013e5   Thumb Code    16  i2c_handler.o(.text)
-    I2C_Write                                0x000013f5   Thumb Code   146  i2c_handler.o(.text)
-    I2C_Read                                 0x00001487   Thumb Code   134  i2c_handler.o(.text)
-    I2C_Accelerometer_Init                   0x0000150d   Thumb Code    72  i2c_handler.o(.text)
-    Accelerometer_init                       0x0000156d   Thumb Code    78  accelerometer_handler.o(.text)
-    __use_two_region_memory                  0x000015c1   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x000015c3   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x000015c5   Thumb Code     2  heapauxi.o(.text)
-    __user_setup_stackheap                   0x000015c7   Thumb Code    74  sys_stackheap_outer.o(.text)
-    exit                                     0x00001611   Thumb Code    12  exit.o(.text)
-    __user_libspace                          0x0000161d   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x0000161d   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x0000161d   Thumb Code     0  libspace.o(.text)
-    _sys_exit                                0x00001625   Thumb Code     8  sys_exit.o(.text)
-    __I$use$semihosting                      0x00001631   Thumb Code     0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x00001631   Thumb Code     2  use_no_semi.o(.text)
-    ADCIntClear                              0x00001633   Thumb Code    10  adc.o(i.ADCIntClear)
-    __semihosting_library_function           0x00001633   Thumb Code     0  indicate_semi.o(.text)
-    ADCIntDisable                            0x0000163d   Thumb Code    16  adc.o(i.ADCIntDisable)
-    ADCIntEnable                             0x0000164d   Thumb Code    16  adc.o(i.ADCIntEnable)
-    ADCIntStatus                             0x0000165d   Thumb Code    52  adc.o(i.ADCIntStatus)
-    ADCProcessorTrigger                      0x00001691   Thumb Code    26  adc.o(i.ADCProcessorTrigger)
-    ADCSequenceConfigure                     0x000016ab   Thumb Code    78  adc.o(i.ADCSequenceConfigure)
-    ADCSequenceDataGet                       0x000016f9   Thumb Code    36  adc.o(i.ADCSequenceDataGet)
-    ADCSequenceDisable                       0x0000171d   Thumb Code    16  adc.o(i.ADCSequenceDisable)
-    ADCSequenceEnable                        0x0000172d   Thumb Code    14  adc.o(i.ADCSequenceEnable)
-    ADCSequenceStepConfigure                 0x0000173b   Thumb Code   154  adc.o(i.ADCSequenceStepConfigure)
-    ComparatorIntClear                       0x000017d5   Thumb Code    10  comp.o(i.ComparatorIntClear)
-    ComparatorIntStatus                      0x000017df   Thumb Code    22  comp.o(i.ComparatorIntStatus)
-    GPIODirModeSet                           0x000017f5   Thumb Code    40  gpio.o(i.GPIODirModeSet)
-    GPIOIntClear                             0x0000181d   Thumb Code     6  gpio.o(i.GPIOIntClear)
-    GPIOIntDisable                           0x00001823   Thumb Code    14  gpio.o(i.GPIOIntDisable)
-    GPIOIntEnable                            0x00001831   Thumb Code    14  gpio.o(i.GPIOIntEnable)
-    GPIOIntStatus                            0x0000183f   Thumb Code    14  gpio.o(i.GPIOIntStatus)
-    GPIOIntTypeSet                           0x0000184d   Thumb Code    80  gpio.o(i.GPIOIntTypeSet)
-    GPIOPadConfigSet                         0x0000189d   Thumb Code   314  gpio.o(i.GPIOPadConfigSet)
-    GPIOPinConfigure                         0x000019d9   Thumb Code    64  gpio.o(i.GPIOPinConfigure)
-    GPIOPinTypeADC                           0x00001a21   Thumb Code    28  gpio.o(i.GPIOPinTypeADC)
-    GPIOPinTypeGPIOInput                     0x00001a3d   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOInput)
-    GPIOPinTypeGPIOOutput                    0x00001a59   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOOutput)
-    GPIOPinTypeI2C                           0x00001a75   Thumb Code    28  gpio.o(i.GPIOPinTypeI2C)
-    GPIOPinTypeI2CSCL                        0x00001a91   Thumb Code    28  gpio.o(i.GPIOPinTypeI2CSCL)
-    GPIOPinTypePWM                           0x00001aad   Thumb Code    28  gpio.o(i.GPIOPinTypePWM)
-    GPIOPinTypeSSI                           0x00001ac9   Thumb Code    28  gpio.o(i.GPIOPinTypeSSI)
-    GPIOPinWrite                             0x00001ae5   Thumb Code     6  gpio.o(i.GPIOPinWrite)
-    I2CMasterBusBusy                         0x00001aeb   Thumb Code    12  i2c.o(i.I2CMasterBusBusy)
-    I2CMasterBusy                            0x00001af7   Thumb Code    12  i2c.o(i.I2CMasterBusy)
-    I2CMasterControl                         0x00001b03   Thumb Code     4  i2c.o(i.I2CMasterControl)
-    I2CMasterDataGet                         0x00001b07   Thumb Code     4  i2c.o(i.I2CMasterDataGet)
-    I2CMasterDataPut                         0x00001b0b   Thumb Code     4  i2c.o(i.I2CMasterDataPut)
-    I2CMasterErr                             0x00001b0f   Thumb Code    24  i2c.o(i.I2CMasterErr)
-    I2CMasterInitExpClk                      0x00001b29   Thumb Code    72  i2c.o(i.I2CMasterInitExpClk)
-    I2CMasterSlaveAddrSet                    0x00001b7d   Thumb Code     8  i2c.o(i.I2CMasterSlaveAddrSet)
-    IntDisable                               0x00001b85   Thumb Code    92  interrupt.o(i.IntDisable)
-    IntEnable                                0x00001be9   Thumb Code    92  interrupt.o(i.IntEnable)
-    IntMasterDisable                         0x00001c4d   Thumb Code    14  interrupt.o(i.IntMasterDisable)
-    IntMasterEnable                          0x00001c5b   Thumb Code    14  interrupt.o(i.IntMasterEnable)
-    IntPrioritySet                           0x00001c69   Thumb Code    36  interrupt.o(i.IntPrioritySet)
-    PWMGenConfigure                          0x00001c91   Thumb Code    38  pwm.o(i.PWMGenConfigure)
-    PWMGenDisable                            0x00001cb7   Thumb Code    10  pwm.o(i.PWMGenDisable)
-    PWMGenEnable                             0x00001cc1   Thumb Code    10  pwm.o(i.PWMGenEnable)
-    PWMGenPeriodGet                          0x00001ccb   Thumb Code    18  pwm.o(i.PWMGenPeriodGet)
-    PWMGenPeriodSet                          0x00001cdd   Thumb Code    18  pwm.o(i.PWMGenPeriodSet)
-    PWMOutputState                           0x00001cef   Thumb Code    16  pwm.o(i.PWMOutputState)
-    PWMPulseWidthSet                         0x00001cff   Thumb Code    32  pwm.o(i.PWMPulseWidthSet)
-    SSIClockSourceSet                        0x00001d1f   Thumb Code     6  ssi.o(i.SSIClockSourceSet)
-    SSIConfigSetExpClk                       0x00001d25   Thumb Code    58  ssi.o(i.SSIConfigSetExpClk)
-    SSIDataPut                               0x00001d5f   Thumb Code    12  ssi.o(i.SSIDataPut)
-    SSIDisable                               0x00001d6b   Thumb Code    10  ssi.o(i.SSIDisable)
-    SSIEnable                                0x00001d75   Thumb Code    10  ssi.o(i.SSIEnable)
-    SysCtlClockGet                           0x00001d81   Thumb Code   304  sysctl.o(i.SysCtlClockGet)
-    SysCtlClockSet                           0x00001ed5   Thumb Code   270  sysctl.o(i.SysCtlClockSet)
-    SysCtlPWMClockSet                        0x00001ff5   Thumb Code    14  sysctl.o(i.SysCtlPWMClockSet)
-    SysCtlPeripheralDisable                  0x00002009   Thumb Code    36  sysctl.o(i.SysCtlPeripheralDisable)
-    SysCtlPeripheralEnable                   0x00002031   Thumb Code    36  sysctl.o(i.SysCtlPeripheralEnable)
-    TimerClockSourceSet                      0x00002059   Thumb Code     6  timer.o(i.TimerClockSourceSet)
-    TimerConfigure                           0x00002061   Thumb Code    88  timer.o(i.TimerConfigure)
-    TimerDisable                             0x000020c1   Thumb Code    16  timer.o(i.TimerDisable)
-    TimerEnable                              0x000020d1   Thumb Code    14  timer.o(i.TimerEnable)
-    TimerIntClear                            0x000020df   Thumb Code     4  timer.o(i.TimerIntClear)
-    TimerIntDisable                          0x000020e3   Thumb Code    10  timer.o(i.TimerIntDisable)
-    TimerIntEnable                           0x000020ed   Thumb Code     8  timer.o(i.TimerIntEnable)
-    TimerIntStatus                           0x000020f5   Thumb Code    10  timer.o(i.TimerIntStatus)
-    TimerLoadSet                             0x000020ff   Thumb Code    18  timer.o(i.TimerLoadSet)
-    TimerValueGet                            0x00002111   Thumb Code    10  timer.o(i.TimerValueGet)
-    _fp_init                                 0x0000211b   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x00002123   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x00002123   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    Region$$Table$$Base                      0x00003594   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000035b4   Number         0  anon$$obj.o(Region$$Table)
+    Int_Master_Enable                        0x000007b9   Thumb Code     8  interrupt_handler.o(.text)
+    Int_Master_Disable                       0x000007c1   Thumb Code     8  interrupt_handler.o(.text)
+    GPIOPortF_Handler                        0x000007c9   Thumb Code    60  interrupt_handler.o(.text)
+    Comp0_Handler                            0x00000805   Thumb Code    34  interrupt_handler.o(.text)
+    WideTimer0A_Handler                      0x00000827   Thumb Code    38  interrupt_handler.o(.text)
+    Timer0A_Handler                          0x0000084d   Thumb Code    38  interrupt_handler.o(.text)
+    ADC0Seq3_Handler                         0x00000873   Thumb Code    60  interrupt_handler.o(.text)
+    ADC1Seq0_Handler                         0x000008af   Thumb Code    40  interrupt_handler.o(.text)
+    ADC1Seq1_Handler                         0x000008d7   Thumb Code    40  interrupt_handler.o(.text)
+    ADC1Seq2_Handler                         0x000008ff   Thumb Code    40  interrupt_handler.o(.text)
+    LCD_set_cursor                           0x00000973   Thumb Code    48  lcd_handler.o(.text)
+    LCD_clear                                0x000009a3   Thumb Code    34  lcd_handler.o(.text)
+    LCD_init                                 0x000009c5   Thumb Code    82  lcd_handler.o(.text)
+    LCD_out_char                             0x00000a17   Thumb Code    46  lcd_handler.o(.text)
+    LCD_out_string                           0x00000a45   Thumb Code    22  lcd_handler.o(.text)
+    LCD_out_number                           0x00000a5b   Thumb Code   394  lcd_handler.o(.text)
+    LCD_out_image                            0x00000be5   Thumb Code    36  lcd_handler.o(.text)
+    Motion_init                              0x00000c1d   Thumb Code    20  motion_handler.o(.text)
+    Motion_Go_Left                           0x00000c31   Thumb Code    36  motion_handler.o(.text)
+    Motion_Go_Right                          0x00000c55   Thumb Code    36  motion_handler.o(.text)
+    Motion_Stop                              0x00000c79   Thumb Code    26  motion_handler.o(.text)
+    Motion_Cruise                            0x00000c93   Thumb Code    34  motion_handler.o(.text)
+    Motion_Max_Speed                         0x00000cb5   Thumb Code    34  motion_handler.o(.text)
+    Motion_Go_Back                           0x00000cd7   Thumb Code    56  motion_handler.o(.text)
+    Motion_calculate_direction               0x00000d0f   Thumb Code     2  motion_handler.o(.text)
+    Print_Welcome_Image                      0x00000d19   Thumb Code    10  printing_handler.o(.text)
+    Print_Motor_Parameters                   0x00000d23   Thumb Code   270  printing_handler.o(.text)
+    PWM_right_motor_duty_cycle               0x00000e81   Thumb Code    86  pwm_handler.o(.text)
+    PWM_left_motor_duty_cycle                0x00000ed7   Thumb Code    86  pwm_handler.o(.text)
+    PWM_motor_init                           0x00000f2d   Thumb Code   110  pwm_handler.o(.text)
+    PWM_Red_led_init                         0x00000f9b   Thumb Code    96  pwm_handler.o(.text)
+    PWM_Red_led_toggle                       0x00000ffb   Thumb Code    62  pwm_handler.o(.text)
+    PWM_set_duty_cycle                       0x00001039   Thumb Code    56  pwm_handler.o(.text)
+    PWM_motor_reverse_init                   0x00001071   Thumb Code   146  pwm_handler.o(.text)
+    PWM_motor_reverse_stop                   0x00001103   Thumb Code    30  pwm_handler.o(.text)
+    SSI_lcd_init                             0x0000114d   Thumb Code    96  ssi_handler.o(.text)
+    SSI_shift_register_init                  0x000011ad   Thumb Code    56  ssi_handler.o(.text)
+    SSI_write                                0x000011e5   Thumb Code    14  ssi_handler.o(.text)
+    SYS_clock_init                           0x00001219   Thumb Code    10  system_handler.o(.text)
+    SYS_startup                              0x00001223   Thumb Code    60  system_handler.o(.text)
+    TIMER_reload_calculator                  0x00001265   Thumb Code    30  timer_handler.o(.text)
+    TIMER_cyclic_1s_init                     0x00001283   Thumb Code    98  timer_handler.o(.text)
+    TIMER_cyclic_50ms_init                   0x000012e5   Thumb Code    96  timer_handler.o(.text)
+    TIMER_delay                              0x00001345   Thumb Code    24  timer_handler.o(.text)
+    TIMER_delay_No_Int                       0x0000135d   Thumb Code    32  timer_handler.o(.text)
+    I2C_Master_Wait                          0x0000138d   Thumb Code    16  i2c_handler.o(.text)
+    I2C_Write                                0x0000139d   Thumb Code   146  i2c_handler.o(.text)
+    I2C_Read                                 0x0000142f   Thumb Code   134  i2c_handler.o(.text)
+    I2C_Accelerometer_Init                   0x000014b5   Thumb Code    72  i2c_handler.o(.text)
+    Accelerometer_init                       0x00001515   Thumb Code    68  accelerometer_handler.o(.text)
+    __use_two_region_memory                  0x0000155d   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x0000155f   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x00001561   Thumb Code     2  heapauxi.o(.text)
+    __user_setup_stackheap                   0x00001563   Thumb Code    74  sys_stackheap_outer.o(.text)
+    exit                                     0x000015ad   Thumb Code    12  exit.o(.text)
+    __user_libspace                          0x000015b9   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x000015b9   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x000015b9   Thumb Code     0  libspace.o(.text)
+    _sys_exit                                0x000015c1   Thumb Code     8  sys_exit.o(.text)
+    __I$use$semihosting                      0x000015cd   Thumb Code     0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x000015cd   Thumb Code     2  use_no_semi.o(.text)
+    ADCIntClear                              0x000015cf   Thumb Code    10  adc.o(i.ADCIntClear)
+    __semihosting_library_function           0x000015cf   Thumb Code     0  indicate_semi.o(.text)
+    ADCIntDisable                            0x000015d9   Thumb Code    16  adc.o(i.ADCIntDisable)
+    ADCIntEnable                             0x000015e9   Thumb Code    16  adc.o(i.ADCIntEnable)
+    ADCIntStatus                             0x000015f9   Thumb Code    52  adc.o(i.ADCIntStatus)
+    ADCProcessorTrigger                      0x0000162d   Thumb Code    26  adc.o(i.ADCProcessorTrigger)
+    ADCSequenceConfigure                     0x00001647   Thumb Code    78  adc.o(i.ADCSequenceConfigure)
+    ADCSequenceDataGet                       0x00001695   Thumb Code    36  adc.o(i.ADCSequenceDataGet)
+    ADCSequenceDisable                       0x000016b9   Thumb Code    16  adc.o(i.ADCSequenceDisable)
+    ADCSequenceEnable                        0x000016c9   Thumb Code    14  adc.o(i.ADCSequenceEnable)
+    ADCSequenceStepConfigure                 0x000016d7   Thumb Code   154  adc.o(i.ADCSequenceStepConfigure)
+    ComparatorIntClear                       0x00001771   Thumb Code    10  comp.o(i.ComparatorIntClear)
+    ComparatorIntStatus                      0x0000177b   Thumb Code    22  comp.o(i.ComparatorIntStatus)
+    GPIODirModeSet                           0x00001791   Thumb Code    40  gpio.o(i.GPIODirModeSet)
+    GPIOIntClear                             0x000017b9   Thumb Code     6  gpio.o(i.GPIOIntClear)
+    GPIOIntDisable                           0x000017bf   Thumb Code    14  gpio.o(i.GPIOIntDisable)
+    GPIOIntEnable                            0x000017cd   Thumb Code    14  gpio.o(i.GPIOIntEnable)
+    GPIOIntStatus                            0x000017db   Thumb Code    14  gpio.o(i.GPIOIntStatus)
+    GPIOIntTypeSet                           0x000017e9   Thumb Code    80  gpio.o(i.GPIOIntTypeSet)
+    GPIOPadConfigSet                         0x00001839   Thumb Code   314  gpio.o(i.GPIOPadConfigSet)
+    GPIOPinConfigure                         0x00001975   Thumb Code    64  gpio.o(i.GPIOPinConfigure)
+    GPIOPinTypeADC                           0x000019bd   Thumb Code    28  gpio.o(i.GPIOPinTypeADC)
+    GPIOPinTypeGPIOInput                     0x000019d9   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOInput)
+    GPIOPinTypeGPIOOutput                    0x000019f5   Thumb Code    28  gpio.o(i.GPIOPinTypeGPIOOutput)
+    GPIOPinTypeI2C                           0x00001a11   Thumb Code    28  gpio.o(i.GPIOPinTypeI2C)
+    GPIOPinTypeI2CSCL                        0x00001a2d   Thumb Code    28  gpio.o(i.GPIOPinTypeI2CSCL)
+    GPIOPinTypePWM                           0x00001a49   Thumb Code    28  gpio.o(i.GPIOPinTypePWM)
+    GPIOPinTypeSSI                           0x00001a65   Thumb Code    28  gpio.o(i.GPIOPinTypeSSI)
+    GPIOPinWrite                             0x00001a81   Thumb Code     6  gpio.o(i.GPIOPinWrite)
+    I2CMasterBusBusy                         0x00001a87   Thumb Code    12  i2c.o(i.I2CMasterBusBusy)
+    I2CMasterBusy                            0x00001a93   Thumb Code    12  i2c.o(i.I2CMasterBusy)
+    I2CMasterControl                         0x00001a9f   Thumb Code     4  i2c.o(i.I2CMasterControl)
+    I2CMasterDataGet                         0x00001aa3   Thumb Code     4  i2c.o(i.I2CMasterDataGet)
+    I2CMasterDataPut                         0x00001aa7   Thumb Code     4  i2c.o(i.I2CMasterDataPut)
+    I2CMasterErr                             0x00001aab   Thumb Code    24  i2c.o(i.I2CMasterErr)
+    I2CMasterInitExpClk                      0x00001ac5   Thumb Code    72  i2c.o(i.I2CMasterInitExpClk)
+    I2CMasterSlaveAddrSet                    0x00001b19   Thumb Code     8  i2c.o(i.I2CMasterSlaveAddrSet)
+    IntDisable                               0x00001b21   Thumb Code    92  interrupt.o(i.IntDisable)
+    IntEnable                                0x00001b85   Thumb Code    92  interrupt.o(i.IntEnable)
+    IntMasterDisable                         0x00001be9   Thumb Code    14  interrupt.o(i.IntMasterDisable)
+    IntMasterEnable                          0x00001bf7   Thumb Code    14  interrupt.o(i.IntMasterEnable)
+    IntPrioritySet                           0x00001c05   Thumb Code    36  interrupt.o(i.IntPrioritySet)
+    PWMGenConfigure                          0x00001c2d   Thumb Code    38  pwm.o(i.PWMGenConfigure)
+    PWMGenDisable                            0x00001c53   Thumb Code    10  pwm.o(i.PWMGenDisable)
+    PWMGenEnable                             0x00001c5d   Thumb Code    10  pwm.o(i.PWMGenEnable)
+    PWMGenPeriodGet                          0x00001c67   Thumb Code    18  pwm.o(i.PWMGenPeriodGet)
+    PWMGenPeriodSet                          0x00001c79   Thumb Code    18  pwm.o(i.PWMGenPeriodSet)
+    PWMOutputState                           0x00001c8b   Thumb Code    16  pwm.o(i.PWMOutputState)
+    PWMPulseWidthSet                         0x00001c9b   Thumb Code    32  pwm.o(i.PWMPulseWidthSet)
+    SSIClockSourceSet                        0x00001cbb   Thumb Code     6  ssi.o(i.SSIClockSourceSet)
+    SSIConfigSetExpClk                       0x00001cc1   Thumb Code    58  ssi.o(i.SSIConfigSetExpClk)
+    SSIDataPut                               0x00001cfb   Thumb Code    12  ssi.o(i.SSIDataPut)
+    SSIDisable                               0x00001d07   Thumb Code    10  ssi.o(i.SSIDisable)
+    SSIEnable                                0x00001d11   Thumb Code    10  ssi.o(i.SSIEnable)
+    SysCtlClockGet                           0x00001d1d   Thumb Code   304  sysctl.o(i.SysCtlClockGet)
+    SysCtlClockSet                           0x00001e71   Thumb Code   270  sysctl.o(i.SysCtlClockSet)
+    SysCtlPWMClockSet                        0x00001f91   Thumb Code    14  sysctl.o(i.SysCtlPWMClockSet)
+    SysCtlPeripheralDisable                  0x00001fa5   Thumb Code    36  sysctl.o(i.SysCtlPeripheralDisable)
+    SysCtlPeripheralEnable                   0x00001fcd   Thumb Code    36  sysctl.o(i.SysCtlPeripheralEnable)
+    TimerClockSourceSet                      0x00001ff5   Thumb Code     6  timer.o(i.TimerClockSourceSet)
+    TimerConfigure                           0x00001ffd   Thumb Code    88  timer.o(i.TimerConfigure)
+    TimerDisable                             0x0000205d   Thumb Code    16  timer.o(i.TimerDisable)
+    TimerEnable                              0x0000206d   Thumb Code    14  timer.o(i.TimerEnable)
+    TimerIntClear                            0x0000207b   Thumb Code     4  timer.o(i.TimerIntClear)
+    TimerIntDisable                          0x0000207f   Thumb Code    10  timer.o(i.TimerIntDisable)
+    TimerIntEnable                           0x00002089   Thumb Code     8  timer.o(i.TimerIntEnable)
+    TimerIntStatus                           0x00002091   Thumb Code    10  timer.o(i.TimerIntStatus)
+    TimerLoadSet                             0x0000209b   Thumb Code    18  timer.o(i.TimerLoadSet)
+    TimerValueGet                            0x000020ad   Thumb Code    10  timer.o(i.TimerValueGet)
+    _fp_init                                 0x000020b7   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x000020bf   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x000020bf   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    Region$$Table$$Base                      0x00003530   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00003550   Number         0  anon$$obj.o(Region$$Table)
     comp0_interrupt_flag                     0x20000004   Data           4  interrupt_handler.o(.data)
     internal_temperature                     0x20000008   Data           4  interrupt_handler.o(.data)
     Mx_LS_Value                              0x2000000c   Data           4  interrupt_handler.o(.data)
@@ -1300,164 +1297,164 @@ Memory Map of the image
 
   Image Entry point : 0x0000033d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000035e0, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x0000357c, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x000035b4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00003550, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x0000026c   Data   RO            3    RESET               startup_new.o
-    0x0000026c   0x00000008   Code   RO         2496  * !!!main             c_w.l(__main.o)
-    0x00000274   0x00000034   Code   RO         2650    !!!scatter          c_w.l(__scatter.o)
-    0x000002a8   0x0000001a   Code   RO         2652    !!handler_copy      c_w.l(__scatter_copy.o)
+    0x0000026c   0x00000008   Code   RO         2457  * !!!main             c_w.l(__main.o)
+    0x00000274   0x00000034   Code   RO         2611    !!!scatter          c_w.l(__scatter.o)
+    0x000002a8   0x0000001a   Code   RO         2613    !!handler_copy      c_w.l(__scatter_copy.o)
     0x000002c2   0x00000002   PAD
-    0x000002c4   0x0000001c   Code   RO         2654    !!handler_zi        c_w.l(__scatter_zi.o)
-    0x000002e0   0x00000002   Code   RO         2523    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
-    0x000002e2   0x00000004   Code   RO         2529    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2533    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2535    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2537    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2540    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2542    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2544    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2546    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2548    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2550    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2552    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2554    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2556    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2558    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2560    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2564    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2566    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2568    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
-    0x000002e6   0x00000000   Code   RO         2570    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
-    0x000002e6   0x00000002   Code   RO         2571    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
-    0x000002e8   0x00000002   Code   RO         2591    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
-    0x000002ea   0x00000000   Code   RO         2605    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
-    0x000002ea   0x00000000   Code   RO         2608    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
-    0x000002ea   0x00000000   Code   RO         2611    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
-    0x000002ea   0x00000000   Code   RO         2613    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
-    0x000002ea   0x00000000   Code   RO         2616    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
-    0x000002ea   0x00000002   Code   RO         2617    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
-    0x000002ec   0x00000000   Code   RO         2498    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
-    0x000002ec   0x00000000   Code   RO         2500    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
-    0x000002ec   0x00000006   Code   RO         2512    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
-    0x000002f2   0x00000000   Code   RO         2502    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
-    0x000002f2   0x00000004   Code   RO         2503    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
-    0x000002f6   0x00000000   Code   RO         2505    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
-    0x000002f6   0x00000008   Code   RO         2506    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
-    0x000002fe   0x00000002   Code   RO         2527    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
-    0x00000300   0x00000000   Code   RO         2573    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
-    0x00000300   0x00000004   Code   RO         2574    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
-    0x00000304   0x00000006   Code   RO         2575    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
+    0x000002c4   0x0000001c   Code   RO         2615    !!handler_zi        c_w.l(__scatter_zi.o)
+    0x000002e0   0x00000002   Code   RO         2484    .ARM.Collect$$libinit$$00000000  c_w.l(libinit.o)
+    0x000002e2   0x00000004   Code   RO         2490    .ARM.Collect$$libinit$$00000001  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2494    .ARM.Collect$$libinit$$00000008  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2496    .ARM.Collect$$libinit$$0000000A  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2498    .ARM.Collect$$libinit$$0000000C  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2501    .ARM.Collect$$libinit$$0000000F  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2503    .ARM.Collect$$libinit$$00000011  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2505    .ARM.Collect$$libinit$$00000013  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2507    .ARM.Collect$$libinit$$00000015  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2509    .ARM.Collect$$libinit$$00000017  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2511    .ARM.Collect$$libinit$$00000019  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2513    .ARM.Collect$$libinit$$0000001B  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2515    .ARM.Collect$$libinit$$0000001D  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2517    .ARM.Collect$$libinit$$0000001F  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2519    .ARM.Collect$$libinit$$00000021  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2521    .ARM.Collect$$libinit$$00000023  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2525    .ARM.Collect$$libinit$$0000002A  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2527    .ARM.Collect$$libinit$$0000002C  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2529    .ARM.Collect$$libinit$$0000002E  c_w.l(libinit2.o)
+    0x000002e6   0x00000000   Code   RO         2531    .ARM.Collect$$libinit$$00000030  c_w.l(libinit2.o)
+    0x000002e6   0x00000002   Code   RO         2532    .ARM.Collect$$libinit$$00000031  c_w.l(libinit2.o)
+    0x000002e8   0x00000002   Code   RO         2552    .ARM.Collect$$libshutdown$$00000000  c_w.l(libshutdown.o)
+    0x000002ea   0x00000000   Code   RO         2566    .ARM.Collect$$libshutdown$$00000003  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO         2569    .ARM.Collect$$libshutdown$$00000006  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO         2572    .ARM.Collect$$libshutdown$$00000009  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO         2574    .ARM.Collect$$libshutdown$$0000000B  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000000   Code   RO         2577    .ARM.Collect$$libshutdown$$0000000E  c_w.l(libshutdown2.o)
+    0x000002ea   0x00000002   Code   RO         2578    .ARM.Collect$$libshutdown$$0000000F  c_w.l(libshutdown2.o)
+    0x000002ec   0x00000000   Code   RO         2459    .ARM.Collect$$rtentry$$00000000  c_w.l(rtentry.o)
+    0x000002ec   0x00000000   Code   RO         2461    .ARM.Collect$$rtentry$$00000002  c_w.l(rtentry2.o)
+    0x000002ec   0x00000006   Code   RO         2473    .ARM.Collect$$rtentry$$00000004  c_w.l(rtentry4.o)
+    0x000002f2   0x00000000   Code   RO         2463    .ARM.Collect$$rtentry$$00000009  c_w.l(rtentry2.o)
+    0x000002f2   0x00000004   Code   RO         2464    .ARM.Collect$$rtentry$$0000000A  c_w.l(rtentry2.o)
+    0x000002f6   0x00000000   Code   RO         2466    .ARM.Collect$$rtentry$$0000000C  c_w.l(rtentry2.o)
+    0x000002f6   0x00000008   Code   RO         2467    .ARM.Collect$$rtentry$$0000000D  c_w.l(rtentry2.o)
+    0x000002fe   0x00000002   Code   RO         2488    .ARM.Collect$$rtexit$$00000000  c_w.l(rtexit.o)
+    0x00000300   0x00000000   Code   RO         2534    .ARM.Collect$$rtexit$$00000002  c_w.l(rtexit2.o)
+    0x00000300   0x00000004   Code   RO         2535    .ARM.Collect$$rtexit$$00000003  c_w.l(rtexit2.o)
+    0x00000304   0x00000006   Code   RO         2536    .ARM.Collect$$rtexit$$00000004  c_w.l(rtexit2.o)
     0x0000030a   0x00000002   PAD
-    0x0000030c   0x00000006   Code   RO         1898    .emb_text           driverlib.lib(sysctl.o)
+    0x0000030c   0x00000006   Code   RO         1859    .emb_text           driverlib.lib(sysctl.o)
     0x00000312   0x00000002   PAD
-    0x00000314   0x00000026   Code   RO         2482    .emb_text           driverlib.lib(cpu.o)
+    0x00000314   0x00000026   Code   RO         2443    .emb_text           driverlib.lib(cpu.o)
     0x0000033a   0x00000002   PAD
     0x0000033c   0x00000058   Code   RO            4  * .text               startup_new.o
     0x00000394   0x0000000e   Code   RO           10    .text               main.o
     0x000003a2   0x00000002   PAD
     0x000003a4   0x000001a0   Code   RO           38    .text               adc_handler.o
     0x00000544   0x000000d4   Code   RO           92    .text               cyclic_activity_handler.o
-    0x00000618   0x000001ec   Code   RO          122    .text               gpio_handler.o
-    0x00000804   0x0000019c   Code   RO          138    .text               interrupt_handler.o
-    0x000009a0   0x000002c8   Code   RO          165    .text               lcd_handler.o
-    0x00000c68   0x000000fc   Code   RO          194    .text               motion_handler.o
-    0x00000d64   0x00000168   Code   RO          213    .text               printing_handler.o
-    0x00000ecc   0x000002cc   Code   RO          236    .text               pwm_handler.o
-    0x00001198   0x000000cc   Code   RO          255    .text               ssi_handler.o
-    0x00001264   0x00000058   Code   RO          273    .text               system_handler.o
-    0x000012bc   0x00000128   Code   RO          300    .text               timer_handler.o
-    0x000013e4   0x00000188   Code   RO          315    .text               i2c_handler.o
-    0x0000156c   0x00000054   Code   RO          363    .text               accelerometer_handler.o
-    0x000015c0   0x00000006   Code   RO         2494    .text               c_w.l(heapauxi.o)
-    0x000015c6   0x0000004a   Code   RO         2514    .text               c_w.l(sys_stackheap_outer.o)
-    0x00001610   0x0000000c   Code   RO         2516    .text               c_w.l(exit.o)
-    0x0000161c   0x00000008   Code   RO         2524    .text               c_w.l(libspace.o)
-    0x00001624   0x0000000c   Code   RO         2583    .text               c_w.l(sys_exit.o)
-    0x00001630   0x00000002   Code   RO         2594    .text               c_w.l(use_no_semi.o)
-    0x00001632   0x00000000   Code   RO         2596    .text               c_w.l(indicate_semi.o)
-    0x00001632   0x0000000a   Code   RO          425    i.ADCIntClear       driverlib.lib(adc.o)
-    0x0000163c   0x00000010   Code   RO          427    i.ADCIntDisable     driverlib.lib(adc.o)
-    0x0000164c   0x00000010   Code   RO          429    i.ADCIntEnable      driverlib.lib(adc.o)
-    0x0000165c   0x00000034   Code   RO          432    i.ADCIntStatus      driverlib.lib(adc.o)
-    0x00001690   0x0000001a   Code   RO          437    i.ADCProcessorTrigger  driverlib.lib(adc.o)
-    0x000016aa   0x0000004e   Code   RO          440    i.ADCSequenceConfigure  driverlib.lib(adc.o)
-    0x000016f8   0x00000024   Code   RO          443    i.ADCSequenceDataGet  driverlib.lib(adc.o)
-    0x0000171c   0x00000010   Code   RO          444    i.ADCSequenceDisable  driverlib.lib(adc.o)
-    0x0000172c   0x0000000e   Code   RO          445    i.ADCSequenceEnable  driverlib.lib(adc.o)
-    0x0000173a   0x0000009a   Code   RO          448    i.ADCSequenceStepConfigure  driverlib.lib(adc.o)
-    0x000017d4   0x0000000a   Code   RO          693    i.ComparatorIntClear  driverlib.lib(comp.o)
-    0x000017de   0x00000016   Code   RO          697    i.ComparatorIntStatus  driverlib.lib(comp.o)
-    0x000017f4   0x00000028   Code   RO          763    i.GPIODirModeSet    driverlib.lib(gpio.o)
-    0x0000181c   0x00000006   Code   RO          764    i.GPIOIntClear      driverlib.lib(gpio.o)
-    0x00001822   0x0000000e   Code   RO          765    i.GPIOIntDisable    driverlib.lib(gpio.o)
-    0x00001830   0x0000000e   Code   RO          766    i.GPIOIntEnable     driverlib.lib(gpio.o)
-    0x0000183e   0x0000000e   Code   RO          768    i.GPIOIntStatus     driverlib.lib(gpio.o)
-    0x0000184c   0x00000050   Code   RO          770    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
-    0x0000189c   0x0000013a   Code   RO          773    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
-    0x000019d6   0x00000002   PAD
-    0x000019d8   0x00000048   Code   RO          774    i.GPIOPinConfigure  driverlib.lib(gpio.o)
-    0x00001a20   0x0000001c   Code   RO          776    i.GPIOPinTypeADC    driverlib.lib(gpio.o)
-    0x00001a3c   0x0000001c   Code   RO          784    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
-    0x00001a58   0x0000001c   Code   RO          785    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
-    0x00001a74   0x0000001c   Code   RO          787    i.GPIOPinTypeI2C    driverlib.lib(gpio.o)
-    0x00001a90   0x0000001c   Code   RO          788    i.GPIOPinTypeI2CSCL  driverlib.lib(gpio.o)
-    0x00001aac   0x0000001c   Code   RO          796    i.GPIOPinTypePWM    driverlib.lib(gpio.o)
-    0x00001ac8   0x0000001c   Code   RO          798    i.GPIOPinTypeSSI    driverlib.lib(gpio.o)
-    0x00001ae4   0x00000006   Code   RO          806    i.GPIOPinWrite      driverlib.lib(gpio.o)
-    0x00001aea   0x0000000c   Code   RO         1075    i.I2CMasterBusBusy  driverlib.lib(i2c.o)
-    0x00001af6   0x0000000c   Code   RO         1076    i.I2CMasterBusy     driverlib.lib(i2c.o)
-    0x00001b02   0x00000004   Code   RO         1077    i.I2CMasterControl  driverlib.lib(i2c.o)
-    0x00001b06   0x00000004   Code   RO         1078    i.I2CMasterDataGet  driverlib.lib(i2c.o)
-    0x00001b0a   0x00000004   Code   RO         1079    i.I2CMasterDataPut  driverlib.lib(i2c.o)
-    0x00001b0e   0x00000018   Code   RO         1082    i.I2CMasterErr      driverlib.lib(i2c.o)
-    0x00001b26   0x00000002   PAD
-    0x00001b28   0x00000054   Code   RO         1084    i.I2CMasterInitExpClk  driverlib.lib(i2c.o)
-    0x00001b7c   0x00000008   Code   RO         1094    i.I2CMasterSlaveAddrSet  driverlib.lib(i2c.o)
-    0x00001b84   0x00000064   Code   RO         1397    i.IntDisable        driverlib.lib(interrupt.o)
-    0x00001be8   0x00000064   Code   RO         1398    i.IntEnable         driverlib.lib(interrupt.o)
-    0x00001c4c   0x0000000e   Code   RO         1400    i.IntMasterDisable  driverlib.lib(interrupt.o)
-    0x00001c5a   0x0000000e   Code   RO         1401    i.IntMasterEnable   driverlib.lib(interrupt.o)
-    0x00001c68   0x00000028   Code   RO         1409    i.IntPrioritySet    driverlib.lib(interrupt.o)
-    0x00001c90   0x00000026   Code   RO         1521    i.PWMGenConfigure   driverlib.lib(pwm.o)
-    0x00001cb6   0x0000000a   Code   RO         1522    i.PWMGenDisable     driverlib.lib(pwm.o)
-    0x00001cc0   0x0000000a   Code   RO         1523    i.PWMGenEnable      driverlib.lib(pwm.o)
-    0x00001cca   0x00000012   Code   RO         1535    i.PWMGenPeriodGet   driverlib.lib(pwm.o)
-    0x00001cdc   0x00000012   Code   RO         1536    i.PWMGenPeriodSet   driverlib.lib(pwm.o)
-    0x00001cee   0x00000010   Code   RO         1543    i.PWMOutputState    driverlib.lib(pwm.o)
-    0x00001cfe   0x00000020   Code   RO         1546    i.PWMPulseWidthSet  driverlib.lib(pwm.o)
-    0x00001d1e   0x00000006   Code   RO         1753    i.SSIClockSourceSet  driverlib.lib(ssi.o)
-    0x00001d24   0x0000003a   Code   RO         1754    i.SSIConfigSetExpClk  driverlib.lib(ssi.o)
-    0x00001d5e   0x0000000c   Code   RO         1759    i.SSIDataPut        driverlib.lib(ssi.o)
-    0x00001d6a   0x0000000a   Code   RO         1761    i.SSIDisable        driverlib.lib(ssi.o)
-    0x00001d74   0x0000000a   Code   RO         1762    i.SSIEnable         driverlib.lib(ssi.o)
-    0x00001d7e   0x00000002   PAD
-    0x00001d80   0x00000154   Code   RO         1901    i.SysCtlClockGet    driverlib.lib(sysctl.o)
-    0x00001ed4   0x00000120   Code   RO         1903    i.SysCtlClockSet    driverlib.lib(sysctl.o)
-    0x00001ff4   0x00000014   Code   RO         1927    i.SysCtlPWMClockSet  driverlib.lib(sysctl.o)
-    0x00002008   0x00000028   Code   RO         1931    i.SysCtlPeripheralDisable  driverlib.lib(sysctl.o)
-    0x00002030   0x00000028   Code   RO         1932    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
-    0x00002058   0x00000006   Code   RO         2243    i.TimerClockSourceSet  driverlib.lib(timer.o)
-    0x0000205e   0x00000002   PAD
-    0x00002060   0x00000060   Code   RO         2244    i.TimerConfigure    driverlib.lib(timer.o)
-    0x000020c0   0x00000010   Code   RO         2252    i.TimerDisable      driverlib.lib(timer.o)
-    0x000020d0   0x0000000e   Code   RO         2253    i.TimerEnable       driverlib.lib(timer.o)
-    0x000020de   0x00000004   Code   RO         2254    i.TimerIntClear     driverlib.lib(timer.o)
-    0x000020e2   0x0000000a   Code   RO         2255    i.TimerIntDisable   driverlib.lib(timer.o)
-    0x000020ec   0x00000008   Code   RO         2256    i.TimerIntEnable    driverlib.lib(timer.o)
-    0x000020f4   0x0000000a   Code   RO         2258    i.TimerIntStatus    driverlib.lib(timer.o)
-    0x000020fe   0x00000012   Code   RO         2262    i.TimerLoadSet      driverlib.lib(timer.o)
-    0x00002110   0x0000000a   Code   RO         2276    i.TimerValueGet     driverlib.lib(timer.o)
-    0x0000211a   0x0000000a   Code   RO         2581    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x00002124   0x000007c8   Data   RO          166    .constdata          lcd_handler.o
-    0x000028ec   0x000007c8   Data   RO          214    .constdata          printing_handler.o
-    0x000030b4   0x00000210   Data   RO          807    .constdata          driverlib.lib(gpio.o)
-    0x000032c4   0x0000010c   Data   RO         1414    .constdata          driverlib.lib(interrupt.o)
-    0x000033d0   0x000001c4   Data   RO         1953    .constdata          driverlib.lib(sysctl.o)
-    0x00003594   0x00000020   Data   RO         2648    Region$$Table       anon$$obj.o
+    0x00000618   0x000001a0   Code   RO          122    .text               gpio_handler.o
+    0x000007b8   0x0000019c   Code   RO          138    .text               interrupt_handler.o
+    0x00000954   0x000002c8   Code   RO          165    .text               lcd_handler.o
+    0x00000c1c   0x000000fc   Code   RO          194    .text               motion_handler.o
+    0x00000d18   0x00000168   Code   RO          213    .text               printing_handler.o
+    0x00000e80   0x000002cc   Code   RO          236    .text               pwm_handler.o
+    0x0000114c   0x000000cc   Code   RO          255    .text               ssi_handler.o
+    0x00001218   0x0000004c   Code   RO          273    .text               system_handler.o
+    0x00001264   0x00000128   Code   RO          303    .text               timer_handler.o
+    0x0000138c   0x00000188   Code   RO          318    .text               i2c_handler.o
+    0x00001514   0x00000048   Code   RO          339    .text               accelerometer_handler.o
+    0x0000155c   0x00000006   Code   RO         2455    .text               c_w.l(heapauxi.o)
+    0x00001562   0x0000004a   Code   RO         2475    .text               c_w.l(sys_stackheap_outer.o)
+    0x000015ac   0x0000000c   Code   RO         2477    .text               c_w.l(exit.o)
+    0x000015b8   0x00000008   Code   RO         2485    .text               c_w.l(libspace.o)
+    0x000015c0   0x0000000c   Code   RO         2544    .text               c_w.l(sys_exit.o)
+    0x000015cc   0x00000002   Code   RO         2555    .text               c_w.l(use_no_semi.o)
+    0x000015ce   0x00000000   Code   RO         2557    .text               c_w.l(indicate_semi.o)
+    0x000015ce   0x0000000a   Code   RO          386    i.ADCIntClear       driverlib.lib(adc.o)
+    0x000015d8   0x00000010   Code   RO          388    i.ADCIntDisable     driverlib.lib(adc.o)
+    0x000015e8   0x00000010   Code   RO          390    i.ADCIntEnable      driverlib.lib(adc.o)
+    0x000015f8   0x00000034   Code   RO          393    i.ADCIntStatus      driverlib.lib(adc.o)
+    0x0000162c   0x0000001a   Code   RO          398    i.ADCProcessorTrigger  driverlib.lib(adc.o)
+    0x00001646   0x0000004e   Code   RO          401    i.ADCSequenceConfigure  driverlib.lib(adc.o)
+    0x00001694   0x00000024   Code   RO          404    i.ADCSequenceDataGet  driverlib.lib(adc.o)
+    0x000016b8   0x00000010   Code   RO          405    i.ADCSequenceDisable  driverlib.lib(adc.o)
+    0x000016c8   0x0000000e   Code   RO          406    i.ADCSequenceEnable  driverlib.lib(adc.o)
+    0x000016d6   0x0000009a   Code   RO          409    i.ADCSequenceStepConfigure  driverlib.lib(adc.o)
+    0x00001770   0x0000000a   Code   RO          654    i.ComparatorIntClear  driverlib.lib(comp.o)
+    0x0000177a   0x00000016   Code   RO          658    i.ComparatorIntStatus  driverlib.lib(comp.o)
+    0x00001790   0x00000028   Code   RO          724    i.GPIODirModeSet    driverlib.lib(gpio.o)
+    0x000017b8   0x00000006   Code   RO          725    i.GPIOIntClear      driverlib.lib(gpio.o)
+    0x000017be   0x0000000e   Code   RO          726    i.GPIOIntDisable    driverlib.lib(gpio.o)
+    0x000017cc   0x0000000e   Code   RO          727    i.GPIOIntEnable     driverlib.lib(gpio.o)
+    0x000017da   0x0000000e   Code   RO          729    i.GPIOIntStatus     driverlib.lib(gpio.o)
+    0x000017e8   0x00000050   Code   RO          731    i.GPIOIntTypeSet    driverlib.lib(gpio.o)
+    0x00001838   0x0000013a   Code   RO          734    i.GPIOPadConfigSet  driverlib.lib(gpio.o)
+    0x00001972   0x00000002   PAD
+    0x00001974   0x00000048   Code   RO          735    i.GPIOPinConfigure  driverlib.lib(gpio.o)
+    0x000019bc   0x0000001c   Code   RO          737    i.GPIOPinTypeADC    driverlib.lib(gpio.o)
+    0x000019d8   0x0000001c   Code   RO          745    i.GPIOPinTypeGPIOInput  driverlib.lib(gpio.o)
+    0x000019f4   0x0000001c   Code   RO          746    i.GPIOPinTypeGPIOOutput  driverlib.lib(gpio.o)
+    0x00001a10   0x0000001c   Code   RO          748    i.GPIOPinTypeI2C    driverlib.lib(gpio.o)
+    0x00001a2c   0x0000001c   Code   RO          749    i.GPIOPinTypeI2CSCL  driverlib.lib(gpio.o)
+    0x00001a48   0x0000001c   Code   RO          757    i.GPIOPinTypePWM    driverlib.lib(gpio.o)
+    0x00001a64   0x0000001c   Code   RO          759    i.GPIOPinTypeSSI    driverlib.lib(gpio.o)
+    0x00001a80   0x00000006   Code   RO          767    i.GPIOPinWrite      driverlib.lib(gpio.o)
+    0x00001a86   0x0000000c   Code   RO         1036    i.I2CMasterBusBusy  driverlib.lib(i2c.o)
+    0x00001a92   0x0000000c   Code   RO         1037    i.I2CMasterBusy     driverlib.lib(i2c.o)
+    0x00001a9e   0x00000004   Code   RO         1038    i.I2CMasterControl  driverlib.lib(i2c.o)
+    0x00001aa2   0x00000004   Code   RO         1039    i.I2CMasterDataGet  driverlib.lib(i2c.o)
+    0x00001aa6   0x00000004   Code   RO         1040    i.I2CMasterDataPut  driverlib.lib(i2c.o)
+    0x00001aaa   0x00000018   Code   RO         1043    i.I2CMasterErr      driverlib.lib(i2c.o)
+    0x00001ac2   0x00000002   PAD
+    0x00001ac4   0x00000054   Code   RO         1045    i.I2CMasterInitExpClk  driverlib.lib(i2c.o)
+    0x00001b18   0x00000008   Code   RO         1055    i.I2CMasterSlaveAddrSet  driverlib.lib(i2c.o)
+    0x00001b20   0x00000064   Code   RO         1358    i.IntDisable        driverlib.lib(interrupt.o)
+    0x00001b84   0x00000064   Code   RO         1359    i.IntEnable         driverlib.lib(interrupt.o)
+    0x00001be8   0x0000000e   Code   RO         1361    i.IntMasterDisable  driverlib.lib(interrupt.o)
+    0x00001bf6   0x0000000e   Code   RO         1362    i.IntMasterEnable   driverlib.lib(interrupt.o)
+    0x00001c04   0x00000028   Code   RO         1370    i.IntPrioritySet    driverlib.lib(interrupt.o)
+    0x00001c2c   0x00000026   Code   RO         1482    i.PWMGenConfigure   driverlib.lib(pwm.o)
+    0x00001c52   0x0000000a   Code   RO         1483    i.PWMGenDisable     driverlib.lib(pwm.o)
+    0x00001c5c   0x0000000a   Code   RO         1484    i.PWMGenEnable      driverlib.lib(pwm.o)
+    0x00001c66   0x00000012   Code   RO         1496    i.PWMGenPeriodGet   driverlib.lib(pwm.o)
+    0x00001c78   0x00000012   Code   RO         1497    i.PWMGenPeriodSet   driverlib.lib(pwm.o)
+    0x00001c8a   0x00000010   Code   RO         1504    i.PWMOutputState    driverlib.lib(pwm.o)
+    0x00001c9a   0x00000020   Code   RO         1507    i.PWMPulseWidthSet  driverlib.lib(pwm.o)
+    0x00001cba   0x00000006   Code   RO         1714    i.SSIClockSourceSet  driverlib.lib(ssi.o)
+    0x00001cc0   0x0000003a   Code   RO         1715    i.SSIConfigSetExpClk  driverlib.lib(ssi.o)
+    0x00001cfa   0x0000000c   Code   RO         1720    i.SSIDataPut        driverlib.lib(ssi.o)
+    0x00001d06   0x0000000a   Code   RO         1722    i.SSIDisable        driverlib.lib(ssi.o)
+    0x00001d10   0x0000000a   Code   RO         1723    i.SSIEnable         driverlib.lib(ssi.o)
+    0x00001d1a   0x00000002   PAD
+    0x00001d1c   0x00000154   Code   RO         1862    i.SysCtlClockGet    driverlib.lib(sysctl.o)
+    0x00001e70   0x00000120   Code   RO         1864    i.SysCtlClockSet    driverlib.lib(sysctl.o)
+    0x00001f90   0x00000014   Code   RO         1888    i.SysCtlPWMClockSet  driverlib.lib(sysctl.o)
+    0x00001fa4   0x00000028   Code   RO         1892    i.SysCtlPeripheralDisable  driverlib.lib(sysctl.o)
+    0x00001fcc   0x00000028   Code   RO         1893    i.SysCtlPeripheralEnable  driverlib.lib(sysctl.o)
+    0x00001ff4   0x00000006   Code   RO         2204    i.TimerClockSourceSet  driverlib.lib(timer.o)
+    0x00001ffa   0x00000002   PAD
+    0x00001ffc   0x00000060   Code   RO         2205    i.TimerConfigure    driverlib.lib(timer.o)
+    0x0000205c   0x00000010   Code   RO         2213    i.TimerDisable      driverlib.lib(timer.o)
+    0x0000206c   0x0000000e   Code   RO         2214    i.TimerEnable       driverlib.lib(timer.o)
+    0x0000207a   0x00000004   Code   RO         2215    i.TimerIntClear     driverlib.lib(timer.o)
+    0x0000207e   0x0000000a   Code   RO         2216    i.TimerIntDisable   driverlib.lib(timer.o)
+    0x00002088   0x00000008   Code   RO         2217    i.TimerIntEnable    driverlib.lib(timer.o)
+    0x00002090   0x0000000a   Code   RO         2219    i.TimerIntStatus    driverlib.lib(timer.o)
+    0x0000209a   0x00000012   Code   RO         2223    i.TimerLoadSet      driverlib.lib(timer.o)
+    0x000020ac   0x0000000a   Code   RO         2237    i.TimerValueGet     driverlib.lib(timer.o)
+    0x000020b6   0x0000000a   Code   RO         2542    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x000020c0   0x000007c8   Data   RO          166    .constdata          lcd_handler.o
+    0x00002888   0x000007c8   Data   RO          214    .constdata          printing_handler.o
+    0x00003050   0x00000210   Data   RO          768    .constdata          driverlib.lib(gpio.o)
+    0x00003260   0x0000010c   Data   RO         1375    .constdata          driverlib.lib(interrupt.o)
+    0x0000336c   0x000001c4   Data   RO         1914    .constdata          driverlib.lib(sysctl.o)
+    0x00003530   0x00000020   Data   RO         2609    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x20000000, Size: 0x0000002c, Max: 0xffffffff, ABSOLUTE)
@@ -1470,14 +1467,14 @@ Memory Map of the image
     0x20000024   0x00000003   Data   RW          195    .data               motion_handler.o
     0x20000027   0x00000001   Data   RW          215    .data               printing_handler.o
     0x20000028   0x00000001   Data   RW          237    .data               pwm_handler.o
-    0x20000029   0x00000001   Data   RW          364    .data               accelerometer_handler.o
+    0x20000029   0x00000001   Data   RW          340    .data               accelerometer_handler.o
 
 
     Execution Region ER_ZI (Base: 0x2000002c, Size: 0x00000264, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x2000002c   0x00000060   Zero   RW         2525    .bss                c_w.l(libspace.o)
+    0x2000002c   0x00000060   Zero   RW         2486    .bss                c_w.l(libspace.o)
     0x2000008c   0x00000004   PAD
     0x20000090   0x00000000   Zero   RW            2    HEAP                startup_new.o
     0x20000090   0x00000200   Zero   RW            1    STACK               startup_new.o
@@ -1490,24 +1487,24 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-        84          6          0          1          0        841   accelerometer_handler.o
-       416         22          0          0          0        816   adc_handler.o
-       212         22          0          3          0       1759   cyclic_activity_handler.o
-       492         28          0          1          0       2027   gpio_handler.o
+        72          4          0          1          0        833   accelerometer_handler.o
+       416         22          0          0          0        800   adc_handler.o
+       212         22          0          3          0       1711   cyclic_activity_handler.o
+       416         24          0          1          0       1671   gpio_handler.o
        392         24          0          0          0       1508   i2c_handler.o
-       412         46          0         32          0       2548   interrupt_handler.o
-       712         20       1992          0          0       2645   lcd_handler.o
-        14          0          0          0          0       4667   main.o
-       252          8          0          3          0       1773   motion_handler.o
-       360         86       1992          1          0       1110   printing_handler.o
-       716         44          0          1          0       2151   pwm_handler.o
-       204         38          0          0          0        897   ssi_handler.o
-        88         12        620          0        512        792   startup_new.o
-        88          6          0          0          0        769   system_handler.o
-       296         16          0          0          0       1453   timer_handler.o
+       412         46          0         32          0       2516   interrupt_handler.o
+       712         20       1992          0          0       2593   lcd_handler.o
+        14          0          0          0          0       4647   main.o
+       252          8          0          3          0       1741   motion_handler.o
+       360         86       1992          1          0       1078   printing_handler.o
+       716         44          0          1          0       2135   pwm_handler.o
+       204         38          0          0          0        881   ssi_handler.o
+        88         12        620          0        512        776   startup_new.o
+        76          6          0          0          0        745   system_handler.o
+       296         16          0          0          0       1433   timer_handler.o
 
     ----------------------------------------------------------------------
-      4740        378       4636         44        512      25756   Object Totals
+      4640        372       4636         44        512      25068   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          2          0          0   (incl. Padding)
 
@@ -1569,15 +1566,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7864        510       5884         44        612      62616   Grand Totals
-      7864        510       5884         44        612      62616   ELF Image Totals
-      7864        510       5884         44          0          0   ROM Totals
+      7764        504       5884         44        612      61928   Grand Totals
+      7764        504       5884         44        612      61928   ELF Image Totals
+      7764        504       5884         44          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                13748 (  13.43kB)
+    Total RO  Size (Code + RO Data)                13648 (  13.33kB)
     Total RW  Size (RW Data + ZI Data)               656 (   0.64kB)
-    Total ROM Size (Code + RO Data + RW Data)      13792 (  13.47kB)
+    Total ROM Size (Code + RO Data + RW Data)      13692 (  13.37kB)
 
 ==============================================================================
 

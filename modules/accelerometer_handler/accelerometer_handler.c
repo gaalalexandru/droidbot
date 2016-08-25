@@ -26,9 +26,10 @@ unsigned char I2C_Init_Flag = 0;
 void Accelerometer_init(void)
 {
 	unsigned char write_check = 0;
-	
+	#if Accelerometer_CS_GPIO
 	GPIO_accelerometer_CS_init();
 	GPIO_accelerometer_CS_select(CS_I2C);
+	#endif
 	I2C_Accelerometer_Init();
 	
 	while(!write_check)

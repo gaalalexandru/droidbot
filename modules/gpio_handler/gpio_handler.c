@@ -110,6 +110,7 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	}
 }
 
+#if Accelerometer_CS_GPIO
 void GPIO_accelerometer_CS_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);												//Enable clock on port E
@@ -129,5 +130,5 @@ void GPIO_accelerometer_CS_select(unsigned char CS)
 		GPIOPinWrite(GPIO_PORTE_BASE, GPIO_PIN_0, 0);
 	}
 }
-
+#endif
 //EOF

@@ -11,6 +11,7 @@
 .\generated_output\system_handler.o: .\modules\interrupt_handler\interrupt_handler.h
 .\generated_output\system_handler.o: .\modules\pwm_handler\pwm_handler.h
 .\generated_output\system_handler.o: .\modules\timer_handler\timer_handler.h
+.\generated_output\system_handler.o: .\3rd_pty_drv\UART.h
 .\generated_output\system_handler.o: .\modules\accelerometer_handler\accelerometer_handler.h
 .\generated_output\system_handler.o: .\modules\cyclic_activity_handler\cyclic_activity_handler.h
 .\generated_output\system_handler.o: .\modules\lcd_handler\lcd_handler.h

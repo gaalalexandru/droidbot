@@ -514,6 +514,13 @@
         </Group>
         <Group>
           <GroupName>3rd party drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>UART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\3rd_pty_drv\UART.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Configs_Types_Resorces</GroupName>

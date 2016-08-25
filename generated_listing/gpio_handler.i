@@ -8,27 +8,27 @@
 
 
 
-#line 12 ".\\modules\\compile_switches\\compile_switches.h"
+#line 14 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 20 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
-
-
-
- 
-#line 33 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
+#line 22 ".\\modules\\compile_switches\\compile_switches.h"
 
  
 
 
 
 
+ 
+#line 35 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+
+
+ 
+
+
+
+
 
 
 
@@ -39,10 +39,10 @@
  
 
  
-#line 59 ".\\modules\\compile_switches\\compile_switches.h"
+#line 61 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 69 ".\\modules\\compile_switches\\compile_switches.h"
+#line 71 ".\\modules\\compile_switches\\compile_switches.h"
 
 #line 5 "modules\\gpio_handler\\gpio_handler.c"
  
@@ -1888,24 +1888,5 @@ void GPIO_motor_direction_select(Motor_Direction_en direction)
 	}
 }
 
-void GPIO_accelerometer_CS_init(void)
-{
-	SysCtlPeripheralEnable(0xf0000804);												
-	GPIOPinTypeGPIOOutput(0x40024000, 0x00000001);									
-	GPIODirModeSet(0x40024000, 0x00000001, 0x00000001);			
-	GPIOPadConfigSet(0x40024000, 0x00000001, 0x00000001,0x0000000A); 
-}
-
-void GPIO_accelerometer_CS_select(unsigned char CS)
-{
-	if(CS) 
-	{
-		GPIOPinWrite(0x40024000, 0x00000001, 0x00000001);
-	}
-	else	
-	{
-		GPIOPinWrite(0x40024000, 0x00000001, 0);
-	}
-}
-
+#line 134 "modules\\gpio_handler\\gpio_handler.c"
 
