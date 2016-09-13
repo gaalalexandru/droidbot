@@ -116,7 +116,7 @@ void SYS_startup(void)
 	clock2 = SYS_clock_get;		//clock after modules initialized
 	if(clock1 == clock2)			//just to check if clock speed is changed in other modules
 	{
-		Int_Master_Enable();			//Global interrupt enable
+		Int_Master_Enable();		//Global interrupt enable
 	}
 }
 //EOF

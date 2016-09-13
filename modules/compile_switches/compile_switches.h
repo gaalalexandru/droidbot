@@ -9,7 +9,7 @@
 #define False (0)
 #define True 	(1)
 #define Full_SW			(On)		//Use "On" to have the full functionality of the SW, Use "Off" only for specific module development
-#define UART_Debug	(on)		//Use On to have UART Printing for debugging available
+#define UART_Debug	(Off)		//Use On to have UART Printing for debugging available
 #define Accelerometer_CS_GPIO (Off)	//Use On if GPIO pin PE0 controls CS, Off if CS is hardwired
 
 /*----------------On board LED definitions-------------*/

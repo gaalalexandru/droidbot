@@ -1036,7 +1036,7 @@ void SYS_startup(void)
 	clock2 = SysCtlClockGet();		
 	if(clock1 == clock2)			
 	{
-		Int_Master_Enable();			
+		Int_Master_Enable();		
 	}
 }
 
