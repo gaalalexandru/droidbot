@@ -82,35 +82,17 @@ void SYS_clock_init(void)
 }
 void SYS_startup(void)
 {
-	unsigned long clock1, clock2;
-	Int_Master_Disable();			//Global interrupt disable
-	SYS_clock_init();					//Set system clock
-	clock1 = SYS_clock_get;		//clock before modules initialized
-	#if UART_Debug
-	UART_Init();
-	#endif
-	#if Full_SW	//Initialize complete system
-		TIMER_cyclic_50ms_init();			//Initialize 50 mili second timer
-		TIMER_cyclic_1s_init();				//Initialize 1 second timer	
-		LCD_init();										//Initialize LCD	
-		ADC_Light_sensor_init();			//Initialize ADC for light sensors	
-		ADC_Temperature_sensor_init();//Initialize ADC for temperature sensor
-		Motion_init();								//Initialize PWM and GPIO direction switches
-		Accelerometer_init();					//Initialize Accelerometer
+
 	#endif
 	
 	#if !Full_SW //Initialize modules under development
 		//COMP_mic_input_init();		//Disabled temporarly	
 		//PWM_Red_led_init(1000);		//Initialize PWM for Red led blink
-		TIMER_cyclic_50ms_init();			//Initialize 50 mili second timer
-		TIMER_cyclic_1s_init();				//Initialize 1 second timer	
-		LCD_init();										//Initialize LCD
-		GPIO_steering_switch_init();	//Initialize GPIO input from light sensors	
-		GPIO_motor_direction_init();	//Initialize GPIO output to select motor direction
-		PWM_motor_init(1000);						//Initialize PWM for motors forward
-		ADC_Light_sensor_init();				//Initialize ADC for light sensors	
-		ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
-		Accelerometer_init();
+		//TIMER_cyclic_50ms_init();			//Initialize 50 mili second timer
+		//TIMER_cyclic_1s_init();				//Initialize 1 second timer	
+		//ADC_Light_sensor_init();				//Initialize ADC for light sensors	
+		//ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
+		//Accelerometer_init();
 	#endif
 	
 	clock2 = SYS_clock_get;		//clock after modules initialized

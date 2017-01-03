@@ -10,6 +10,7 @@
 #include "motion_handler.h"
 
 /*-------------------Service Includes-----------------*/
+#include "adc_handler.h"
 #include "gpio_handler.h"
 #include "pwm_handler.h"
 #include "timer_handler.h"
@@ -30,7 +31,8 @@ void Motion_init(void)
 {
 	GPIO_steering_switch_init();	//Initialize GPIO input
 	GPIO_motor_direction_init();	//Initialize GPIO output to select motor direction
-	PWM_motor_init(1000);					//Initialize PWM for motors forward
+	PWM_motor_init(1000);					//Initialize PWM outputs
+	ADC_Light_sensor_init();			//Initialize ADC for light sensors	
 }
 void Motion_Go_Left(void)
 {
@@ -102,7 +104,6 @@ void Motion_Go_Back(void)
 
 void Motion_calculate_direction(void)
 {
-	/*
 	//							Delta-------------Condition--------------------True--------------------------False----------------------
 	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
 	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
@@ -165,6 +166,8 @@ void Motion_calculate_direction(void)
 		Motion_Stop();
 		Go_Fwd_Counter = 0;
 	}
+	
+	/*
 	if (X_acceleration > 50) Motion_Go_Left();
 	if (Y_acceleration > 50) Motion_Go_Right();
 	if (Z_acceleration > 50) Motion_Cruise();

@@ -72,6 +72,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopB1X>0</nStopB1X>
+            <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
@@ -80,6 +82,8 @@
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
+            <nStopA1X>0</nStopA1X>
+            <nStopA2X>0</nStopA2X>
           </AfterMake>
           <SelectedForBatchBuild>0</SelectedForBatchBuild>
           <SVCSIdString></SVCSIdString>
@@ -141,10 +145,9 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>0</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>3</TargetSelection>
+          <TargetSelection>8</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -224,6 +227,7 @@
             <useUlib>0</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
             <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
@@ -358,11 +362,18 @@
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
             <useXO>0</useXO>
+            <v6Lang>1</v6Lang>
+            <v6LangP>1</v6LangP>
+            <vShortEn>1</vShortEn>
+            <vShortWch>1</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C123GH6PM TARGET_IS_TM4C123_RA1</Define>
               <Undefine></Undefine>
-              <IncludePath>.\modules\pwm_handler;.\modules\compile_switches;.\modules\motion_handler;..\TivaWare_C_Series-2.1.1.71;.\modules\interrupt_handler;.\modules\comparator_handler;.\modules\gpio_handler;.\modules\timer_handler;.\modules\cyclic_activity_handler;.\modules\lcd_handler;.\3rd_pty_drv;.\modules\custom_types;.\modules\printing_handler;.\modules\ssi_handler;.\modules\system_handler;.\modules\resources;.\modules\adc_handler;.\modules\accelerometer_handler;.\modules\i2c_handler;.\modules\shift_register_handler</IncludePath>
+              <IncludePath>.\modules\pwm_handler;.\modules\compile_switches;.\modules\motion_handler;..\TivaWare_C_Series-2.1.1.71;.\modules\interrupt_handler;.\modules\comparator_handler;.\modules\gpio_handler;.\modules\timer_handler;.\modules\cyclic_activity_handler;.\modules\lcd_handler;.\3rd_pty_drv;.\modules\custom_types;.\modules\printing_handler;.\modules\ssi_handler;.\modules\system_handler;.\modules\resources;.\modules\adc_handler;.\modules\accelerometer_handler;.\modules\i2c_handler;.\modules\shift_register_handler;.\OS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -375,6 +386,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
@@ -539,6 +551,26 @@
               <FileName>compile_switches.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\modules\compile_switches\compile_switches.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>OS</GroupName>
+          <Files>
+            <File>
+              <FileName>os_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\OS\os_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>os_hw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\OS\os_hw.c</FilePath>
+            </File>
+            <File>
+              <FileName>osasm.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\OS\osasm.s</FilePath>
             </File>
           </Files>
         </Group>

@@ -43,7 +43,8 @@ void Int_Master_Disable(void)
 {
 	IntMasterDisable();		//Allow processor to respond to interrupts
 }
-void GPIOPortF_Handler(void) 	//GPIO port F ISR
+/*void GPIOPortF_Handler(void) 	//GPIO port F ISR
+//Not needed anymore, done by OS
 {
 	unsigned long Light_sensor_status = 0;
 	Light_sensor_status = GPIOIntStatus(GPIO_PORTF_BASE,false);
@@ -63,7 +64,7 @@ void GPIOPortF_Handler(void) 	//GPIO port F ISR
 		//Go Left
 		Motion_Go_Left();
 	}
-}
+}*/
 void Comp0_Handler(void)			//Analog comparator 0 ISR
 {
 	comp0_interrupt_flag = 1;
