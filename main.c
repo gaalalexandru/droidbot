@@ -12,26 +12,28 @@
 #include "system_handler.h"
 /*-------------------Macro Definitions----------------*/
 /*-------------Global Variable Definitions------------*/
+uint8_t GPIO_LS_needed = 0;
+uint8_t GPIO_PF0_SW2_Pressed = 0;
+uint8_t GPIO_PF4_SW1_Pressed = 0;
+fifo_t FifoADC_Temp;
+
 /*---------------------Task Definitions---------------*/
 void Task0(void){	//Periodic task 10 ms
   while(1){
 		OS_Wait(&PerTask[0].semaphore);
 		CYCL_10_ms();
-    //Profile_Toggle0();
   }
 }
 void Task1(void){		//Periodic task 100 ms
   while(1){
 		OS_Wait(&PerTask[1].semaphore);
 		CYCL_100_ms();
-    //Profile_Toggle1();
   }
 }
 void Task2(void){		//Periodic task 1000 ms
   while(1){
 		OS_Wait(&PerTask[2].semaphore);
 		CYCL_1000_ms();
-    //Profile_Toggle2();
   }
 }
 
@@ -40,8 +42,12 @@ void Task3(void){	 //response to task PF0
 		OS_Wait(&SemPortF.pin0); // signaled in OS on button touch
 		OS_Sleep(50); //sleep to debounce switch		
 		if(!GPIOPinRead(GPIO_PORTF_BASE,GPIO_INT_PIN_0)) {
-			//Profile_Toggle3();
-			//Do something about it...
+			//PF0 pressed, signal low level
+			GPIO_PF0_SW2_Pressed = 1;
+		}
+		else {
+			//PF0 released, signal high level
+			GPIO_PF0_SW2_Pressed = 0;
 		}
 		OS_EdgeTrigger_Restart(PortF,GPIO_PIN_0);
 	}
@@ -52,8 +58,12 @@ void Task4(void){	 //response to task PF4
 		OS_Wait(&SemPortF.pin4); // signaled in OS on button touch
 		OS_Sleep(50); //sleep to debounce switch		
 		if(!GPIOPinRead(GPIO_PORTF_BASE,GPIO_INT_PIN_4)) {   
-			//Profile_Toggle3();
-			//Do something about it...
+			//PF4 pressed, signal low level
+			GPIO_PF4_SW1_Pressed = 1;
+		}
+		else {
+			//PF4 released, signal high level
+			GPIO_PF4_SW1_Pressed = 0;
 		}
 		OS_EdgeTrigger_Restart(PortF,GPIO_PIN_4);
 	}
@@ -74,27 +84,26 @@ void Task6(void){	 //empty task
 void Idle_Task(void){  //idle task
   while(1){
 		//Idle
+		Motion_Stop();
   }
 }
 /*-------------------Main program start---------------*/
-
-uint8_t GPIO_LS_needed = 0;
 
 int main(void)
 {
 	unsigned long clock1, clock2;
 	OS_Init();  // initialize OS, clock and timers, disable interrupts
 	//Profile_Init();  // enable digital I/O on profile pins
-	Motion_init();  //Initialize PWM output to motors, GPIO direction switches, ADC input of light sensors
+	Motion_Init();  //Initialize PWM output to motors, GPIO direction switches, ADC input of light sensors
 	#if UART_Debug
 		UART_Init();
 	#endif	
 	clock1 = SYS_clock_get;		//clock before modules initialized
-		LCD_init();										//Initialize LCD	
-		ADC_Temperature_sensor_init();//Initialize ADC for temperature sensor
-		//Accelerometer_init();					//Initialize Accelerometer
+	LCD_init();										//Initialize LCD	
+	ADC_Temperature_sensor_init();//Initialize ADC for temperature sensor
+	//Accelerometer_init();					//Initialize Accelerometer
 	
-	//OS_FIFO_Init(&FifoA);
+	OS_FIFO_Init(&FifoADC_Temp);
 	
 	if(GPIO_LS_needed) {
 		OS_InitSemaphore(&SemPortF.pin0,0);

@@ -2,8 +2,12 @@
 //Application layer
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
+/*---------------------OS Includes--------------------*/
+#include "os_core.h"
 /*-------------------HW define Includes--------------*/
+
 /*-------------------Driver Includes-----------------*/
+
 /*------Export interface---Self header Includes------*/
 #include "printing_handler.h"
 
@@ -13,7 +17,7 @@
 
 /*-------------Global Variable Definitions------------*/
 extern motor_parameters_st motor_parameters;	//Global structure variable for motor parameters
-extern unsigned long internal_temperature;
+extern fifo_t FifoADC_Temp;
 
 extern unsigned long Mx_LS_Value;	//Central light sensor output
 extern unsigned long Rx_LS_Value;		//Right light sensor output
@@ -28,6 +32,7 @@ void Print_Welcome_Image(void)
 }
 void Print_Motor_Parameters(void)
 {
+	uint32_t temperature;
 	if(print_flag ==0)
 	{
 		LCD_clear();
@@ -73,7 +78,8 @@ void Print_Motor_Parameters(void)
 			break;
 	}
 	LCD_set_cursor(4,3);
-	LCD_out_number(internal_temperature);
+	temperature = OS_FIFO_Get(&FifoADC_Temp);
+	LCD_out_number(temperature);
 	LCD_set_cursor(0,3);
 	LCD_out_string("Temp:");
 	LCD_set_cursor(8,4);
@@ -82,9 +88,6 @@ void Print_Motor_Parameters(void)
 	LCD_out_number(Mx_LS_Value);
 	LCD_set_cursor(0,4);
 	LCD_out_number(Lx_LS_Value);
-
-
-
 }
 //EOF
 

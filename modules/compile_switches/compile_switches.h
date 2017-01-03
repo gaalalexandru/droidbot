@@ -34,7 +34,9 @@
 #define Revers_Wheel_DS (50)		//PWM duty cycle for reverse
 
 /*------------Temperature sensor config--------------*/
-#define ADC_Ref_Voltage 		(33)	//33 represents 3v3, 50 represents 5v
+#define ADC_VREFP (3.3)  //3.3 Volt
+#define ADC_VREFN (0)  //0 Volt
+#define ADC_Ref_Voltage (ADC_VREFP - ADC_VREFN)	//33 represents 3v3, 50 represents 5v
 
 /*---------------------LCD config--------------------*/
 // Maximum dimensions of the LCD, although the pixels are numbered from zero to (MAX-1).  

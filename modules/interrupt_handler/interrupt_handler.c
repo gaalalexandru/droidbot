@@ -26,7 +26,6 @@
 
 /*-------------Global Variable Definitions------------*/
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
-unsigned long internal_temperature = 0;
 unsigned long Mx_LS_Value = 0;	//Central light sensor output 
 unsigned long Lx_LS_Value = 0;	//left light sensor output 
 unsigned long Rx_LS_Value = 0;	//right light sensor output 
@@ -96,30 +95,7 @@ void Timer0A_Handler(void)		//Timer 0 A ISR
 	}
 }
 
-void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
-{
-	uint32_t Voltage;
-	if(ADCIntStatus(ADC0_BASE, 3, false))
-	{
-		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC0_BASE, 3, &Voltage);		
-		internal_temperature = (1475 - ((75 * (ADC_Ref_Voltage) * Voltage) / 4096))/10;
-		//internal_temperature = Voltage; //Gaal Alexandru use this for RAW ADC value
-		
-		/*
-		The internal temperature sensor converts a temperature measurement into a voltage. This voltage
-		value, VTSENS, is given by the following equation (where TEMP is the temperature in °C):
-		VTSENS = 2.7 - ((TEMP + 55) / 75)
-		
-		The temperature sensor reading can be sampled in a sample sequence by setting the TSn bit in
-		the ADCSSCTLn register. The temperature reading from the temperature sensor can also be given
-		as a function of the ADC value. The following formula calculates temperature (TEMP in ?) based
-		on the ADC reading (ADCCODE, given as an unsigned decimal number from 0 to 4095) and the
-		maximum ADC voltage range (VREFP - VREFN):
-		TEMP = 147.5 - ((75 * (VREFP - VREFN) × ADCCODE) / 4096)
-		*/
-	}
-}
+
 void ADC1Seq0_Handler(void)		//ADC1 Seq0 ISR
 {
 	uint32_t Light;

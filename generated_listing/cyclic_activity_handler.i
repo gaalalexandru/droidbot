@@ -47,7 +47,7 @@
 
 #line 6 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
  
-#line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -61,12 +61,12 @@
 
 
 
-#line 25 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
+#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
 #line 8 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
-#line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
  
 
@@ -84,10 +84,21 @@
 
 
 
+     
+#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+     
 
-#line 26 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
 
 
+
+
+
+
+
+
+
+
+#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -139,32 +150,17 @@ typedef unsigned           int uint_fast32_t;
 typedef unsigned       __int64 uint_fast64_t;
 
      
+
+
+
+
 typedef   signed           int intptr_t;
 typedef unsigned           int uintptr_t;
 
-     
-typedef   signed       __int64 intmax_t;
-typedef unsigned       __int64 uintmax_t;
-
-
-
 
      
-
-     
-
-
-
-
-
-     
-
-
-
-
-
-     
-
+typedef   signed     long long intmax_t;
+typedef unsigned     long long uintmax_t;
 
 
 
@@ -214,6 +210,46 @@ typedef unsigned       __int64 uintmax_t;
      
 
 
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
      
 
 
@@ -222,16 +258,11 @@ typedef unsigned       __int64 uintmax_t;
 
      
 
-     
-
 
      
 
-
      
-
-
-     
+#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -241,7 +272,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-     
+
 
 
      
@@ -250,7 +281,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 197 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -283,14 +314,14 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 261 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
 
 
 
  
-
-
-
 #line 9 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 
  
@@ -756,14 +787,14 @@ void CYCL_50_milisecond(void);
 
 
 
-void Motion_init(void);
+void Motion_Init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
-void Motion_calculate_direction(void);
+void Motion_Calculate_Direction(void);
 
 #line 22 "modules\\cyclic_activity_handler\\cyclic_activity_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
@@ -881,83 +912,31 @@ extern unsigned char I2C_Init_Flag;
 static unsigned char startup_image = 1;
 
  
-void CYCL_1_second(void)	
-{
+void CYCL_10_ms(void) {
+	
+	Motion_Calculate_Direction();
+}
 
-	static unsigned char counter = 0;
-
-	if (counter <=2)
-	{
-		Print_Welcome_Image();
+void CYCL_100_ms(void) {
+	
+	ADCProcessorTrigger(0x40039000, 0);	
+	ADCProcessorTrigger(0x40039000, 1);	
+	ADCProcessorTrigger(0x40039000, 2);	
+	if (I2C_Init_Flag) {
+		
+		
+		
 	}
-	else
-	{
-		startup_image = 0;
+}
+
+void CYCL_1000_ms(void) {
+	
+	Print_Welcome_Image();
+	if(startup_image != 1) {
+		Print_Motor_Parameters();
 	}
 	PWM_Red_led_toggle();
-	if((counter%2)==0)
-	{
-		
-	}
-	if((counter%5)==0)
-	{
-		
-	}
-	if((counter%10)==0)
-	{
-		
-	}
-	if(counter == 254)	
-	{
-		counter = 5;			
-	}
-	else
-	{
-		counter++;				
-	}
+	ADCProcessorTrigger(0x40038000, 3);		
+	startup_image = 0;
 }
 
-void CYCL_50_milisecond(void)	
-{
-	static unsigned char counter = 0;
-	Motion_calculate_direction();
-	if((counter%2)==0)
-	{
-		
-
-		ADCProcessorTrigger(0x40039000, 0);	
-		ADCProcessorTrigger(0x40039000, 1);	
-		ADCProcessorTrigger(0x40039000, 2);	
-		if (I2C_Init_Flag)
-		{
-			
-			
-			
-		}
-	}
-	if((counter%5)==0)
-	{
-		
-		Motion_calculate_direction();
-
-	}
-	if((counter%10)==0)
-	{
-		
-		if(startup_image != 1)
-		{
-			Print_Motor_Parameters();
-		}
-		ADCProcessorTrigger(0x40038000, 3);		
-		Motion_Stop();
-	}
-	if(counter == 254)	
-	{
-		counter = 5;			
-	}
-	else
-	{
-		counter++;				
-	}
-
-}

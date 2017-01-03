@@ -46,7 +46,7 @@
 #line 4 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
-#line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -60,12 +60,12 @@
 
 
 
-#line 25 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdbool.h"
+#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
 #line 7 "modules\\interrupt_handler\\interrupt_handler.c"
-#line 1 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
  
 
@@ -83,10 +83,21 @@
 
 
 
+     
+#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+     
 
-#line 26 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
 
 
+
+
+
+
+
+
+
+
+#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -138,32 +149,17 @@ typedef unsigned           int uint_fast32_t;
 typedef unsigned       __int64 uint_fast64_t;
 
      
+
+
+
+
 typedef   signed           int intptr_t;
 typedef unsigned           int uintptr_t;
 
-     
-typedef   signed       __int64 intmax_t;
-typedef unsigned       __int64 uintmax_t;
-
-
-
 
      
-
-     
-
-
-
-
-
-     
-
-
-
-
-
-     
-
+typedef   signed     long long intmax_t;
+typedef unsigned     long long uintmax_t;
 
 
 
@@ -213,6 +209,46 @@ typedef unsigned       __int64 uintmax_t;
      
 
 
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
      
 
 
@@ -221,16 +257,11 @@ typedef unsigned       __int64 uintmax_t;
 
      
 
-     
-
 
      
 
-
      
-
-
-     
+#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -240,7 +271,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-     
+
 
 
      
@@ -249,7 +280,7 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 197 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -282,14 +313,14 @@ typedef unsigned       __int64 uintmax_t;
 
 
 
-#line 261 "C:\\Keil\\ARM\\ARMCC\\bin\\..\\include\\stdint.h"
+#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
 
 
 
  
-
-
-
 #line 8 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
@@ -2105,14 +2136,14 @@ void Int_Peripherials_Enable(void);
 
 
 
-void Motion_init(void);
+void Motion_Init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
-void Motion_calculate_direction(void);
+void Motion_Calculate_Direction(void);
 
 #line 24 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\cyclic_activity_handler\\cyclic_activity_handler.h"
@@ -2159,27 +2190,28 @@ void Int_Master_Disable(void)
 {
 	IntMasterDisable();		
 }
-void GPIOPortF_Handler(void) 	
-{
-	unsigned long Light_sensor_status = 0;
-	Light_sensor_status = GPIOIntStatus(0x40025000,0);
-	GPIOIntClear(0x40025000,0x00000001 | 0x00000010);
-	if((Light_sensor_status&(0x00000001 | 0x00000010)) == (0x00000001 | 0x00000010))
-	{
-		
-		Motion_Cruise();
-	}
-	else if(Light_sensor_status & 0x00000010)
-	{
-		
-		Motion_Go_Right();
-	}
-	else if(Light_sensor_status & 0x00000001)
-	{
-		
-		Motion_Go_Left();
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 void Comp0_Handler(void)			
 {
 	comp0_interrupt_flag = 1;

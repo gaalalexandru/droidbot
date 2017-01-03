@@ -36,7 +36,7 @@ static unsigned char startup_image = 1;
 /*-------------------Function Definitions-------------*/
 void CYCL_10_ms(void) {
 	//Code that runs only every 10 ms
-	Motion_calculate_direction();
+	Motion_Calculate_Direction();
 }
 
 void CYCL_100_ms(void) {
@@ -59,7 +59,6 @@ void CYCL_1000_ms(void) {
 	}
 	PWM_Red_led_toggle();
 	ADCProcessorTrigger(ADC0_BASE, 3);		//Trigger Temperature sensor ADC
-	Motion_Stop();
 	startup_image = 0;
 }
 //EOF

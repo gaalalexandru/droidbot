@@ -107,6 +107,282 @@ typedef enum Led_State
 
 
 #line 8 "modules\\motion_handler\\motion_handler.c"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+
+
+
+#line 9 "modules\\motion_handler\\motion_handler.c"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+ 
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+     
+#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+     
+
+
+
+
+
+
+
+
+
+
+
+#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
+
+
+ 
+
+     
+
+     
+typedef   signed          char int8_t;
+typedef   signed short     int int16_t;
+typedef   signed           int int32_t;
+typedef   signed       __int64 int64_t;
+
+     
+typedef unsigned          char uint8_t;
+typedef unsigned short     int uint16_t;
+typedef unsigned           int uint32_t;
+typedef unsigned       __int64 uint64_t;
+
+     
+
+     
+     
+typedef   signed          char int_least8_t;
+typedef   signed short     int int_least16_t;
+typedef   signed           int int_least32_t;
+typedef   signed       __int64 int_least64_t;
+
+     
+typedef unsigned          char uint_least8_t;
+typedef unsigned short     int uint_least16_t;
+typedef unsigned           int uint_least32_t;
+typedef unsigned       __int64 uint_least64_t;
+
+     
+
+     
+typedef   signed           int int_fast8_t;
+typedef   signed           int int_fast16_t;
+typedef   signed           int int_fast32_t;
+typedef   signed       __int64 int_fast64_t;
+
+     
+typedef unsigned           int uint_fast8_t;
+typedef unsigned           int uint_fast16_t;
+typedef unsigned           int uint_fast32_t;
+typedef unsigned       __int64 uint_fast64_t;
+
+     
+
+
+
+
+typedef   signed           int intptr_t;
+typedef unsigned           int uintptr_t;
+
+
+     
+typedef   signed     long long intmax_t;
+typedef unsigned     long long uintmax_t;
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+     
+
+
+     
+
+
+     
+
+
+     
+
+     
+#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+     
+
+
+
+     
+
+
+
+
+
+
+     
+    
+ 
+
+
+
+#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+     
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
+
+
+
+ 
+#line 10 "modules\\motion_handler\\motion_handler.c"
 
  
 #line 1 "modules\\motion_handler\\motion_handler.h"
@@ -115,18 +391,26 @@ typedef enum Led_State
 
 
 
-void Motion_init(void);
+void Motion_Init(void);
 void Motion_Go_Right(void);
 void Motion_Go_Left(void);
 void Motion_Stop(void);
 void Motion_Cruise(void);
 void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
-void Motion_calculate_direction(void);
+void Motion_Calculate_Direction(void);
 
-#line 11 "modules\\motion_handler\\motion_handler.c"
+#line 13 "modules\\motion_handler\\motion_handler.c"
 
  
+#line 1 ".\\modules\\adc_handler\\adc_handler.h"
+
+
+
+void ADC_Temperature_sensor_init(void);
+void ADC_Light_sensor_init(void);
+
+#line 16 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\gpio_handler\\gpio_handler.h"
 
 
@@ -147,7 +431,7 @@ void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 
-#line 14 "modules\\motion_handler\\motion_handler.c"
+#line 17 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -163,7 +447,7 @@ void PWM_Red_led_toggle(void);
 
 
 
-#line 15 "modules\\motion_handler\\motion_handler.c"
+#line 18 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
 
 
@@ -177,7 +461,7 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
 void TIMER_delay(unsigned long delay_time_ms);
 void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
-#line 16 "modules\\motion_handler\\motion_handler.c"
+#line 19 "modules\\motion_handler\\motion_handler.c"
 
  
 extern unsigned long comp0_interrupt_flag;	
@@ -189,13 +473,16 @@ extern unsigned long Lx_LS_Value;
 extern unsigned long X_acceleration;
 extern unsigned long Y_acceleration;
 extern unsigned long Z_acceleration;
+extern uint8_t GPIO_PF0_SW2_Pressed;
+extern uint8_t GPIO_PF4_SW1_Pressed;
 
  
-void Motion_init(void)
+void Motion_Init(void)
 {
 	GPIO_steering_switch_init();	
 	GPIO_motor_direction_init();	
 	PWM_motor_init(1000);					
+	ADC_Light_sensor_init();			
 }
 void Motion_Go_Left(void)
 {
@@ -265,71 +552,75 @@ void Motion_Go_Back(void)
 }
 
 
-void Motion_calculate_direction(void)
+void Motion_Calculate_Direction(void)
 {
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
+	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
+	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
+	static unsigned char Go_Fwd_Counter = 0;	
+	
+	
+	if((GPIO_PF0_SW2_Pressed && GPIO_PF4_SW1_Pressed)|| 
+		((Rx_Lx_LS_Delta < (120))&&	
+		(Rx_Mx_LS_Delta > (120))&&	
+		(Rx_Mx_LS_Delta > (120))&&
+		(Rx_LS_Value > (Mx_LS_Value + (120)))&&	
+		(Lx_LS_Value > (Mx_LS_Value + (120)))))	
+	{
+		
+		if(Go_Fwd_Counter < (100))
+		{
+			Motion_Cruise();		
+			if(Go_Fwd_Counter < 254)
+			{
+				Go_Fwd_Counter++;
+			}
+			else
+			{
+				Go_Fwd_Counter = (100);
+			}
+		}
+		else
+		{
+			Motion_Max_Speed(); 
+		}					
+	}
+	
+	else if((GPIO_PF0_SW2_Pressed)||
+		((Rx_Lx_LS_Delta > (120))&&  
+		(Rx_Mx_LS_Delta > (120))&&  
+		(Rx_LS_Value > (Lx_LS_Value + (120)))&&  
+		(Rx_LS_Value > (Mx_LS_Value + (120)))))  
+	{
+		
+		Motion_Go_Right();
+		Go_Fwd_Counter = 0;
+	}
+	
+	else if((GPIO_PF4_SW1_Pressed)||
+		((Rx_Lx_LS_Delta > (120))&&  
+		(Lx_Mx_LS_Delta > (120))&&  
+		(Lx_LS_Value > (Rx_LS_Value + (120)))&&  
+		(Lx_LS_Value > (Mx_LS_Value + (120)))))  
+	{
+		
+		Motion_Go_Left();
+		Go_Fwd_Counter = 0;		
+	}
+	
+	
+	
+	
+	
+	else
+	{
+		
+		Motion_Stop();
+		Go_Fwd_Counter = 0;
+	}
+	
+	
 
 
 

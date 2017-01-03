@@ -1,5 +1,9 @@
 //adc_handler.c
 //Service layer
+
+/*---------------------OS Includes--------------------*/
+#include "os_core.h"
+
 /*-------------------Configuration Includes-----------*/
 #include "compile_switches.h"
 
@@ -19,6 +23,9 @@
 /*-------------------HW define Includes--------------*/
 #include "inc/hw_memmap.h"
 #include "inc/hw_ints.h"
+
+/*-------------Global Variable Definitions------------*/
+extern fifo_t FifoADC_Temp;
 
 void ADC_Temperature_sensor_init(void) //Initialize microphone input
 {
@@ -111,4 +118,31 @@ and ADCIntUnregister(). The sample sequencer interrupt sources are managed with 
 ADCIntEnable(), ADCIntStatus(), and ADCIntClear().
 */
 
+void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
+{
+	uint32_t digital_value;
+	uint32_t temperature;
+	uint32_t analog_voltage;
+	
+	if(ADCIntStatus(ADC0_BASE, 3, false))
+	{
+		ADCIntClear(ADC0_BASE, 3); 										//Clear interrupt flag
+		ADCSequenceDataGet(ADC0_BASE, 3, &digital_value);	
+		temperature = (147.5 - ((75 * (ADC_Ref_Voltage) * digital_value) / 4096));
+		analog_voltage = ((digital_value * ADC_Ref_Voltage)/4096)*1000;
+		OS_FIFO_Put(&FifoADC_Temp,temperature);		
+
+		/*
+		The internal temperature sensor converts a temperature measurement into a voltage. This voltage
+		value, VTSENS, is given by the following equation (where TEMP is the temperature in °C):
+		VTSENS = 2.7 - ((TEMP + 55) / 75)
+		The temperature sensor reading can be sampled in a sample sequence by setting the TSn bit in
+		the ADCSSCTLn register. The temperature reading from the temperature sensor can also be given
+		as a function of the ADC value. The following formula calculates temperature (TEMP in ?) based
+		on the ADC reading (ADCCODE, given as an unsigned decimal number from 0 to 4095) and the
+		maximum ADC voltage range (VREFP - VREFN):
+		TEMP = 147.5 - ((75 * (VREFP - VREFN) × ADCCODE) / 4096)
+		*/
+	}
+}
 

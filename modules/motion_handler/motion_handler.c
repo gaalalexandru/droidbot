@@ -5,6 +5,8 @@
 
 /*-------------------Type Includes-------------------*/
 #include "custom_types.h"
+#include "stdbool.h"
+#include "stdint.h"
 
 /*------Export interface---Self header Includes------*/
 #include "motion_handler.h"
@@ -25,9 +27,11 @@ extern unsigned long Lx_LS_Value;		//Left light sensor output
 extern unsigned long X_acceleration;//X acceleration 8 bit value
 extern unsigned long Y_acceleration;//Y acceleration 8 bit value
 extern unsigned long Z_acceleration;//Z acceleration 8 bit value
+extern uint8_t GPIO_PF0_SW2_Pressed;
+extern uint8_t GPIO_PF4_SW1_Pressed;
 
 /*-------------------Function Definitions-------------*/
-void Motion_init(void)
+void Motion_Init(void)
 {
 	GPIO_steering_switch_init();	//Initialize GPIO input
 	GPIO_motor_direction_init();	//Initialize GPIO output to select motor direction
@@ -102,7 +106,7 @@ void Motion_Go_Back(void)
 }
 
 
-void Motion_calculate_direction(void)
+void Motion_Calculate_Direction(void)
 {
 	//							Delta-------------Condition--------------------True--------------------------False----------------------
 	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
@@ -111,11 +115,12 @@ void Motion_calculate_direction(void)
 	static unsigned char Go_Fwd_Counter = 0;	//Will be incremented every 100 ms, if condition fulfill
 	
 	//Check if GO FORWARD
-	if((Rx_Lx_LS_Delta < Min_Delta_LS)&&	//Check if Rx = Lx (within min delta)
-		 (Rx_Mx_LS_Delta > Min_Delta_LS)&&	//Check if Rx != Mx	(not within delta)
-		 (Rx_Mx_LS_Delta > Min_Delta_LS)&&
-		 (Rx_LS_Value > (Mx_LS_Value + Min_Delta_LS))&&	//Check if Rx > Mx	(atleast by delta)
-		 (Lx_LS_Value > (Mx_LS_Value + Min_Delta_LS)))	//Check if Lx > Mx	(atleast by delta)
+	if((GPIO_PF0_SW2_Pressed && GPIO_PF4_SW1_Pressed)|| //check if any button is pressed, highest priority
+		((Rx_Lx_LS_Delta < Min_Delta_LS)&&	//Check if Rx = Lx (within min delta)
+		(Rx_Mx_LS_Delta > Min_Delta_LS)&&	//Check if Rx != Mx	(not within delta)
+		(Rx_Mx_LS_Delta > Min_Delta_LS)&&
+		(Rx_LS_Value > (Mx_LS_Value + Min_Delta_LS))&&	//Check if Rx > Mx	(atleast by delta)
+		(Lx_LS_Value > (Mx_LS_Value + Min_Delta_LS))))	//Check if Lx > Mx	(atleast by delta)
 	{
 		//Condition furfilled to go forward, lightsource in front of droidbot
 		if(Go_Fwd_Counter < Max_Speed_Delay)
@@ -136,20 +141,22 @@ void Motion_calculate_direction(void)
 		}					
 	}
 	//Check if GO RIGHT
-	else if ((Rx_Lx_LS_Delta > Min_Delta_LS)&&	//Check if Rx != Lx	(not within delta)
-					 (Rx_Mx_LS_Delta > Min_Delta_LS)&&	//Check if Rx != Mx	(not within delta)
-					 (Rx_LS_Value > (Lx_LS_Value + Min_Delta_LS))&&	//Check if Rx > Lx	(atleast by delta)	
-					 (Rx_LS_Value > (Mx_LS_Value + Min_Delta_LS)))	//Check if Mx > Lx	(atleast by delta)			
+	else if((GPIO_PF0_SW2_Pressed)||
+		((Rx_Lx_LS_Delta > Min_Delta_LS)&&  //Check if Rx != Lx	(not within delta)
+		(Rx_Mx_LS_Delta > Min_Delta_LS)&&  //Check if Rx != Mx	(not within delta)
+		(Rx_LS_Value > (Lx_LS_Value + Min_Delta_LS))&&  //Check if Rx > Lx	(atleast by delta)	
+		(Rx_LS_Value > (Mx_LS_Value + Min_Delta_LS))))  //Check if Mx > Lx	(atleast by delta)			
 	{
 		//Condition fulfill to go right, lightsource in right of droidbot
 		Motion_Go_Right();
 		Go_Fwd_Counter = 0;
 	}
 	//Check if GO LEFT
-	else if((Rx_Lx_LS_Delta > Min_Delta_LS)&&	//Check if Lx != Rx	(not within delta)
-					(Lx_Mx_LS_Delta > Min_Delta_LS)&&	//Check if Lx != Mx	(not within delta)
-					(Lx_LS_Value > (Rx_LS_Value + Min_Delta_LS))&&	//Check if Lx > Rx	(atleast by delta)	
-					(Lx_LS_Value > (Mx_LS_Value + Min_Delta_LS)))		//Check if Lx > Mx	(atleast by delta)				
+	else if((GPIO_PF4_SW1_Pressed)||
+		((Rx_Lx_LS_Delta > Min_Delta_LS)&&  //Check if Lx != Rx	(not within delta)
+		(Lx_Mx_LS_Delta > Min_Delta_LS)&&  //Check if Lx != Mx	(not within delta)
+		(Lx_LS_Value > (Rx_LS_Value + Min_Delta_LS))&&  //Check if Lx > Rx	(atleast by delta)	
+		(Lx_LS_Value > (Mx_LS_Value + Min_Delta_LS))))  //Check if Lx > Mx	(atleast by delta)				
 	{
 		//Condition fulfill to go left, lightsource in left of droidbot
 		Motion_Go_Left();
