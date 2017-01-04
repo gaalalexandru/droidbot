@@ -6,4 +6,4 @@
 .\generated_output\lcd_handler.o: .\modules\timer_handler\timer_handler.h
 .\generated_output\lcd_handler.o: .\modules\resources\resources.h
 .\generated_output\lcd_handler.o: modules\lcd_handler\lcd_handler.h
-.\generated_output\lcd_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\generated_output\lcd_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

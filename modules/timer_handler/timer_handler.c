@@ -93,3 +93,25 @@ void TIMER_delay_No_Int(unsigned long delay_time_ms)
 	}
 	Int_Master_Enable();	//Global interrupt enable
 }
+
+void WideTimer0A_Handler(void)		//Wide Timer 0 A ISR
+{/*
+	unsigned long timer_value=0;
+	if(TimerIntStatus(WTIMER0_BASE,false))
+	{
+		TimerIntClear(WTIMER0_BASE, TIMER_A);
+		timer_value = TimerValueGet(WTIMER0_BASE, TIMER_A);
+		//CYCL_1_second();
+	}*/
+}
+
+void Timer0A_Handler(void)		//Timer 0 A ISR
+{/*
+	unsigned long timer_value=0;
+	if(TimerIntStatus(TIMER0_BASE,false))
+	{
+		TimerIntClear(TIMER0_BASE, TIMER_A);
+		timer_value = TimerValueGet(TIMER0_BASE, TIMER_A);
+		CYCL_50_milisecond();
+	}*/
+}

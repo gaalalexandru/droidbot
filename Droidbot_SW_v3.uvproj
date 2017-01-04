@@ -533,6 +533,11 @@
               <FileType>1</FileType>
               <FilePath>.\3rd_pty_drv\UART.c</FilePath>
             </File>
+            <File>
+              <FileName>BSP_TM4C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\3rd_pty_drv\BSP_TM4C.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

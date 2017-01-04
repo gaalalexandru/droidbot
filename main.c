@@ -1,6 +1,7 @@
 //main.c
 //#include "tm4c123gh6pm.h"
 /*-------------------Configuration Includes-----------*/
+#include "compile_switches.h"
 /*-------------------Type Includes--------------------*/
 /*-------------------HW define Includes---------------*/
 /*---------------------OS Includes--------------------*/
@@ -8,14 +9,32 @@
 #include "os_hw.h"
 /*-------------------Driver Includes------------------*/
 /*-------------------Service Includes-----------------*/
+#include "adc_handler.h"
 #include "motion_handler.h"
 #include "system_handler.h"
+#include "lcd_handler.h"
+#include "cyclic_activity_handler.h"
+
 /*-------------------Macro Definitions----------------*/
+#define THREADFREQ 1000   // frequency in Hz
+
 /*-------------Global Variable Definitions------------*/
 uint8_t GPIO_LS_needed = 0;
 uint8_t GPIO_PF0_SW2_Pressed = 0;
 uint8_t GPIO_PF4_SW1_Pressed = 0;
 fifo_t FifoADC_Temp;
+fifo_t FifoADC_MxLight;
+fifo_t FifoADC_LxLight;
+fifo_t FifoADC_RxLight;
+
+extern ptcbType PerTask[NUMPERIODIC];
+extern PortSema_t SemPortA;
+extern PortSema_t SemPortB;
+extern PortSema_t SemPortC;
+extern PortSema_t SemPortD;
+extern PortSema_t SemPortE;
+extern PortSema_t SemPortF;
+
 
 /*---------------------Task Definitions---------------*/
 void Task0(void){	//Periodic task 10 ms
@@ -100,11 +119,14 @@ int main(void)
 	#endif	
 	clock1 = SYS_clock_get;		//clock before modules initialized
 	LCD_init();										//Initialize LCD	
-	ADC_Temperature_sensor_init();//Initialize ADC for temperature sensor
+	ADC_Temperature_Sensor_Init();//Initialize ADC for temperature sensor
 	//Accelerometer_init();					//Initialize Accelerometer
 	
-	OS_FIFO_Init(&FifoADC_Temp);
-	
+	OS_FIFO_Init(&FifoADC_Temp);  //FIFO for uC internal temperature
+	OS_FIFO_Init(&FifoADC_MxLight);  //FIFO for central light sensor value
+	OS_FIFO_Init(&FifoADC_LxLight);  //FIFO for left light sensor value
+	OS_FIFO_Init(&FifoADC_RxLight);  //FIFO for right light sensor value
+
 	if(GPIO_LS_needed) {
 		OS_InitSemaphore(&SemPortF.pin0,0);
 		OS_InitSemaphore(&SemPortF.pin4,0);

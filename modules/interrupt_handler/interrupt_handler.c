@@ -26,9 +26,6 @@
 
 /*-------------Global Variable Definitions------------*/
 unsigned long comp0_interrupt_flag = 0;	//Global variable used to measure in debugger time till backwards motion is active
-unsigned long Mx_LS_Value = 0;	//Central light sensor output 
-unsigned long Lx_LS_Value = 0;	//left light sensor output 
-unsigned long Rx_LS_Value = 0;	//right light sensor output 
 unsigned long X_acceleration = 0;	//X acceleration 8 bit value
 unsigned long Y_acceleration = 0;	//Y acceleration 8 bit value
 unsigned long Z_acceleration = 0;	//Z acceleration 8 bit value
@@ -73,61 +70,9 @@ void Comp0_Handler(void)			//Analog comparator 0 ISR
 		Motion_Go_Back();		
 	}
 }
-void WideTimer0A_Handler(void)		//Wide Timer 0 A ISR
-{
-	unsigned long timer_value=0;
-	if(TimerIntStatus(WTIMER0_BASE,false))
-	{
-		TimerIntClear(WTIMER0_BASE, TIMER_A);
-		timer_value = TimerValueGet(WTIMER0_BASE, TIMER_A);
-		CYCL_1_second();
-	}
-}
-
-void Timer0A_Handler(void)		//Timer 0 A ISR
-{
-	unsigned long timer_value=0;
-	if(TimerIntStatus(TIMER0_BASE,false))
-	{
-		TimerIntClear(TIMER0_BASE, TIMER_A);
-		timer_value = TimerValueGet(TIMER0_BASE, TIMER_A);
-		CYCL_50_milisecond();
-	}
-}
 
 
-void ADC1Seq0_Handler(void)		//ADC1 Seq0 ISR
-{
-	uint32_t Light;
-	if(ADCIntStatus(ADC1_BASE, 0, false))
-	{
-		ADCIntClear(ADC1_BASE, 0); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC1_BASE, 0, &Light);		
-		Mx_LS_Value = Light;
-	}
-}
 
-void ADC1Seq1_Handler(void)		//ADC1 Seq1 ISR
-{
-	uint32_t Light;
-	if(ADCIntStatus(ADC1_BASE, 1, false))
-	{
-		ADCIntClear(ADC1_BASE, 1); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC1_BASE, 1, &Light);		
-		Rx_LS_Value = Light;
-	}
-}
-
-void ADC1Seq2_Handler(void)		//ADC1 Seq2 ISR
-{
-	uint32_t Light;
-	if(ADCIntStatus(ADC1_BASE, 2, false))
-	{
-		ADCIntClear(ADC1_BASE, 2); 										//Clear interrupt flag
-		ADCSequenceDataGet(ADC1_BASE, 2, &Light);		
-		Lx_LS_Value = Light;
-	}
-}
 
 /*void I2C0_Handler(void)
 {

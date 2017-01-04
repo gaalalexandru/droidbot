@@ -3,7 +3,8 @@
 #define CYCL_HDL
 
 /*-------------------Function Definitions-------------*/
-void CYCL_1_second(void);
-void CYCL_50_milisecond(void);
-
+void CYCL_10_ms(void);
+void CYCL_100_ms(void);
+void CYCL_1000_ms(void);
 #endif
+//EOF

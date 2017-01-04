@@ -82,7 +82,7 @@ void SYS_clock_init(void)
 }
 void SYS_startup(void)
 {
-
+/*
 	#endif
 	
 	#if !Full_SW //Initialize modules under development
@@ -94,12 +94,12 @@ void SYS_startup(void)
 		//ADC_Temperature_sensor_init();	//Initialize ADC for temperature sensor
 		//Accelerometer_init();
 	#endif
-	
+
 	clock2 = SYS_clock_get;		//clock after modules initialized
 	if(clock1 == clock2)			//just to check if clock speed is changed in other modules
 	{
 		Int_Master_Enable();		//Global interrupt enable
-	}
+	}*/
 }
 //EOF
 

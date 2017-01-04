@@ -1,7 +1,7 @@
 .\generated_output\comparator_handler.o: modules\comparator_handler\comparator_handler.c
 .\generated_output\comparator_handler.o: .\modules\compile_switches\compile_switches.h
-.\generated_output\comparator_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\generated_output\comparator_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\generated_output\comparator_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\generated_output\comparator_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\generated_output\comparator_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_memmap.h
 .\generated_output\comparator_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_ints.h
 .\generated_output\comparator_handler.o: ..\TivaWare_C_Series-2.1.1.71\driverlib/comp.h

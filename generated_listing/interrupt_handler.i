@@ -23,30 +23,32 @@
  
 
 
- 
-
-
-
-
-
-
-
-
-
 
 
  
 
- 
-#line 61 ".\\modules\\compile_switches\\compile_switches.h"
+
+
+
+
+
+
+
+
+
 
  
-#line 71 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 63 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 73 ".\\modules\\compile_switches\\compile_switches.h"
 
 #line 4 "modules\\interrupt_handler\\interrupt_handler.c"
 
  
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -60,12 +62,12 @@
 
 
 
-#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 25 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
 #line 7 "modules\\interrupt_handler\\interrupt_handler.c"
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
  
 
@@ -84,7 +86,7 @@
 
 
      
-#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 27 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
      
 
 
@@ -97,7 +99,7 @@
 
 
 
-#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 46 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -261,7 +263,7 @@ typedef unsigned     long long uintmax_t;
      
 
      
-#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 216 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -280,7 +282,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 241 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -313,7 +315,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 305 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -519,6 +521,9 @@ typedef unsigned     long long uintmax_t;
 
 
 
+
+
+ 
 
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
@@ -2152,8 +2157,10 @@ void Motion_Calculate_Direction(void);
 
 
  
-void CYCL_1_second(void);
-void CYCL_50_milisecond(void);
+void CYCL_10_ms(void);
+void CYCL_100_ms(void);
+void CYCL_1000_ms(void);
+
 
 #line 25 "modules\\interrupt_handler\\interrupt_handler.c"
 #line 1 ".\\modules\\i2c_handler\\i2c_handler.h"
@@ -2173,10 +2180,6 @@ void I2C_Accelerometer_Init(void);
 
  
 unsigned long comp0_interrupt_flag = 0;	
-unsigned long internal_temperature = 0;
-unsigned long Mx_LS_Value = 0;	
-unsigned long Lx_LS_Value = 0;	
-unsigned long Rx_LS_Value = 0;	
 unsigned long X_acceleration = 0;	
 unsigned long Y_acceleration = 0;	
 unsigned long Z_acceleration = 0;	
@@ -2223,41 +2226,6 @@ void Comp0_Handler(void)
 }
 void WideTimer0A_Handler(void)		
 {
-	unsigned long timer_value=0;
-	if(TimerIntStatus(0x40036000,0))
-	{
-		TimerIntClear(0x40036000, 0x000000ff);
-		timer_value = TimerValueGet(0x40036000, 0x000000ff);
-		CYCL_1_second();
-	}
-}
-
-void Timer0A_Handler(void)		
-{
-	unsigned long timer_value=0;
-	if(TimerIntStatus(0x40030000,0))
-	{
-		TimerIntClear(0x40030000, 0x000000ff);
-		timer_value = TimerValueGet(0x40030000, 0x000000ff);
-		CYCL_50_milisecond();
-	}
-}
-
-void ADC0Seq3_Handler(void)		
-{
-	uint32_t Voltage;
-	if(ADCIntStatus(0x40038000, 3, 0))
-	{
-		ADCIntClear(0x40038000, 3); 										
-		ADCSequenceDataGet(0x40038000, 3, &Voltage);		
-		internal_temperature = (1475 - ((75 * ((33)) * Voltage) / 4096))/10;
-		
-		
-		
-
-
-
-
 
 
 
@@ -2265,40 +2233,20 @@ void ADC0Seq3_Handler(void)
 
 
  
-	}
-}
-void ADC1Seq0_Handler(void)		
-{
-	uint32_t Light;
-	if(ADCIntStatus(0x40039000, 0, 0))
-	{
-		ADCIntClear(0x40039000, 0); 										
-		ADCSequenceDataGet(0x40039000, 0, &Light);		
-		Mx_LS_Value = Light;
-	}
 }
 
-void ADC1Seq1_Handler(void)		
+void Timer0A_Handler(void)		
 {
-	uint32_t Light;
-	if(ADCIntStatus(0x40039000, 1, 0))
-	{
-		ADCIntClear(0x40039000, 1); 										
-		ADCSequenceDataGet(0x40039000, 1, &Light);		
-		Rx_LS_Value = Light;
-	}
+
+
+
+
+
+
+ 
 }
 
-void ADC1Seq2_Handler(void)		
-{
-	uint32_t Light;
-	if(ADCIntStatus(0x40039000, 2, 0))
-	{
-		ADCIntClear(0x40039000, 2); 										
-		ADCSequenceDataGet(0x40039000, 2, &Light);		
-		Lx_LS_Value = Light;
-	}
-}
+
 
 
 

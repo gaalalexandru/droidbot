@@ -24,25 +24,27 @@
  
 
 
- 
-
-
-
-
-
-
-
-
-
 
 
  
 
- 
-#line 61 ".\\modules\\compile_switches\\compile_switches.h"
+
+
+
+
+
+
+
+
+
 
  
-#line 71 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 63 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 73 ".\\modules\\compile_switches\\compile_switches.h"
 
 #line 5 "modules\\motion_handler\\motion_handler.c"
 
@@ -107,7 +109,7 @@ typedef enum Led_State
 
 
 #line 8 "modules\\motion_handler\\motion_handler.c"
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -121,12 +123,12 @@ typedef enum Led_State
 
 
 
-#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 25 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
 #line 9 "modules\\motion_handler\\motion_handler.c"
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
  
 
@@ -145,7 +147,7 @@ typedef enum Led_State
 
 
      
-#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 27 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
      
 
 
@@ -158,7 +160,7 @@ typedef enum Led_State
 
 
 
-#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 46 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -322,7 +324,7 @@ typedef unsigned     long long uintmax_t;
      
 
      
-#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 216 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -341,7 +343,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 241 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -374,7 +376,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 305 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -383,6 +385,186 @@ typedef unsigned     long long uintmax_t;
 
  
 #line 10 "modules\\motion_handler\\motion_handler.c"
+ 
+#line 1 ".\\OS\\os_core.h"
+
+
+
+
+
+
+
+
+#line 10 ".\\OS\\os_core.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct tcb{  
+  int32_t *sp;  
+  struct tcb *next;  
+	int32_t *blocked;  
+	int32_t sleep;  
+  uint8_t priority;  
+};
+typedef struct tcb tcbType;
+
+struct ptcb{	
+	int32_t semaphore;
+	uint32_t period;
+	uint32_t counter;
+};
+typedef struct ptcb ptcbType;
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+struct fifo_st{
+	uint32_t Fifo[10];
+	uint32_t LostData;	
+	int32_t CurrentSize;
+	int32_t Mutex;
+	uint8_t PutI;
+	uint8_t GetI;
+};
+typedef struct fifo_st fifo_t;
+
+
+
+
+
+
+
+void OS_Init(void);
+
+
+
+
+
+
+
+int OS_AddThreads(void(*thread0)(void), uint32_t p0,
+                  void(*thread1)(void), uint32_t p1,
+                  void(*thread2)(void), uint32_t p2,
+                  void(*thread3)(void), uint32_t p3,
+                  void(*thread4)(void), uint32_t p4,
+                  void(*thread5)(void), uint32_t p5,
+                  void(*thread6)(void), uint32_t p6,
+                  void(*thread7)(void), uint32_t p7);
+
+
+
+
+
+
+
+
+
+
+
+
+int OS_AddPeriodicEventThread(int32_t *semaPt, uint32_t period);
+
+
+
+
+
+
+
+void OS_Launch(uint32_t theTimeSlice);
+
+
+
+
+
+
+void OS_Suspend(void);
+
+
+
+
+
+
+void OS_Sleep(uint32_t sleepTime);
+
+
+
+
+
+
+void OS_InitSemaphore(int32_t *semaPt, int32_t value);
+
+
+
+
+
+
+
+void OS_Wait(int32_t *semaPt);
+
+
+
+
+
+
+
+void OS_Signal(int32_t *semaPt);
+
+
+
+
+
+
+void OS_FIFO_Init(fifo_t *fifo);
+
+
+
+
+
+
+
+int OS_FIFO_Put(fifo_t *fifo,uint32_t data);
+
+
+
+
+
+
+
+uint32_t OS_FIFO_Get(fifo_t *fifo);
+
+
+
+#line 12 "modules\\motion_handler\\motion_handler.c"
 
  
 #line 1 "modules\\motion_handler\\motion_handler.h"
@@ -400,17 +582,17 @@ void Motion_Max_Speed(void);
 void Motion_Go_Back(void);
 void Motion_Calculate_Direction(void);
 
-#line 13 "modules\\motion_handler\\motion_handler.c"
+#line 15 "modules\\motion_handler\\motion_handler.c"
 
  
 #line 1 ".\\modules\\adc_handler\\adc_handler.h"
 
 
 
-void ADC_Temperature_sensor_init(void);
-void ADC_Light_sensor_init(void);
+void ADC_Temperature_Sensor_Init(void);
+void ADC_Light_Sensor_Init(void);
 
-#line 16 "modules\\motion_handler\\motion_handler.c"
+#line 18 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\gpio_handler\\gpio_handler.h"
 
 
@@ -431,7 +613,7 @@ void GPIO_accelerometer_CS_select(unsigned char CS);
 
 
 
-#line 17 "modules\\motion_handler\\motion_handler.c"
+#line 19 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\pwm_handler\\pwm_handler.h"
 
 
@@ -447,7 +629,7 @@ void PWM_Red_led_toggle(void);
 
 
 
-#line 18 "modules\\motion_handler\\motion_handler.c"
+#line 20 "modules\\motion_handler\\motion_handler.c"
 #line 1 ".\\modules\\timer_handler\\timer_handler.h"
 
 
@@ -461,20 +643,22 @@ unsigned long TIMER_reload_calculator(unsigned long milli_seconds_requested);
 void TIMER_delay(unsigned long delay_time_ms);
 void TIMER_delay_No_Int(unsigned long delay_time_ms);
 
-#line 19 "modules\\motion_handler\\motion_handler.c"
+#line 21 "modules\\motion_handler\\motion_handler.c"
 
  
 extern unsigned long comp0_interrupt_flag;	
 motor_parameters_st motor_parameters;	
 
-extern unsigned long Mx_LS_Value;		
-extern unsigned long Rx_LS_Value;		
-extern unsigned long Lx_LS_Value;		
+
 extern unsigned long X_acceleration;
 extern unsigned long Y_acceleration;
 extern unsigned long Z_acceleration;
+
 extern uint8_t GPIO_PF0_SW2_Pressed;
 extern uint8_t GPIO_PF4_SW1_Pressed;
+extern fifo_t FifoADC_MxLight;
+extern fifo_t FifoADC_LxLight;
+extern fifo_t FifoADC_RxLight;
 
  
 void Motion_Init(void)
@@ -482,7 +666,7 @@ void Motion_Init(void)
 	GPIO_steering_switch_init();	
 	GPIO_motor_direction_init();	
 	PWM_motor_init(1000);					
-	ADC_Light_sensor_init();			
+	ADC_Light_Sensor_Init();			
 }
 void Motion_Go_Left(void)
 {
@@ -554,19 +738,32 @@ void Motion_Go_Back(void)
 
 void Motion_Calculate_Direction(void)
 {
+	uint32_t MX_light = 0;
+	uint32_t LX_light = 0;
+	uint32_t RX_light = 0;
+	uint32_t Rx_Lx_LS_Delta = 0;
+	uint32_t Rx_Mx_LS_Delta = 0;
+	uint32_t Lx_Mx_LS_Delta = 0;
+	static uint8_t Go_Fwd_Counter = 0;	
 	
-	unsigned long Rx_Lx_LS_Delta = (Rx_LS_Value >= Lx_LS_Value ? (Rx_LS_Value - Lx_LS_Value) : (Lx_LS_Value - Rx_LS_Value));
-	unsigned long Rx_Mx_LS_Delta = (Rx_LS_Value >= Mx_LS_Value ? (Rx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Rx_LS_Value));
-	unsigned long Lx_Mx_LS_Delta = (Lx_LS_Value >= Mx_LS_Value ? (Lx_LS_Value - Mx_LS_Value) : (Mx_LS_Value - Lx_LS_Value));
-	static unsigned char Go_Fwd_Counter = 0;	
+	
+	MX_light = OS_FIFO_Get(&FifoADC_MxLight);
+	LX_light = OS_FIFO_Get(&FifoADC_LxLight);
+	RX_light = OS_FIFO_Get(&FifoADC_RxLight);
+	
+	
+	
+	Rx_Lx_LS_Delta = (RX_light >= LX_light ? (RX_light - LX_light) : (LX_light - RX_light));
+	Rx_Mx_LS_Delta = (RX_light >= MX_light ? (RX_light - MX_light) : (MX_light - RX_light));
+	Lx_Mx_LS_Delta = (LX_light >= MX_light ? (LX_light - MX_light) : (MX_light - LX_light));	
 	
 	
 	if((GPIO_PF0_SW2_Pressed && GPIO_PF4_SW1_Pressed)|| 
 		((Rx_Lx_LS_Delta < (120))&&	
 		(Rx_Mx_LS_Delta > (120))&&	
 		(Rx_Mx_LS_Delta > (120))&&
-		(Rx_LS_Value > (Mx_LS_Value + (120)))&&	
-		(Lx_LS_Value > (Mx_LS_Value + (120)))))	
+		(RX_light > (MX_light + (120)))&&	
+		(LX_light > (MX_light + (120)))))	
 	{
 		
 		if(Go_Fwd_Counter < (100))
@@ -590,8 +787,8 @@ void Motion_Calculate_Direction(void)
 	else if((GPIO_PF0_SW2_Pressed)||
 		((Rx_Lx_LS_Delta > (120))&&  
 		(Rx_Mx_LS_Delta > (120))&&  
-		(Rx_LS_Value > (Lx_LS_Value + (120)))&&  
-		(Rx_LS_Value > (Mx_LS_Value + (120)))))  
+		(RX_light > (LX_light + (120)))&&  
+		(RX_light > (MX_light + (120)))))  
 	{
 		
 		Motion_Go_Right();
@@ -601,8 +798,8 @@ void Motion_Calculate_Direction(void)
 	else if((GPIO_PF4_SW1_Pressed)||
 		((Rx_Lx_LS_Delta > (120))&&  
 		(Lx_Mx_LS_Delta > (120))&&  
-		(Lx_LS_Value > (Rx_LS_Value + (120)))&&  
-		(Lx_LS_Value > (Mx_LS_Value + (120)))))  
+		(LX_light > (RX_light + (120)))&&  
+		(LX_light > (MX_light + (120)))))  
 	{
 		
 		Motion_Go_Left();

@@ -1,7 +1,7 @@
 .\generated_output\system_handler.o: modules\system_handler\system_handler.c
 .\generated_output\system_handler.o: .\modules\compile_switches\compile_switches.h
-.\generated_output\system_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\generated_output\system_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\generated_output\system_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\generated_output\system_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\generated_output\system_handler.o: ..\TivaWare_C_Series-2.1.1.71\driverlib/sysctl.h
 .\generated_output\system_handler.o: modules\system_handler\system_handler.h
 .\generated_output\system_handler.o: .\modules\adc_handler\adc_handler.h

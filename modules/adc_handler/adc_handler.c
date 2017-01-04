@@ -26,8 +26,11 @@
 
 /*-------------Global Variable Definitions------------*/
 extern fifo_t FifoADC_Temp;
+extern fifo_t FifoADC_MxLight;
+extern fifo_t FifoADC_LxLight;
+extern fifo_t FifoADC_RxLight;
 
-void ADC_Temperature_sensor_init(void) //Initialize microphone input
+void ADC_Temperature_Sensor_Init(void) //Initialize microphone input
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);			//The ADC0 peripheral must be enabled for use.
 
@@ -47,7 +50,7 @@ void ADC_Temperature_sensor_init(void) //Initialize microphone input
 	IntEnable(INT_ADC0SS3);	
 }
 
-void ADC_Light_sensor_init(void) //Initialize microphone input
+void ADC_Light_Sensor_Init(void) //Initialize microphone input
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC1);		//The ADC1 peripheral must be enabled for use.
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);	//Enable GPIO port E
@@ -146,3 +149,35 @@ void ADC0Seq3_Handler(void)		//ADC0 Seq3 ISR
 	}
 }
 
+void ADC1Seq0_Handler(void)		//ADC1 Seq0 ISR for MX light sensor
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 0, false))
+	{
+		ADCIntClear(ADC1_BASE, 0);  //Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 0, &Light);
+		OS_FIFO_Put(&FifoADC_MxLight,Light);
+	}
+}
+
+void ADC1Seq1_Handler(void)		//ADC1 Seq1 ISR for RX light sensor
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 1, false))
+	{
+		ADCIntClear(ADC1_BASE, 1);  //Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 1, &Light);		
+		OS_FIFO_Put(&FifoADC_RxLight,Light);
+	}
+}
+
+void ADC1Seq2_Handler(void)		//ADC1 Seq2 ISR for LX light sensor
+{
+	uint32_t Light;
+	if(ADCIntStatus(ADC1_BASE, 2, false))
+	{
+		ADCIntClear(ADC1_BASE, 2);  //Clear interrupt flag
+		ADCSequenceDataGet(ADC1_BASE, 2, &Light);		
+		OS_FIFO_Put(&FifoADC_LxLight,Light);
+	}
+}

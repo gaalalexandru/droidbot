@@ -58,8 +58,6 @@ void GPIOPortF_Handler(void){	 //PortF GPIO interrupt handler
 // Inputs:  port , pin, priority, type, resistor
 // Outputs: 1 if config is successfull, 0 if not
 uint8_t OS_EdgeTrigger_Init(ports_t port, uint8_t pin, uint8_t priority, uint8_t type, uint8_t resistor){
-	uint32_t clock;
-	uint32_t bit_prio;
 	switch (port) {
 		case PortA:  //PortA 
 			//Need to unlock

@@ -63,7 +63,445 @@ typedef enum Led_State
 
 #line 5 "modules\\printing_handler\\printing_handler.c"
  
+#line 1 ".\\OS\\os_core.h"
+
+
+
+
+
+
+
+
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+     
+#line 27 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+     
+
+
+
+
+
+
+
+
+
+
+
+#line 46 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
+
+
+ 
+
+     
+
+     
+typedef   signed          char int8_t;
+typedef   signed short     int int16_t;
+typedef   signed           int int32_t;
+typedef   signed       __int64 int64_t;
+
+     
+typedef unsigned          char uint8_t;
+typedef unsigned short     int uint16_t;
+typedef unsigned           int uint32_t;
+typedef unsigned       __int64 uint64_t;
+
+     
+
+     
+     
+typedef   signed          char int_least8_t;
+typedef   signed short     int int_least16_t;
+typedef   signed           int int_least32_t;
+typedef   signed       __int64 int_least64_t;
+
+     
+typedef unsigned          char uint_least8_t;
+typedef unsigned short     int uint_least16_t;
+typedef unsigned           int uint_least32_t;
+typedef unsigned       __int64 uint_least64_t;
+
+     
+
+     
+typedef   signed           int int_fast8_t;
+typedef   signed           int int_fast16_t;
+typedef   signed           int int_fast32_t;
+typedef   signed       __int64 int_fast64_t;
+
+     
+typedef unsigned           int uint_fast8_t;
+typedef unsigned           int uint_fast16_t;
+typedef unsigned           int uint_fast32_t;
+typedef unsigned       __int64 uint_fast64_t;
+
+     
+
+
+
+
+typedef   signed           int intptr_t;
+typedef unsigned           int uintptr_t;
+
+
+     
+typedef   signed     long long intmax_t;
+typedef unsigned     long long uintmax_t;
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+
+
+
+
+     
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+
+
+
+
+
+     
+
+     
+
+
+     
+
+
+     
+
+
+     
+
+     
+#line 216 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+     
+
+
+
+     
+
+
+
+
+
+
+     
+    
+ 
+
+
+
+#line 241 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+     
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+
+
+
+
+
+#line 305 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+
+
+
+
+
+
+ 
+#line 10 ".\\OS\\os_core.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct tcb{  
+  int32_t *sp;  
+  struct tcb *next;  
+	int32_t *blocked;  
+	int32_t sleep;  
+  uint8_t priority;  
+};
+typedef struct tcb tcbType;
+
+struct ptcb{	
+	int32_t semaphore;
+	uint32_t period;
+	uint32_t counter;
+};
+typedef struct ptcb ptcbType;
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+struct fifo_st{
+	uint32_t Fifo[10];
+	uint32_t LostData;	
+	int32_t CurrentSize;
+	int32_t Mutex;
+	uint8_t PutI;
+	uint8_t GetI;
+};
+typedef struct fifo_st fifo_t;
+
+
+
+
+
+
+
+void OS_Init(void);
+
+
+
+
+
+
+
+int OS_AddThreads(void(*thread0)(void), uint32_t p0,
+                  void(*thread1)(void), uint32_t p1,
+                  void(*thread2)(void), uint32_t p2,
+                  void(*thread3)(void), uint32_t p3,
+                  void(*thread4)(void), uint32_t p4,
+                  void(*thread5)(void), uint32_t p5,
+                  void(*thread6)(void), uint32_t p6,
+                  void(*thread7)(void), uint32_t p7);
+
+
+
+
+
+
+
+
+
+
+
+
+int OS_AddPeriodicEventThread(int32_t *semaPt, uint32_t period);
+
+
+
+
+
+
+
+void OS_Launch(uint32_t theTimeSlice);
+
+
+
+
+
+
+void OS_Suspend(void);
+
+
+
+
+
+
+void OS_Sleep(uint32_t sleepTime);
+
+
+
+
+
+
+void OS_InitSemaphore(int32_t *semaPt, int32_t value);
+
+
+
+
+
+
+
+void OS_Wait(int32_t *semaPt);
+
+
+
+
+
+
+
+void OS_Signal(int32_t *semaPt);
+
+
+
+
+
+
+void OS_FIFO_Init(fifo_t *fifo);
+
+
+
+
+
+
+
+int OS_FIFO_Put(fifo_t *fifo,uint32_t data);
+
+
+
+
+
+
+
+uint32_t OS_FIFO_Get(fifo_t *fifo);
+
+
+
+#line 7 "modules\\printing_handler\\printing_handler.c"
+ 
+
+ 
+
  
 #line 1 "modules\\printing_handler\\printing_handler.h"
 
@@ -78,7 +516,7 @@ void Print_Welcome_Image(void);
 void Print_Motor_Parameters(void);
 
 
-#line 9 "modules\\printing_handler\\printing_handler.c"
+#line 13 "modules\\printing_handler\\printing_handler.c"
 
  
 #line 1 ".\\modules\\lcd_handler\\lcd_handler.h"
@@ -87,7 +525,7 @@ void Print_Motor_Parameters(void);
 
 
  
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -101,7 +539,7 @@ void Print_Motor_Parameters(void);
 
 
 
-#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 25 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
@@ -225,7 +663,7 @@ void LCD_out_image(const unsigned char *image);
 
 
 
-#line 12 "modules\\printing_handler\\printing_handler.c"
+#line 16 "modules\\printing_handler\\printing_handler.c"
 #line 1 ".\\modules\\resources\\resources.h"
 
 
@@ -458,15 +896,14 @@ static const char ASCII[][5] = {
 
 
 
-#line 13 "modules\\printing_handler\\printing_handler.c"
+#line 17 "modules\\printing_handler\\printing_handler.c"
 
  
 extern motor_parameters_st motor_parameters;	
-extern unsigned long internal_temperature;
-
-extern unsigned long Mx_LS_Value;	
-extern unsigned long Rx_LS_Value;		
-extern unsigned long Lx_LS_Value;			
+extern fifo_t FifoADC_Temp;
+extern fifo_t FifoADC_MxLight;
+extern fifo_t FifoADC_LxLight;
+extern fifo_t FifoADC_RxLight;
 
 char print_flag = 0;
  
@@ -477,6 +914,8 @@ void Print_Welcome_Image(void)
 }
 void Print_Motor_Parameters(void)
 {
+	uint32_t light;
+	uint32_t temperature;
 	if(print_flag ==0)
 	{
 		LCD_clear();
@@ -522,18 +961,19 @@ void Print_Motor_Parameters(void)
 			break;
 	}
 	LCD_set_cursor(4,3);
-	LCD_out_number(internal_temperature);
+	temperature = OS_FIFO_Get(&FifoADC_Temp);
+	LCD_out_number(temperature);
 	LCD_set_cursor(0,3);
 	LCD_out_string("Temp:");
 	LCD_set_cursor(8,4);
-	LCD_out_number(Rx_LS_Value);
+	light = OS_FIFO_Get(&FifoADC_RxLight);
+	LCD_out_number(light);
 	LCD_set_cursor(4,4);
-	LCD_out_number(Mx_LS_Value);
+	light = OS_FIFO_Get(&FifoADC_MxLight);
+	LCD_out_number(light);
 	LCD_set_cursor(0,4);
-	LCD_out_number(Lx_LS_Value);
-
-
-
+	light = OS_FIFO_Get(&FifoADC_LxLight);
+	LCD_out_number(light);
 }
 
 

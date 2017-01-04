@@ -1,30 +1,9 @@
 #line 1 "modules\\adc_handler\\adc_handler.c"
 
 
- 
-#line 1 ".\\modules\\compile_switches\\compile_switches.h"
-
-
-
-
-
-#line 14 ".\\modules\\compile_switches\\compile_switches.h"
 
  
-#line 22 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
-
-
-
- 
-#line 35 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-
-
- 
+#line 1 ".\\OS\\os_core.h"
 
 
 
@@ -33,40 +12,7 @@
 
 
 
-
-
-
- 
-
- 
-#line 61 ".\\modules\\compile_switches\\compile_switches.h"
-
- 
-#line 71 ".\\modules\\compile_switches\\compile_switches.h"
-
-#line 5 "modules\\adc_handler\\adc_handler.c"
-
- 
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
- 
-
-
-
-
-
-
- 
-
-
-
-
-
-#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
-
-
-
-#line 8 "modules\\adc_handler\\adc_handler.c"
-#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
  
  
 
@@ -85,7 +31,7 @@
 
 
      
-#line 27 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 27 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
      
 
 
@@ -98,7 +44,7 @@
 
 
 
-#line 46 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 46 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -262,7 +208,7 @@ typedef unsigned     long long uintmax_t;
      
 
      
-#line 216 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 216 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -281,7 +227,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 241 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 241 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
      
 
@@ -314,7 +260,7 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 305 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
+#line 305 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdint.h"
 
 
 
@@ -322,17 +268,255 @@ typedef unsigned     long long uintmax_t;
 
 
  
+#line 10 ".\\OS\\os_core.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct tcb{  
+  int32_t *sp;  
+  struct tcb *next;  
+	int32_t *blocked;  
+	int32_t sleep;  
+  uint8_t priority;  
+};
+typedef struct tcb tcbType;
+
+struct ptcb{	
+	int32_t semaphore;
+	uint32_t period;
+	uint32_t counter;
+};
+typedef struct ptcb ptcbType;
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+struct fifo_st{
+	uint32_t Fifo[10];
+	uint32_t LostData;	
+	int32_t CurrentSize;
+	int32_t Mutex;
+	uint8_t PutI;
+	uint8_t GetI;
+};
+typedef struct fifo_st fifo_t;
+
+
+
+
+
+
+
+void OS_Init(void);
+
+
+
+
+
+
+
+int OS_AddThreads(void(*thread0)(void), uint32_t p0,
+                  void(*thread1)(void), uint32_t p1,
+                  void(*thread2)(void), uint32_t p2,
+                  void(*thread3)(void), uint32_t p3,
+                  void(*thread4)(void), uint32_t p4,
+                  void(*thread5)(void), uint32_t p5,
+                  void(*thread6)(void), uint32_t p6,
+                  void(*thread7)(void), uint32_t p7);
+
+
+
+
+
+
+
+
+
+
+
+
+int OS_AddPeriodicEventThread(int32_t *semaPt, uint32_t period);
+
+
+
+
+
+
+
+void OS_Launch(uint32_t theTimeSlice);
+
+
+
+
+
+
+void OS_Suspend(void);
+
+
+
+
+
+
+void OS_Sleep(uint32_t sleepTime);
+
+
+
+
+
+
+void OS_InitSemaphore(int32_t *semaPt, int32_t value);
+
+
+
+
+
+
+
+void OS_Wait(int32_t *semaPt);
+
+
+
+
+
+
+
+void OS_Signal(int32_t *semaPt);
+
+
+
+
+
+
+void OS_FIFO_Init(fifo_t *fifo);
+
+
+
+
+
+
+
+int OS_FIFO_Put(fifo_t *fifo,uint32_t data);
+
+
+
+
+
+
+
+uint32_t OS_FIFO_Get(fifo_t *fifo);
+
+
+
+#line 6 "modules\\adc_handler\\adc_handler.c"
+
+ 
+#line 1 ".\\modules\\compile_switches\\compile_switches.h"
+
+
+
+
+
+#line 14 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 22 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+
+
+
+
+ 
+#line 35 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+#line 63 ".\\modules\\compile_switches\\compile_switches.h"
+
+ 
+#line 73 ".\\modules\\compile_switches\\compile_switches.h"
+
 #line 9 "modules\\adc_handler\\adc_handler.c"
+
+ 
+#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+#line 25 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+
+
+
+#line 12 "modules\\adc_handler\\adc_handler.c"
+#line 13 "modules\\adc_handler\\adc_handler.c"
 
  
 #line 1 "modules\\adc_handler\\adc_handler.h"
 
 
 
-void ADC_Temperature_sensor_init(void);
-void ADC_Light_sensor_init(void);
+void ADC_Temperature_Sensor_Init(void);
+void ADC_Light_Sensor_Init(void);
 
-#line 12 "modules\\adc_handler\\adc_handler.c"
+#line 16 "modules\\adc_handler\\adc_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/adc.h"
@@ -467,6 +651,9 @@ void ADC_Light_sensor_init(void);
 
 
 
+
+ 
+
 extern void ADCIntRegister(uint32_t ui32Base, uint32_t ui32SequenceNum,
                            void (*pfnHandler)(void));
 extern void ADCIntUnregister(uint32_t ui32Base, uint32_t ui32SequenceNum);
@@ -546,7 +733,7 @@ extern uint32_t ADCSampleRateGet(uint32_t ui32Base);
 
 
 
-#line 15 "modules\\adc_handler\\adc_handler.c"
+#line 19 "modules\\adc_handler\\adc_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/gpio.h"
 
 
@@ -712,7 +899,7 @@ extern void GPIOADCTriggerDisable(uint32_t ui32Port, uint8_t ui8Pins);
 
 
 
-#line 16 "modules\\adc_handler\\adc_handler.c"
+#line 20 "modules\\adc_handler\\adc_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/interrupt.h"
 
 
@@ -807,7 +994,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 17 "modules\\adc_handler\\adc_handler.c"
+#line 21 "modules\\adc_handler\\adc_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
@@ -851,8 +1038,6 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 44 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
-#line 45 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -873,17 +1058,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-
-#line 143 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
-
-
-
-
-
-
-
-
-#line 158 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+#line 140 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -892,7 +1067,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 174 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+#line 155 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -900,7 +1075,16 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 188 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+
+#line 171 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+
+
+
+
+
+
+
+#line 185 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
                                             
 
 
@@ -923,7 +1107,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 217 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+#line 214 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -931,7 +1115,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 388 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+#line 385 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -939,15 +1123,7 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 465 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
-
-
-
-
-
-
-
-
+#line 462 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -957,7 +1133,15 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 489 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+
+
+
+
+
+
+
+
+#line 486 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -980,21 +1164,14 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 519 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+#line 516 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
 
 
 
-#line 538 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
-
-
-
-
-
-
-
+#line 535 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -1003,7 +1180,14 @@ extern void IntTrigger(uint32_t ui32Interrupt);
 
 
 
-#line 559 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
+
+
+
+
+
+
+
+#line 556 "..\\TivaWare_C_Series-2.1.1.71\\driverlib/sysctl.h"
 
 
 
@@ -1103,7 +1287,7 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
 
 
 
-#line 18 "modules\\adc_handler\\adc_handler.c"
+#line 22 "modules\\adc_handler\\adc_handler.c"
 
  
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
@@ -1167,7 +1351,7 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
                                             
 #line 150 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_memmap.h"
 
-#line 21 "modules\\adc_handler\\adc_handler.c"
+#line 25 "modules\\adc_handler\\adc_handler.c"
 #line 1 "..\\TivaWare_C_Series-2.1.1.71\\inc/hw_ints.h"
 
 
@@ -1280,9 +1464,15 @@ extern void SysCtlVoltageEventClear(uint32_t ui32Status);
 
 
 
-#line 22 "modules\\adc_handler\\adc_handler.c"
+#line 26 "modules\\adc_handler\\adc_handler.c"
 
-void ADC_Temperature_sensor_init(void) 
+ 
+extern fifo_t FifoADC_Temp;
+extern fifo_t FifoADC_MxLight;
+extern fifo_t FifoADC_LxLight;
+extern fifo_t FifoADC_RxLight;
+
+void ADC_Temperature_Sensor_Init(void) 
 {
 	SysCtlPeripheralEnable(0xf0003800);			
 
@@ -1302,7 +1492,7 @@ void ADC_Temperature_sensor_init(void)
 	IntEnable(33);	
 }
 
-void ADC_Light_sensor_init(void) 
+void ADC_Light_Sensor_Init(void) 
 {
 	SysCtlPeripheralEnable(0xf0003801);		
 	SysCtlPeripheralEnable(0xf0000804);	
@@ -1373,4 +1563,63 @@ void ADC_Light_sensor_init(void)
 
  
 
+void ADC0Seq3_Handler(void)		
+{
+	uint32_t digital_value;
+	uint32_t temperature;
+	uint32_t analog_voltage;
+	
+	if(ADCIntStatus(0x40038000, 3, 0))
+	{
+		ADCIntClear(0x40038000, 3); 										
+		ADCSequenceDataGet(0x40038000, 3, &digital_value);	
+		temperature = (147.5 - ((75 * (((3.3) - (0))) * digital_value) / 4096));
+		analog_voltage = ((digital_value * ((3.3) - (0)))/4096)*1000;
+		OS_FIFO_Put(&FifoADC_Temp,temperature);		
 
+		
+
+
+
+
+
+
+
+
+
+ 
+	}
+}
+
+void ADC1Seq0_Handler(void)		
+{
+	uint32_t Light;
+	if(ADCIntStatus(0x40039000, 0, 0))
+	{
+		ADCIntClear(0x40039000, 0);  
+		ADCSequenceDataGet(0x40039000, 0, &Light);
+		OS_FIFO_Put(&FifoADC_MxLight,Light);
+	}
+}
+
+void ADC1Seq1_Handler(void)		
+{
+	uint32_t Light;
+	if(ADCIntStatus(0x40039000, 1, 0))
+	{
+		ADCIntClear(0x40039000, 1);  
+		ADCSequenceDataGet(0x40039000, 1, &Light);		
+		OS_FIFO_Put(&FifoADC_RxLight,Light);
+	}
+}
+
+void ADC1Seq2_Handler(void)		
+{
+	uint32_t Light;
+	if(ADCIntStatus(0x40039000, 2, 0))
+	{
+		ADCIntClear(0x40039000, 2);  
+		ADCSequenceDataGet(0x40039000, 2, &Light);		
+		OS_FIFO_Put(&FifoADC_LxLight,Light);
+	}
+}

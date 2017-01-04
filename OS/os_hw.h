@@ -74,7 +74,7 @@ typedef enum tm4c_ports	ports_t;
 
 #ifdef TARGET_MSP432
 //MSP432 specific code
-#include "BSP_MSP432.h"
+//#include "BSP_MSP432.h"
 
 #define Port1	(0);
 #define	Port2	(1);
