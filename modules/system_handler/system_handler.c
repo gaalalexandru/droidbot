@@ -46,7 +46,7 @@ void SYS_clock_init(void)
 										// -uses the main oscillator
 										// -configures for use of 16 MHz crystal/oscillator input
 		
-	SysCtlClockSet(SYSCTL_SYSDIV_15 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ| SYSCTL_OSC_MAIN);	// Configure to run at 13.33 MHz from the PLL using a 16 MHz crystal as the input.
+	//SysCtlClockSet(SYSCTL_SYSDIV_15 | SYSCTL_USE_PLL | SYSCTL_XTAL_16MHZ| SYSCTL_OSC_MAIN);	// Configure to run at 13.33 MHz from the PLL using a 16 MHz crystal as the input.
 	/*
 	This function configures the clocking of the device. The input crystal frequency, oscillator to be
 	used, use of the PLL, and the system clock divider are all configured with this function.
