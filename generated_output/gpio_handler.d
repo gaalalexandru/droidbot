@@ -1,7 +1,7 @@
 .\generated_output\gpio_handler.o: modules\gpio_handler\gpio_handler.c
 .\generated_output\gpio_handler.o: .\modules\compile_switches\compile_switches.h
-.\generated_output\gpio_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\generated_output\gpio_handler.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\generated_output\gpio_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\generated_output\gpio_handler.o: F:\0_Tools\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\generated_output\gpio_handler.o: .\modules\custom_types\custom_types.h
 .\generated_output\gpio_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_memmap.h
 .\generated_output\gpio_handler.o: ..\TivaWare_C_Series-2.1.1.71\inc/hw_ints.h

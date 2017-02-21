@@ -50,7 +50,7 @@ void SSI_lcd_init(void)
 	SSIConfigSetExpClk(SSI0_BASE, SYS_clock_get, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, LCD_DataRate ,LCD_DataWidth);
 	SSIEnable(SSI0_BASE);				//Enable SSI
 }
-
+/*
 void SSI_shift_register_init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_SSI0);		//SSI 3 enable 
@@ -68,7 +68,7 @@ void SSI_shift_register_init(void)
 	//Peripherial base, Input clock, Frame format, Mode, Bit Data Rate,	Data Width	
 	//SSIConfigSetExpClk(SSI3_BASE, SYS_clock_get, SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, Shift_Register_DataRate ,Shift_Register_DataWidth);
 }
-
+*/
 void SSI_write(unsigned char message)
 {
 	SSIDataPut(SSI0_BASE,message);

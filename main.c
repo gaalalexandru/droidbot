@@ -5,8 +5,9 @@
 /*-------------------Type Includes--------------------*/
 /*-------------------HW define Includes---------------*/
 /*---------------------OS Includes--------------------*/
-#include "os_core.h"
 #include "os_hw.h"
+#include "os_core.h"
+#include "os_config.h"
 /*-------------------Driver Includes------------------*/
 /*-------------------Service Includes-----------------*/
 #include "adc_handler.h"
@@ -111,7 +112,7 @@ void Idle_Task(void){  //idle task
 int main(void)
 {
 	unsigned long clock1, clock2;
-	OS_Init();  // initialize OS, clock and timers, disable interrupts
+	OS_Init(80);  // initialize OS, clock and timers, disable interrupts
 	//Profile_Init();  // enable digital I/O on profile pins
 	Motion_Init();  //Initialize PWM output to motors, GPIO direction switches, ADC input of light sensors
 	#if UART_Debug
@@ -136,7 +137,7 @@ int main(void)
 		
 	OS_AddPeriodicEventThread(&PerTask[0].semaphore, 10);
 	OS_AddPeriodicEventThread(&PerTask[1].semaphore, 50);
-	OS_AddPeriodicEventThread(&PerTask[2].semaphore, 1000);
+	OS_AddPeriodicEventThread(&PerTask[2].semaphore, 100);
 
   OS_AddThreads(&Task0, 1,  //Periodic task 10 ms
 	              &Task1, 5,  //Periodic task 50 ms
@@ -147,6 +148,6 @@ int main(void)
 	              &Task6, 250, 	//empty task
 	              &Idle_Task,254);	//Idle task is lowest priority
 	
-  OS_Launch(BSP_Clock_GetFreq()/THREADFREQ);  // doesn't return, interrupts enabled in here
+	OS_Launch(SysCtlClockGet()/THREADFREQ);  // doesn't return, interrupts enabled in here
   return 0;  // this never executes	
 }

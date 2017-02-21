@@ -399,7 +399,7 @@ static const char ASCII[][5] = {
 
 
  
-#line 1 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 1 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
  
 
 
@@ -413,7 +413,7 @@ static const char ASCII[][5] = {
 
 
 
-#line 25 "C:\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
+#line 25 "F:\\0_Tools\\Keil_v5\\ARM\\ARMCC\\Bin\\..\\include\\stdbool.h"
 
 
 
@@ -596,7 +596,7 @@ void LCD_init(void)
   LCD_write(COMMAND, 0x14);              
 	
   LCD_write(COMMAND, 0x20);              
-  LCD_write(COMMAND, (0x0C));          
+  LCD_write(COMMAND, (0x0D));          
 	
 	LCD_clear();													 
 }

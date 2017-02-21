@@ -6,26 +6,12 @@
 #ifndef __OS_CORE_H
 #define __OS_CORE_H  1
 
-#include <stdint.h>
-
-// *******************************************************************************************************
-// ************************************* ssOS Configuration section **************************************
-// *******************************************************************************************************
-
-//Uncomment the target define you are using
-//Leave other target defines commented!!!
-#define TARGET_TM4C
-//#define TARGET_MSP432
-
-#define NUMTHREADS  8  // maximum number of threads
-#define NUMPERIODIC 3 // maximum number of periodic threads
-
-#define STACKSIZE   100      // number of 32-bit words in stack per thread
-#define FSIZE 10  // general FIFO size
-
-#define STARTUP_DELAY 10
-#define INT_PRIO_PERIODIC_EV (1)  //Timer interrupt priority for periodic events
-#define INT_PRIO_SLEEP (3)  //Timer interrupt priority for sleep decrementing
+/*------OS Includes------*/
+#include "CortexM.h"
+#include "stdbool.h"
+#include "stdint.h"
+#include "os_hw.h"
+#include "os_config.h"
 
 // *******************************************************************************************************
 // ************************************** Types definition section ***************************************
@@ -46,18 +32,6 @@ struct ptcb{	//periodic trigger controll block
 	uint32_t counter;
 };
 typedef struct ptcb ptcbType;
-/*
-struct etcb{ //edge trigger controll block
-	//int32_t *edgeSemaphore;
-	int32_t semaphore;
-	uint8_t port;
-	uint8_t pin;
-	uint8_t 
-};*/
-
-// *******************************************************************************************************
-// ************************************* Function prototypes section *************************************
-// *******************************************************************************************************
 
 struct fifo_st{
 	uint32_t Fifo[FSIZE];
@@ -69,13 +43,17 @@ struct fifo_st{
 };
 typedef struct fifo_st fifo_t;
 
+// *******************************************************************************************************
+// ************************************* Function prototypes section *************************************
+// *******************************************************************************************************
+
 // ******** OS_Init ************
 // Initialize operating system, disable interrupts
-// Initialize OS controlled I/O: periodic interrupt, bus clock as fast as possible
+// Initialize OS controlled I/O: periodic interrupt, bus clock
 // Initialize OS global variables
 // Inputs:  none
 // Outputs: none
-void OS_Init(void);
+void OS_Init(uint8_t clock_Mhz);
 
 //******** OS_AddThreads ***************
 // Add all threads to the scheduler
@@ -172,6 +150,5 @@ int OS_FIFO_Put(fifo_t *fifo,uint32_t data);
 // Inputs:  none
 // Outputs: data retrieved
 uint32_t OS_FIFO_Get(fifo_t *fifo);
-
 #endif
 //EOF
