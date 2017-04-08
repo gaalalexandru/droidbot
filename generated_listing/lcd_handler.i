@@ -596,7 +596,7 @@ void LCD_init(void)
   LCD_write(COMMAND, 0x14);              
 	
   LCD_write(COMMAND, 0x20);              
-  LCD_write(COMMAND, (0x0D));          
+  LCD_write(COMMAND, (0x0C));          
 	
 	LCD_clear();													 
 }

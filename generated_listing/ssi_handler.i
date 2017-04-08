@@ -1703,24 +1703,24 @@ void SSI_lcd_init(void)
 	SSIEnable(0x40008000);				
 }
 
-void SSI_shift_register_init(void)
-{
-	SysCtlPeripheralEnable(0xf0001c00);		
-	SysCtlPeripheralEnable(0xf0000803);	
-	
-	SSIDisable(0x4000B000);												
-	GPIOPinConfigure(0x00030001);		
-	GPIOPinConfigure(0x00030401);		
-	GPIOPinConfigure(0x00030801);		
-	GPIOPinConfigure(0x00030C01);		
-	
-	SSIClockSourceSet(0x4000B000, 0x00000000);	
-	
-	
-	
-	
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 void SSI_write(unsigned char message)
 {
 	SSIDataPut(0x40008000,message);
